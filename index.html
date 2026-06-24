@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>曾芸儀 Yun-Yi Tseng | AI Developer Portfolio</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    <meta name="description" content="曾芸儀 (National Central University) 個人作品集 - 專注於生成式 AI、RAG 檢送增強生成、機器學習與時間序列訊號處理的實戰導向開發者。">
+    <meta name="description" content="曾芸儀 (National Central University) 個人作品集 - 專注於生成式 AI、RAG 檢索增強生成、機器學習與時間序列訊號處理的實戰導向開發者。">
     <meta name="author" content="曾芸儀 Yun-Yi Tseng">
     
     <!-- Open Graph / Facebook -->
@@ -171,7 +171,7 @@
                                 <span>Vector Database (ChromaDB, Supabase pgvector)</span>
                                 <span>Query Expansion (查詢擴張)</span>
                                 <span>Embedding (halfvec 降維優化)</span>
-                                <span>n8n Cloud AI Orchestration</span>
+                                <span>n8n（雲端 AI 工作流自動化平台）</span>
                             </div>
                         </div>
 
@@ -249,17 +249,22 @@
                                 <span class="metric-lbl">FastAPI APIs 開發</span>
                             </div>
                         </div>
-                        <button class="btn btn-card-action open-project-modal" data-project="functrl">
-                            <span>閱讀技術細節</span>
-                            <i data-lucide="chevron-right"></i>
-                        </button>
+                        <div class="card-actions">
+                            <button class="btn btn-card-action open-project-modal" data-project="functrl">
+                                <span>閱讀技術細節</span>
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                            <a href="https://github.com/Elaine2899/FunCtrl" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="GitHub">
+                                <i data-lucide="github"></i>
+                            </a>
+                        </div>
                     </div>
 
                     <!-- Kaggle Project -->
                     <div class="project-card glass-card" data-category="ml">
-                        <div class="project-badge">Kaggle 全球競賽 | 第二名 🏆</div>
+                        <div class="project-badge">Kaggle | 全球第 2 / 777 隊 🏆</div>
                         <div class="project-card-header">
-                            <h3>Kaggle 中國房地產需求預測</h3>
+                            <h3>Real Estate Demand Prediction</h3>
                             <p class="tech-stack-summary">Python · LightGBM · XGBoost · Pandas</p>
                         </div>
                         <p class="project-brief">
@@ -268,17 +273,22 @@
                         <div class="project-metrics">
                             <div class="metric">
                                 <span class="metric-val">第 2 名</span>
-                                <span class="metric-lbl">Kaggle 全球競賽名次</span>
+                                <span class="metric-lbl">Kaggle 競賽名次</span>
                             </div>
                             <div class="metric">
-                                <span class="metric-val">全球殿堂級</span>
-                                <span class="metric-lbl">機器學習競賽成果</span>
+                                <span class="metric-val">Top 0.3%</span>
+                                <span class="metric-lbl">777 隊中第 2 名</span>
                             </div>
                         </div>
-                        <button class="btn btn-card-action open-project-modal" data-project="kaggle">
-                            <span>閱讀技術細節</span>
-                            <i data-lucide="chevron-right"></i>
-                        </button>
+                        <div class="card-actions">
+                            <button class="btn btn-card-action open-project-modal" data-project="kaggle">
+                                <span>閱讀技術細節</span>
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                            <a href="https://www.kaggle.com/competitions/china-real-estate-demand-prediction" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="Kaggle">
+                                <i data-lucide="external-link"></i>
+                            </a>
+                        </div>
                     </div>
 
                     <!-- PrepAgent Project -->
@@ -289,7 +299,7 @@
                             <p class="tech-stack-summary">n8n · Supabase pgvector · Python Ingestion · Telegram</p>
                         </div>
                         <p class="project-brief">
-                            將統計學 Whisper 逐字稿自動分塊嵌入。採用 REST 呼叫繞過限制，並使用 `halfvec(3072)` 降維儲存，串接 n8n 雲端工作流，打造可無限擴展的 Telegram AI 統計備考機器人。
+                            將統計學 Whisper 逐字稿自動分塊嵌入。採用直接 REST API 呼叫，規避 SDK 函式庫版本相依問題，並使用 `halfvec(3072)` 降維儲存，串接 n8n 雲端工作流，打造可無限擴展的 Telegram AI 統計備考機器人。
                         </p>
                         <div class="project-metrics">
                             <div class="metric">
@@ -301,10 +311,15 @@
                                 <span class="metric-lbl">Memory 滑動視窗快取</span>
                             </div>
                         </div>
-                        <button class="btn btn-card-action open-project-modal" data-project="prepagent">
-                            <span>閱讀技術細節</span>
-                            <i data-lucide="chevron-right"></i>
-                        </button>
+                        <div class="card-actions">
+                            <button class="btn btn-card-action open-project-modal" data-project="prepagent">
+                                <span>閱讀技術細節</span>
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                            <a href="https://github.com/Elaine2899/agentForPre" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="GitHub">
+                                <i data-lucide="github"></i>
+                            </a>
+                        </div>
                     </div>
 
                     <!-- AI CUP Project -->
@@ -327,12 +342,25 @@
                                 <span class="metric-lbl">訊號解構 (時/頻/時頻域)</span>
                             </div>
                         </div>
-                        <button class="btn btn-card-action open-project-modal" data-project="aicup">
-                            <span>閱讀技術細節</span>
-                            <i data-lucide="chevron-right"></i>
-                        </button>
+                        <div class="card-actions">
+                            <button class="btn btn-card-action open-project-modal" data-project="aicup">
+                                <span>閱讀技術細節</span>
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                            <a href="https://github.com/Elaine2899" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="GitHub">
+                                <i data-lucide="github"></i>
+                            </a>
+                        </div>
                     </div>
+                </div> <!-- End of featured-grid -->
 
+                <!-- Mini Projects Subsection -->
+                <div class="projects-subsection-title mini-title">
+                    <i data-lucide="code-2"></i>
+                    <span>課堂實作與小型專案 / Coursework & Mini Projects</span>
+                </div>
+                
+                <div class="projects-grid mini-projects-grid collapsed">
                     <!-- Workflow Design Project -->
                     <div class="project-card glass-card" data-category="web">
                         <div class="project-badge">資工所課程專案 | 96 分</div>
@@ -353,20 +381,16 @@
                                 <span class="metric-lbl">Factory/Observer/Strategy</span>
                             </div>
                         </div>
-                        <button class="btn btn-card-action open-project-modal" data-project="workflow">
-                            <span>閱讀技術細節</span>
-                            <i data-lucide="chevron-right"></i>
-                        </button>
+                        <div class="card-actions">
+                            <button class="btn btn-card-action open-project-modal" data-project="workflow">
+                                <span>閱讀技術細節</span>
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                            <a href="https://github.com/Elaine2899" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="GitHub">
+                                <i data-lucide="github"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Mini Projects Subsection -->
-                <div class="projects-subsection-title mini-title">
-                    <i data-lucide="code-2"></i>
-                    <span>課堂實作與小型專案 / Coursework & Mini Projects</span>
-                </div>
-                
-                <div class="projects-grid mini-projects-grid collapsed">
                     
                     <!-- Web Design Project -->
                     <div class="project-card glass-card" data-category="web">
@@ -675,7 +699,7 @@
             <div class="container">
                 <div class="section-title-wrap">
                     <h2 class="section-title"><span class="gradient-text">學術表現 & 成績 / Academic Performance</span></h2>
-                    <p class="section-subtitle">紮實的資管與工資基礎，核心科目皆名列前茅</p>
+                    <p class="section-subtitle">紮實的資管與資工基礎，核心科目皆名列前茅</p>
                 </div>
                 
                 <!-- Redesigned Academic Console (Interactive Dashboard Style) -->

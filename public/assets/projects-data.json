@@ -52,7 +52,7 @@
                 "heading": "關鍵架構與技術決策",
                 "subsections": [
                     {
-                        "title": "1. Embedding API 呼叫方式：直接 REST 繞過 SDK 限制",
+                        "title": "1. Embedding API 呼叫方式：直接 REST API 呼叫，規避 SDK 函式庫版本相依問題",
                         "bullets": [
                             "在使用 Google Generative AI SDK 時，發現在 AI Studio API key 下 SDK 預設綁定走 <code>v1beta</code> 版本，常因套件庫限制產生呼叫衝突。因此果斷拋棄 SDK，使用 <code>requests</code> 庫直接呼叫 <code>gemini-embedding-001</code> 的 REST API 進行嵌入計算，實現了輕量化與高穩定性。",
                             "API 節點連結：<code>https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent</code>"
