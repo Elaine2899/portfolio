@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>曾芸儀 Yun-Yi Tseng | AI Developer Portfolio</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="曾芸儀 (National Central University) 個人作品集 - 專注於生成式 AI、RAG 檢索增強生成、機器學習與時間序列訊號處理的實戰導向開發者。">
+    <meta name="author" content="曾芸儀 Yun-Yi Tseng">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+
+    <!-- Navigation -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <span class="gradient-text">Yun-Yi.</span>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#about" class="nav-link active">個人簡介</a>
+                <a href="#projects" class="nav-link">實戰專案</a>
+                <a href="#certificates" class="nav-link">專業證明</a>
+                <a href="#grades" class="nav-link">學術成績</a>
+                <a href="assets/resume_yun_yi_zeng.pdf" target="_blank" rel="noopener noreferrer" class="nav-btn">
+                    <span>下載 CV</span>
+                    <i data-lucide="download" class="icon-sm"></i>
+                </a>
+            </nav>
+            
+            <button class="mobile-nav-toggle" aria-label="Toggle Menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-info">
+                    <div class="badge-accent">
+                        <i data-lucide="sparkles" class="icon-sm"></i>
+                        <span>AI / RAG / Machine Learning Developer</span>
+                    </div>
+                    <h1>
+                        我是 <span class="gradient-text">曾芸儀</span>
+                    </h1>
+                    <p class="hero-tagline">
+                        實戰導向的 AI 開發者，對前沿技術保持高度好奇。擅長 RAG (檢索增強生成) 系統架構、時間序列訊號處理、MVP 快速開發與跨領域團隊溝通。
+                    </p>
+                    <p class="hero-desc">
+                        「面對逆境具備極強的韌性與獨立解決問題能力，習慣在不確定環境中主動研究、快速實作並持續優化。」
+                    </p>
+                    <div class="hero-cta-group">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>瀏覽我的專案</span>
+                            <i data-lucide="arrow-right"></i>
+                        </a>
+                        <a href="#about" class="btn btn-secondary">
+                            <span>關於我</span>
+                        </a>
+                    </div>
+                    <div class="hero-highlights">
+                        <div class="highlight-item">
+                            <span class="num gradient-text">1st</span>
+                            <span class="label">InnoServe 全國第一名</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="num gradient-text">Top 13%</span>
+                            <span class="label">中央資管系系排名</span>
+                        </div>
+                        <div class="highlight-item">
+                            <span class="num gradient-text">41/633</span>
+                            <span class="label">AI CUP 競賽名次</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Visual (Interactive Floating Tech Card) -->
+                <div class="hero-visual">
+                    <div class="hero-stats-grid">
+                        <div class="hero-stat-card glass-card">
+                            <span class="stat-badge">InnoServe</span>
+                            <span class="stat-number">全國 #1</span>
+                            <span class="stat-desc">AI 應用工具組</span>
+                        </div>
+                        <div class="hero-stat-card glass-card">
+                            <span class="stat-badge">學術成績</span>
+                            <span class="stat-number">Top 13%</span>
+                            <span class="stat-desc">系排名</span>
+                        </div>
+                        <div class="hero-stat-card glass-card">
+                            <span class="stat-badge">AI CUP</span>
+                            <span class="stat-number">41 / 633</span>
+                            <span class="stat-desc">競賽排名</span>
+                        </div>
+                        <div class="hero-stat-card glass-card">
+                            <span class="stat-badge">RAG 檢索</span>
+                            <span class="stat-number">88%+</span>
+                            <span class="stat-desc">FunCtrl 檢索準確率 (NDCG)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About & Core Traits Section -->
+        <section id="about" class="about-section scroll-section">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <h2 class="section-title"><span class="gradient-text">個人簡介 / About Me</span></h2>
+                    <p class="section-subtitle">卓越的主動學習與適應力，實戰驅動技術實力</p>
+                </div>
+                
+                <div class="about-grid">
+                    <div class="about-bio-card glass-card">
+                        <h3>我的故事與特質</h3>
+                        <p>
+                            從大一開始便獨立生活，課業與經濟生活大小事皆一手扛起。這樣的磨練賦予我極強的時間管理能力、韌性與解決問題的獨立性。在如此生活壓力下，我依然在系上保持前段班成績，同時擔任課程助教，並帶領團隊在全國性競賽中奪得金牌。
+                        </p>
+                        <p>
+                            在團隊中，我擅長扮演<strong>技術與產品之間的溝通橋樑</strong>。我推崇「先求有再求好」的 MVP 開發模式，擅長以小規模實驗快速驗證概念，再推廣到整個專案。我的開發習慣是隨時記錄並撰寫完整的文件，確保程式碼與架構的可維護性。
+                        </p>
+                        
+                        <div class="traits-container">
+                            <span class="trait-tag"><i data-lucide="check-circle"></i> 獨立解決問題能力</span>
+                            <span class="trait-tag"><i data-lucide="check-circle"></i> 快速 MVP 實作驗證</span>
+                            <span class="trait-tag"><i data-lucide="check-circle"></i> 技術與產品的橋樑</span>
+                            <span class="trait-tag"><i data-lucide="check-circle"></i> 完整文件撰寫習慣</span>
+                        </div>
+                    </div>
+
+                    <!-- Skills Matrix -->
+                    <div class="skills-card glass-card">
+                        <h3>核心技術棧</h3>
+                        
+                        <div class="skills-group">
+                            <h4><i data-lucide="brain"></i> 人工智慧 & 語意檢索 (AI / RAG)</h4>
+                            <div class="skills-tags">
+                                <span>LLM Integration (Gemini, GPT)</span>
+                                <span>RAG (檢索增強生成)</span>
+                                <span>Vector Database (ChromaDB, Supabase pgvector)</span>
+                                <span>Query Expansion (查詢擴張)</span>
+                                <span>Embedding (halfvec 降維優化)</span>
+                                <span>n8n Cloud AI Orchestration</span>
+                            </div>
+                        </div>
+
+                        <div class="skills-group">
+                            <h4><i data-lucide="database"></i> 後端與數據分析 (Backend & Analytics)</h4>
+                            <div class="skills-tags">
+                                <span>Python</span>
+                                <span>FastAPI</span>
+                                <span>MySQL / PostgreSQL</span>
+                                <span>XGBoost & Random Forest</span>
+                                <span>訊號處理 (FFT 傅立葉轉換、小波轉換 Wavelet)</span>
+                                <span>Docker 容器化</span>
+                            </div>
+                        </div>
+
+                        <div class="skills-group">
+                            <h4><i data-lucide="code-2"></i> 其他開發技術與工具 (Others)</h4>
+                            <div class="skills-tags">
+                                <span>Java (進階物件導向設計)</span>
+                                <span>Vue.js</span>
+                                <span>React</span>
+                                <span>TailwindCSS</span>
+                                <span>Firebase</span>
+                                <span>Git & Web Deployment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section scroll-section">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <h2 class="section-title"><span class="gradient-text">實戰專案 / Projects</span></h2>
+                    <p class="section-subtitle">結合理論與高度工程實作力，解決真實世界問題</p>
+                </div>
+
+                <!-- Project Filters -->
+                <div class="project-filters">
+                    <button class="filter-btn active" data-filter="all">全部</button>
+                    <button class="filter-btn" data-filter="rag">生成式 AI / RAG</button>
+                    <button class="filter-btn" data-filter="ml">機器學習 & 訊號處理</button>
+                    <button class="filter-btn" data-filter="web">系統開發與網頁維護</button>
+                </div>
+
+                <!-- Projects Wrapper Grid -->
+                <div class="projects-wrapper-grid">
+                    <!-- Featured Projects Subsection -->
+                    <div class="projects-subsection-title">
+                    <i data-lucide="award"></i>
+                    <span>核心實戰專案 / Featured Projects</span>
+                </div>
+                
+                <div class="projects-grid featured-grid">
+                    
+                    <!-- FunCtrl Project -->
+                    <div class="project-card glass-card" data-category="rag">
+                        <div class="project-badge">畢業專案 | InnoServe 第一名</div>
+                        <div class="project-card-header">
+                            <h3>FunCtrl - AI 智慧學習地圖平台</h3>
+                            <p class="tech-stack-summary">FastAPI · Vue · ChromaDB · Gemini RAG</p>
+                        </div>
+                        <p class="project-brief">
+                            針對 YouTube 資訊碎片化問題，首創「三層向量 RAG 檢索」架構，結合 Gemini 進行查詢擴張，精準定位影片關鍵段落。獲得全國 InnoServe 資訊大賽 AI 應用組第一名。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">88%+</span>
+                                <span class="metric-lbl">NDCG 檢索排序準確率</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">30+</span>
+                                <span class="metric-lbl">FastAPI APIs 開發</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="functrl">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Kaggle Project -->
+                    <div class="project-card glass-card" data-category="ml">
+                        <div class="project-badge">Kaggle 全球競賽 | 第二名 🏆</div>
+                        <div class="project-card-header">
+                            <h3>Kaggle 中國房地產需求預測</h3>
+                            <p class="tech-stack-summary">Python · LightGBM · XGBoost · Pandas</p>
+                        </div>
+                        <p class="project-brief">
+                            預測未來半年中國房地產之需求趨勢與價格指數。針對多維度宏觀經濟指標，建立時間滯後 (Lag) 與移動平均特徵，使用集成學習策略融合 LightGBM 與 XGBoost 等模型以降低預測均方誤差。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">第 2 名</span>
+                                <span class="metric-lbl">Kaggle 全球競賽名次</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">全球殿堂級</span>
+                                <span class="metric-lbl">機器學習競賽成果</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="kaggle">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- PrepAgent Project -->
+                    <div class="project-card glass-card" data-category="rag">
+                        <div class="project-badge">個人專案 | 全雲端架構</div>
+                        <div class="project-card-header">
+                            <h3>PrepAgent - Telegram AI 備考助教</h3>
+                            <p class="tech-stack-summary">n8n · Supabase pgvector · Python Ingestion · Telegram</p>
+                        </div>
+                        <p class="project-brief">
+                            將統計學 Whisper 逐字稿自動分塊嵌入。採用 REST 呼叫繞過限制，並使用 `halfvec(3072)` 降維儲存，串接 n8n 雲端工作流，打造可無限擴展的 Telegram AI 統計備考機器人。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">50%</span>
+                                <span class="metric-lbl">資料儲存空間節省 (halfvec)</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">5 輪</span>
+                                <span class="metric-lbl">Memory 滑動視窗快取</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="prepagent">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- AI CUP Project -->
+                    <div class="project-card glass-card" data-category="ml">
+                        <div class="project-badge">2025 AI CUP 競賽 | 前6.5%</div>
+                        <div class="project-card-header">
+                            <h3>桌球智慧球拍選手分級與屬性辨識</h3>
+                            <p class="tech-stack-summary">Python · 傅立葉/小波轉換 · XGBoost · 隨機森林</p>
+                        </div>
+                        <p class="project-brief">
+                            分析智慧球拍揮拍時間序列。突破常規 LSTM 瓶頸，利用數位訊號處理 (DSP) 提取時域、頻域(FFT)與時頻域(小波轉換)多維特徵，以極強特徵工程取得第 41/633 名。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">41/633</span>
+                                <span class="metric-lbl">全國隊伍名次</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">3個維度</span>
+                                <span class="metric-lbl">訊號解構 (時/頻/時頻域)</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="aicup">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Workflow Design Project -->
+                    <div class="project-card glass-card" data-category="web">
+                        <div class="project-badge">資工所課程專案 | 96 分</div>
+                        <div class="project-card-header">
+                            <h3>Workflow Design 圖形化編輯器</h3>
+                            <p class="tech-stack-summary">Java · Swing / AWT · OOP Design Patterns</p>
+                        </div>
+                        <p class="project-brief">
+                            修習資工所「物件導向設計與程式」課程期末專案。深度實踐 Factory, Observer, Strategy 等經典軟體設計模式，開發出具備節點拖曳、連線、事件連動與 JSON 序列化功能之完整工作流編輯系統。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">96 分</span>
+                                <span class="metric-lbl">物件導向課程評分</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">設計模式</span>
+                                <span class="metric-lbl">Factory/Observer/Strategy</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="workflow">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mini Projects Subsection -->
+                <div class="projects-subsection-title mini-title">
+                    <i data-lucide="code-2"></i>
+                    <span>課堂實作與小型專案 / Coursework & Mini Projects</span>
+                </div>
+                
+                <div class="projects-grid mini-projects-grid collapsed">
+                    
+                    <!-- Web Design Project -->
+                    <div class="project-card glass-card" data-category="web">
+                        <div class="project-badge">大二學校課程 | 組長</div>
+                        <div class="project-card-header">
+                            <h3>校內網頁設計與流程改良</h3>
+                            <p class="tech-stack-summary">HTML / CSS · JavaScript · UI Design</p>
+                        </div>
+                        <p class="project-brief">
+                            擔任網頁程式設計課程小組之組長，學習撰寫校內網頁系統，致力於重構及改良學校內部陳舊的系統功能與前端查詢介面，提昇使用者使用便利性。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">組長領導</span>
+                                <span class="metric-lbl">團隊分工協作</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">網頁改良</span>
+                                <span class="metric-lbl">使用者體驗優化</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="webdesign">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- NCU App Project -->
+                    <div class="project-card glass-card" data-category="web">
+                        <div class="project-badge">大二校內社群 | 組員</div>
+                        <div class="project-card-header">
+                            <h3>NCU App 行動校園應用開發</h3>
+                            <p class="tech-stack-summary">React · TailwindCSS · Firebase · Supabase</p>
+                        </div>
+                        <p class="project-brief">
+                            加入校內 NCU APP 開發社群，旨在開發便利全校師生使用之行動應用程式。過程中初次學習並接觸 React 架構、Tailwind 樣式管理，以及 Firebase 與 Supabase 雲端後端技術。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">跨端實踐</span>
+                                <span class="metric-lbl">校園 App 社群開發</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">初識全端</span>
+                                <span class="metric-lbl">雲端資料庫串接</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="ncuapp">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Sophomore AI Project -->
+                    <div class="project-card glass-card" data-category="rag">
+                        <div class="project-badge">大二學校課程 | 技術組員</div>
+                        <div class="project-card-header">
+                            <h3>人工智慧跨域應用專題</h3>
+                            <p class="tech-stack-summary">Python · LLM API · Basic RAG</p>
+                        </div>
+                        <p class="project-brief">
+                            修習 AI 微學程專題，擔任小組技術組組員。在此專案中初次接觸檢索增強生成 (RAG) 的概念架構，實作調用開源大語言模型 (LLM) API，為後續 RAG 架構奠定基礎。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">技術研究</span>
+                                <span class="metric-lbl">專題架構實作</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">RAG 起點</span>
+                                <span class="metric-lbl">大語言模型初體驗</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="aiproject">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Traffic Data Vis Project -->
+                    <div class="project-card glass-card" data-category="ml">
+                        <div class="project-badge">大三學校課程 | 97高分</div>
+                        <div class="project-card-header">
+                            <h3>2023 交通事故常見偏誤數據檢視</h3>
+                            <p class="tech-stack-summary">Python · Pandas · Data Visualization</p>
+                        </div>
+                        <p class="project-brief">
+                            修習資料視覺化課程期末專題。針對台灣 2023 年交通事故明細數據進行深度清洗、分析與探索，設計多維度交互圖表，揭示大眾對於交通事故發生的常見偏誤。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">97 分</span>
+                                <span class="metric-lbl">資料視覺化高分</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">資料分析</span>
+                                <span class="metric-lbl">台灣交通數據分析</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="datavis">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- GenAI Application Project -->
+                    <div class="project-card glass-card" data-category="rag">
+                        <div class="project-badge">大四學校課程 | 專案開發</div>
+                        <div class="project-card-header">
+                            <h3>生成式 AI 應用系統與工程專案</h3>
+                            <p class="tech-stack-summary">Python · Streamlit · Gemini API · Prompt Eng</p>
+                        </div>
+                        <p class="project-brief">
+                            修習成大與中央跨校「生成式 AI 應用系統與工程」課程，在期間設計並開發多個 AI 應用系統，如 LyricsAnalyzer 歌詞情感與隱喻主題分析器。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">第 1 名</span>
+                                <span class="metric-lbl">課程專案評比表現</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">應用開發</span>
+                                <span class="metric-lbl">Streamlit 快速驗證</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="genai">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
+                    <!-- Web Management Project -->
+                    <div class="project-card glass-card" data-category="web">
+                        <div class="project-badge">工作實績 | 網路管理</div>
+                        <div class="project-card-header">
+                            <h3>哲學研究所官方網站維護與安全管理</h3>
+                            <p class="tech-stack-summary">CMS · HTML/CSS · Server Admin · Security Compliance</p>
+                        </div>
+                        <p class="project-brief">
+                            擔任網路管理人員，管理所上網站日常維護。因應校方與政府最新資安與無障礙網頁政策，全面重整網頁架構與內容，確保系統高可用性及無障礙政策合規。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">100%</span>
+                                <span class="metric-lbl">合規無障礙政策調整</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">穩定運行</span>
+                                <span class="metric-lbl">日常維護無中斷</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="webadmin">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                </div> <!-- End of projects-wrapper-grid -->
+
+                <!-- Toggle Button Container -->
+                <div class="toggle-projects-container">
+                    <button id="toggle-mini-projects" class="btn btn-secondary">
+                        <span>展開更多專案 / Show More</span>
+                        <i data-lucide="chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certificates Section -->
+        <section id="certificates" class="certificates-section scroll-section">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <h2 class="section-title"><span class="gradient-text">專業證明 & 獎項 / Credentials</span></h2>
+                    <p class="section-subtitle">所有成就皆有憑有據，點擊卡片可放大預覽官方證明</p>
+                </div>
+
+                <div class="certificates-grid">
+                    
+                    <!-- InnoServe Official Certificate -->
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="InnoServe 全國第一名官方證書" data-cert-img="assets/certificates/innoserve_generative_ai_first_place.jpg" data-cert-pdf="assets/certificates/innoserve_generative_ai_first_place.jpg">
+                        <div class="cert-img-container">
+                            <img src="assets/certificates/innoserve_generative_ai_first_place.jpg" alt="InnoServe 第一名官方證書" loading="lazy">
+                            <div class="cert-overlay">
+                                <i data-lucide="zoom-in"></i>
+                                <span>預覽官方證書</span>
+                            </div>
+                        </div>
+                        <div class="cert-info">
+                            <h4>InnoServe 全國第一名官方證書</h4>
+                            <p>教育部頒發大專校院資訊應用服務創新競賽第一名官方證書</p>
+                        </div>
+                    </div>
+
+                    <!-- InnoServe Group Photo -->
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="InnoServe 全國資訊大賽第一名 (頒獎現場)" data-cert-img="assets/certificates/innoserve_a.jpg" data-cert-pdf="assets/certificates/innoserve_a.jpg">
+                        <div class="cert-img-container">
+                            <img src="assets/certificates/innoserve_a.jpg" alt="InnoServe 頒獎現場" loading="lazy">
+                            <div class="cert-overlay">
+                                <i data-lucide="zoom-in"></i>
+                                <span>預覽現場團體照</span>
+                            </div>
+                        </div>
+                        <div class="cert-info">
+                            <h4>InnoServe 全國第一名 (頒獎現場)</h4>
+                            <p>大專校院資訊應用服務創新競賽 AI 應用工具組第 1 名現場照</p>
+                        </div>
+                    </div>
+
+                    <!-- Kaggle Ranking -->
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="Kaggle 全球競賽第二名獲獎公告" data-cert-img="assets/certificates/Kaggle_Ranking.png" data-cert-pdf="assets/certificates/Kaggle_Ranking.png">
+                        <div class="cert-img-container">
+                            <img src="assets/certificates/Kaggle_Ranking.png" alt="Kaggle 競賽獲獎公告" loading="lazy">
+                            <div class="cert-overlay">
+                                <i data-lucide="zoom-in"></i>
+                                <span>預覽競賽獲獎公告</span>
+                            </div>
+                        </div>
+                        <div class="cert-info">
+                            <h4>Kaggle 全球競賽第二名官方公告</h4>
+                            <p>Real Estate Demand Prediction 全球第二名獲獎公告 (隊名：地產大亨)</p>
+                        </div>
+                    </div>
+
+                    <!-- Kaggle Team -->
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="Kaggle 參賽團隊身份驗證" data-cert-img="assets/certificates/Kaggle_Team.png" data-cert-pdf="assets/certificates/Kaggle_Team.png">
+                        <div class="cert-img-container">
+                            <img src="assets/certificates/Kaggle_Team.png" alt="Kaggle 團隊參賽驗證" loading="lazy">
+                            <div class="cert-overlay">
+                                <i data-lucide="zoom-in"></i>
+                                <span>預覽參賽身分驗證</span>
+                            </div>
+                        </div>
+                        <div class="cert-info">
+                            <h4>Kaggle 獲獎隊伍身份驗證</h4>
+                            <p>證實本作品集作者為獲獎隊伍「地產大亨 (Monopoly)」之核心成員</p>
+                        </div>
+                    </div>
+
+                    <!-- Academic Transcript / Ranking -->
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="中央大學系排名證明 (前13%)" data-cert-img="assets/certificates/rank_certificate.jpg" data-cert-pdf="assets/certificates/rank_certificate.pdf">
+                        <div class="cert-img-container">
+                            <img src="assets/certificates/rank_certificate.jpg" alt="中央大學系排名證明" loading="lazy">
+                            <div class="cert-overlay">
+                                <i data-lucide="zoom-in"></i>
+                                <span>預覽排名與成績單</span>
+                            </div>
+                        </div>
+                        <div class="cert-info">
+                            <h4>中央大學學業成績排名證明</h4>
+                            <p>累積總系排名 13%，前段班成績優異實力佐證</p>
+                        </div>
+                    </div>
+
+                    <!-- Book Prize Certificate -->
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="113學年度第二學期書卷獎" data-cert-img="assets/certificates/book_prize_1132.jpg" data-cert-pdf="assets/certificates/book_prize_1132.pdf">
+                        <div class="cert-img-container">
+                            <img src="assets/certificates/book_prize_1132.jpg" alt="1132書卷獎" loading="lazy">
+                            <div class="cert-overlay">
+                                <i data-lucide="zoom-in"></i>
+                                <span>預覽書卷獎證書</span>
+                            </div>
+                        </div>
+                        <div class="cert-info">
+                            <h4>1132 書卷獎證書</h4>
+                            <p>中央大學資訊管理學系 113 學年度第二學期書卷獎</p>
+                        </div>
+                    </div>
+
+                    <!-- TOEIC Certificate -->
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="多益藍色證書 (760分)" data-cert-img="assets/certificates/toeic_760.jpg" data-cert-pdf="assets/certificates/toeic_760.jpg">
+                        <div class="cert-img-container">
+                            <img src="assets/certificates/toeic_760.jpg" alt="多益藍色證書" loading="lazy">
+                            <div class="cert-overlay">
+                                <i data-lucide="zoom-in"></i>
+                                <span>預覽多益證書</span>
+                            </div>
+                        </div>
+                        <div class="cert-info">
+                            <h4>多益 (TOEIC) 藍色證書</h4>
+                            <p>獲得 760 分，具備流暢的商務與科技英文說寫及溝通能力</p>
+                        </div>
+                    </div>
+
+                    <!-- Philosophy Network Admin Certificate -->
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="哲學研究所網路管理人員證明" data-cert-img="assets/certificates/network_admin_cert.jpg" data-cert-pdf="assets/certificates/network_admin_cert.pdf">
+                        <div class="cert-img-container">
+                            <img src="assets/certificates/network_admin_cert.jpg" alt="網管證明" loading="lazy">
+                            <div class="cert-overlay">
+                                <i data-lucide="zoom-in"></i>
+                                <span>預覽網管證明書</span>
+                            </div>
+                        </div>
+                        <div class="cert-info">
+                            <h4>哲學研究所網路管理人員服務證明</h4>
+                            <p>負責網站架構日常維護、政策合規調整之官方工作證明</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Academics Section -->
+        <section id="grades" class="academics-section scroll-section">
+            <div class="container">
+                <div class="section-title-wrap">
+                    <h2 class="section-title"><span class="gradient-text">學術表現 & 成績 / Academic Performance</span></h2>
+                    <p class="section-subtitle">紮實的資管與工資基礎，核心科目皆名列前茅</p>
+                </div>
+                
+                <!-- Redesigned Academic Console (Interactive Dashboard Style) -->
+                <div class="academic-console glass-card">
+                    <!-- Left Console Panel: Status & Navigation -->
+                    <div class="console-sidebar">
+                        <div class="academic-profile">
+                            <div class="rank-badge-wrap">
+                                <div class="rank-ring"></div>
+                                <div class="rank-content">
+                                    <span class="rank-val gradient-text">系排 13%</span>
+                                    <span class="rank-lbl">ACADEMIC RANK</span>
+                                </div>
+                            </div>
+                            <div class="academic-info">
+                                <h3>國立中央大學</h3>
+                                <p class="dept">資訊管理學系 / 大四在學</p>
+                                <p class="program">修習「人工智慧微學分學程」</p>
+                                <div class="academic-honor">
+                                    <span class="honor-badge"><i data-lucide="award"></i> 1132 書卷獎</span>
+                                    <span class="honor-badge"><i data-lucide="languages"></i> TOEIC 760</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Console Navigation Tabs -->
+                        <div class="console-tabs">
+                            <button class="console-tab-btn active" data-tab="ai">
+                                <i data-lucide="brain"></i>
+                                <span>AI & 數據科學</span>
+                            </button>
+                            <button class="console-tab-btn" data-tab="software">
+                                <i data-lucide="code-2"></i>
+                                <span>軟體與資料庫</span>
+                            </button>
+                            <button class="console-tab-btn" data-tab="math">
+                                <i data-lucide="binary"></i>
+                                <span>數理與統計基礎</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Console Panel: Dynamic Display -->
+                    <div class="console-display">
+                        <!-- AI Tab Content -->
+                        <div class="console-tab-content active" id="tab-ai">
+                            <h3 class="category-title"><i data-lucide="brain"></i> AI & 數據科學核心學科</h3>
+                            <div class="grade-list">
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">人工智慧與機器學習</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-cyan" style="width: 98%"></div>
+                                        </div>
+                                        <span class="grade-score">98</span>
+                                    </div>
+                                    <span class="grade-letter letter-aplus">A+</span>
+                                </div>
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">AI跨域應用專題</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-cyan" style="width: 98%"></div>
+                                        </div>
+                                        <span class="grade-score">98</span>
+                                    </div>
+                                    <span class="grade-letter letter-aplus">A+</span>
+                                </div>
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">Python程式設計</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-cyan" style="width: 98%"></div>
+                                        </div>
+                                        <span class="grade-score">98</span>
+                                    </div>
+                                    <span class="grade-letter letter-aplus">A+</span>
+                                </div>
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">機器學習概論</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-cyan" style="width: 97%"></div>
+                                        </div>
+                                        <span class="grade-score">97</span>
+                                    </div>
+                                    <span class="grade-letter letter-aplus">A+</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Software Tab Content -->
+                        <div class="console-tab-content" id="tab-software">
+                            <h3 class="category-title"><i data-lucide="code-2"></i> 軟體與資料庫核心學科</h3>
+                            <div class="grade-list">
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">程式設計</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-purple" style="width: 99%"></div>
+                                        </div>
+                                        <span class="grade-score">99</span>
+                                    </div>
+                                    <span class="grade-letter letter-aplus">A+</span>
+                                </div>
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">Java程式進階</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-purple" style="width: 93%"></div>
+                                        </div>
+                                        <span class="grade-score">93</span>
+                                    </div>
+                                    <span class="grade-letter letter-a">A</span>
+                                </div>
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">資料庫管理</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-purple" style="width: 93%"></div>
+                                        </div>
+                                        <span class="grade-score">93</span>
+                                    </div>
+                                    <span class="grade-letter letter-a">A</span>
+                                </div>
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">AI人工智慧導論</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-purple" style="width: 93%"></div>
+                                        </div>
+                                        <span class="grade-score">93</span>
+                                    </div>
+                                    <span class="grade-letter letter-a">A</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Math Tab Content -->
+                        <div class="console-tab-content" id="tab-math">
+                            <h3 class="category-title"><i data-lucide="binary"></i> 數理與統計基礎學科</h3>
+                            <div class="grade-list">
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">微積分</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-pink" style="width: 99%"></div>
+                                        </div>
+                                        <span class="grade-score">99</span>
+                                    </div>
+                                    <span class="grade-letter letter-aplus">A+</span>
+                                </div>
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">資料視覺化</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-pink" style="width: 97%"></div>
+                                        </div>
+                                        <span class="grade-score">97</span>
+                                    </div>
+                                    <span class="grade-letter letter-aplus">A+</span>
+                                </div>
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">統計學</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-pink" style="width: 97%"></div>
+                                        </div>
+                                        <span class="grade-score">97</span>
+                                    </div>
+                                    <span class="grade-letter letter-aplus">A+</span>
+                                </div>
+                                <div class="grade-row">
+                                    <div class="grade-subject">
+                                        <span class="subject-name">線性代數</span>
+                                    </div>
+                                    <div class="grade-progress-wrap">
+                                        <div class="grade-progress-bar">
+                                            <div class="grade-progress-fill fill-pink" style="width: 90%"></div>
+                                        </div>
+                                        <span class="grade-score">90</span>
+                                    </div>
+                                    <span class="grade-letter letter-a">A</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Experience Timeline -->
+                <div class="experience-showcase glass-card">
+                    <div class="showcase-title">
+                        <i data-lucide="briefcase"></i>
+                        <span>學術與技術服務 / Academic & Tech Service</span>
+                    </div>
+                    <div class="experience-timeline">
+                        <div class="experience-card">
+                            <div class="exp-badge">助教 / TA</div>
+                            <h4>核心學科課程助教</h4>
+                            <p class="exp-period">機器學習概論、資料視覺化</p>
+                            <p class="exp-desc">引導大二、大三學弟妹進行程式實作、解惑特徵工程與模型建置問題，協助批改專案。</p>
+                        </div>
+                        <div class="experience-card">
+                            <div class="exp-badge">網管 / Network Admin</div>
+                            <h4>哲學研究所 網路管理人員</h4>
+                            <p class="exp-period">負責網頁維護與後端管理</p>
+                            <p class="exp-desc">維護所上伺服器與網頁日常運作，進行安全合規性調整，重構舊有系統，降低系統風險。</p>
+                        </div>
+                        <div class="experience-card">
+                            <div class="exp-badge">領導 / Leadership</div>
+                            <h4>專案組長 & 社團幹部</h4>
+                            <p class="exp-period">團隊技術與協作核心</p>
+                            <p class="exp-desc">帶領多項 RAG/ML 專案開發，協調前後端；曾任瘋英語學會活動長、系羽與系排副隊長。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Call to Action Footer Section -->
+        <section class="cta-section">
+            <div class="container glass-card cta-card">
+                <h2>對我的實戰技術或經歷有興趣？</h2>
+                <p>歡迎下載我完整的 PDF 履歷或直接透過電子郵件與我聯繫，期待與您共同探討 AI 應用的開發！</p>
+                <div class="cta-btns">
+                    <a href="mailto:yytseng.im@gmail.com" class="btn btn-primary">
+                        <i data-lucide="mail"></i>
+                        <span>與我聯絡 (Email)</span>
+                    </a>
+                    <a href="assets/resume_yun_yi_zeng.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                        <i data-lucide="file-text"></i>
+                        <span>預覽完整中文履歷</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 曾芸儀 Yun-Yi Tseng. Built with HTML, Vanilla CSS & JavaScript. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="#about">關於我</a>
+                <a href="#projects">專案</a>
+                <a href="#certificates">專業證明</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- PROJECT DETAILS MODAL -->
+    <div id="project-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="專案技術細節">
+        <div class="modal-container">
+            <button class="modal-close" aria-label="關閉對話框">
+                <i data-lucide="x"></i>
+            </button>
+            <div class="modal-body-content">
+                <!-- Content will be injected dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- CERTIFICATE LIGHTBOX MODAL -->
+    <div id="cert-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title">
+        <div class="cert-modal-container">
+            <button class="cert-modal-close" aria-label="關閉預覽">
+                <i data-lucide="x"></i>
+            </button>
+            <h3 id="cert-modal-title" class="cert-modal-title">官方證明預覽</h3>
+            <div class="cert-modal-body">
+                <img id="cert-modal-img" src="" alt="Certificate View">
+            </div>
+            <div class="cert-modal-footer">
+                <a id="cert-modal-pdf-link" href="" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                    <i data-lucide="external-link"></i>
+                    <span>查看原始 PDF 文件</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="app.js"></script>
+</body>
+</html>

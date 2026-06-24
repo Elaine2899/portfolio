@@ -1,0 +1,24 @@
+# Dependency directories
+node_modules/
+
+# OS metadata
+.DS_Store
+Thumbs.db
+
+# Build outputs
+dist/
+dist-ssr/
+*.local
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Gemini / Agent artifacts (if any)
+.agents/
+.gemini/
