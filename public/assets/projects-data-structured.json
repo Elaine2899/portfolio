@@ -83,7 +83,7 @@
                 "items": [],
                 "subsections": [
                     {
-                        "title": "1. Embedding API 呼叫方式：直接 REST 繞過 SDK 限制",
+                        "title": "1. Embedding API 呼叫方式：直接 REST API 呼叫，規避 SDK 函式庫版本相依問題",
                         "items": [
                             "在使用 Google Generative AI SDK 時，發現在 AI Studio API key 下 SDK 預設綁定走 v1beta",
                             "版本，常因套件庫限制產生呼叫衝突。因此果斷拋棄 SDK，使用 requests",
