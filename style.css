@@ -586,17 +586,17 @@ a {
 
 .skills-tags span {
     padding: 6px 12px;
-    background: #2a2012;
+    background: rgba(255, 255, 255, 0.06);
     border: none;
     border-radius: var(--radius-sm);
     font-size: 0.85rem;
-    color: var(--text-primary);
+    color: #d1d5db;
     transition: var(--transition-fast);
 }
 
 .skills-tags span:hover {
     background: var(--accent-gold);
-    color: #ffffff;
+    color: #0c2233;
 }
 
 /* ==========================================
@@ -781,10 +781,10 @@ a {
     font-size: 0.72rem;
     font-weight: 500;
     padding: 4px 8px;
-    border-radius: 6px;
-    background: rgba(255, 195, 80, 0.02);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
+    border-radius: var(--radius-sm);
+    background: rgba(56, 189, 248, 0.06);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    color: var(--accent-gold);
     display: inline-flex;
     align-items: center;
     gap: 4px;
@@ -793,7 +793,7 @@ a {
 .honor-badge i {
     width: 12px;
     height: 12px;
-    color: var(--accent-purple);
+    color: var(--accent-gold);
 }
 
 /* Console Tabs Buttons */
@@ -1118,7 +1118,7 @@ a {
 
 .filter-btn:hover {
     color: var(--text-primary);
-    border-bottom-color: rgba(217, 119, 6, 0.2);
+    border-bottom-color: rgba(56, 189, 248, 0.2);
 }
 
 .filter-btn.active {
@@ -1164,8 +1164,8 @@ a {
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--accent-gold);
-    background: rgba(217, 119, 6, 0.06);
-    border: 1px solid rgba(217, 119, 6, 0.25);
+    background: rgba(56, 189, 248, 0.06);
+    border: 1px solid rgba(56, 189, 248, 0.25);
     border-radius: var(--radius-sm);
     padding: 4px 10px;
     margin-bottom: 20px;
