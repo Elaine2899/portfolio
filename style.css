@@ -1275,18 +1275,23 @@ a {
     transform: translateY(-2px);
 }
 
-.btn-card-link i {
+.btn-card-link i,
+.btn-card-link svg {
     width: 18px;
     height: 18px;
+    flex-shrink: 0;
 }
 
-.btn-card-action i {
+.btn-card-action i,
+.btn-card-action svg {
     width: 16px;
     height: 16px;
+    flex-shrink: 0;
     transition: transform var(--transition-fast);
 }
 
-.btn-card-action:hover i {
+.btn-card-action:hover i,
+.btn-card-action:hover svg {
     transform: translateX(4px);
 }
 
