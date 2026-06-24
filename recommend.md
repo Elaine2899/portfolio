@@ -22,6 +22,8 @@ Nav、CTA、Footer 都沒有入口。
 <meta property="og:image" content="https://你的部署網址/og-preview.png">
 ```
 
+https://elaine2899.github.io/portfolio/
+
 ---
 
 ## 排版與視覺調整
