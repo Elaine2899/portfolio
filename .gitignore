@@ -22,3 +22,7 @@ dist-ssr/
 # Gemini / Agent artifacts (if any)
 .agents/
 .gemini/
+
+# Personal helper documents (local only)
+recommend.md
+todo.md
