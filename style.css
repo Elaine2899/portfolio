@@ -384,19 +384,20 @@ a {
 .domain-tag {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 14px;
-    border: 1px solid var(--border-color);
+    gap: 7px;
+    padding: 5px 13px;
+    background: rgba(56, 189, 248, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.22);
     border-radius: var(--radius-full);
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    background: rgba(56, 189, 248, 0.04);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--accent-cyan);
+    letter-spacing: 0.3px;
 }
 
 .domain-tag svg {
-    width: 14px;
-    height: 14px;
-    color: var(--accent-gold);
+    width: 13px;
+    height: 13px;
 }
 
 a.hero-stat-card {
