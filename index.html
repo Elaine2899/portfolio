@@ -90,17 +90,12 @@
                         </a>
                     </div>
                     <div class="hero-highlights">
-                        <div class="highlight-item">
-                            <span class="num gradient-text">1st</span>
-                            <span class="label">InnoServe 全國第一名</span>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="num gradient-text">Top 13%</span>
-                            <span class="label">中央資管系系排名</span>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="num gradient-text">2nd</span>
-                            <span class="label">Kaggle 全球競賽</span>
+                        <span class="domains-label">專業領域</span>
+                        <div class="domain-tags">
+                            <span class="domain-tag"><i data-lucide="brain"></i> AI 應用開發</span>
+                            <span class="domain-tag"><i data-lucide="code-2"></i> 網頁軟體開發</span>
+                            <span class="domain-tag"><i data-lucide="trending-up"></i> 機器學習</span>
+                            <span class="domain-tag"><i data-lucide="database"></i> 數據科學</span>
                         </div>
                     </div>
                 </div>
@@ -108,26 +103,26 @@
                 <!-- Hero Visual (Interactive Floating Tech Card) -->
                 <div class="hero-visual">
                     <div class="hero-stats-grid">
-                        <div class="hero-stat-card glass-card">
+                        <a href="#project-functrl" class="hero-stat-card glass-card">
                             <span class="stat-badge">InnoServe</span>
                             <span class="stat-number">全國 #1</span>
                             <span class="stat-desc">AI 應用工具組</span>
-                        </div>
-                        <div class="hero-stat-card glass-card">
+                        </a>
+                        <a href="#grades" class="hero-stat-card glass-card">
                             <span class="stat-badge">學術成績</span>
                             <span class="stat-number">Top 13%</span>
                             <span class="stat-desc">系排名</span>
-                        </div>
-                        <div class="hero-stat-card glass-card">
+                        </a>
+                        <a href="#project-kaggle" class="hero-stat-card glass-card">
                             <span class="stat-badge">Kaggle</span>
                             <span class="stat-number">全球 #2</span>
                             <span class="stat-desc">777 隊中第 2 名</span>
-                        </div>
-                        <div class="hero-stat-card glass-card">
+                        </a>
+                        <a href="#project-functrl" class="hero-stat-card glass-card">
                             <span class="stat-badge">RAG 檢索</span>
                             <span class="stat-number">88%+</span>
                             <span class="stat-desc">FunCtrl 檢索準確率 (NDCG)</span>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -148,7 +143,7 @@
                             從大一開始便獨立生活，課業與經濟生活大小事皆一手扛起。這樣的磨練賦予我極強的時間管理能力、韌性與解決問題的獨立性。在如此生活壓力下，我依然在系上保持前段班成績，同時擔任課程助教，並帶領團隊在全國性競賽中奪得金牌。
                         </p>
                         <p>
-                            在團隊中，我擅長扮演<strong>技術與產品之間的溝通橋樑</strong>。我推崇「先求有再求好」的 MVP 開發模式，擅長以小規模實驗快速驗證概念，再推廣到整個專案。我的開發習慣是隨時記錄並撰寫完整的文件，確保程式碼與架構的可維護性。
+                            在團隊中，我擅長扮演<strong>技術與產品之間的溝通橋樑</strong>。我推崇「先求有再求好」的 MVP 開發模式，擅長以小規模實驗快速驗證概念，再推廣到整個專案。我的開發習慣是為每個專案撰寫完整的 Markdown 技術文件，記錄架構決策與實作細節，確保可維護性與交接效率。
                         </p>
                         
                         <div class="traits-container">
@@ -196,6 +191,7 @@
                                 <span>TailwindCSS</span>
                                 <span>Firebase</span>
                                 <span>Git & Web Deployment</span>
+                                <span>Markdown / 技術文件撰寫</span>
                             </div>
                         </div>
                     </div>
@@ -230,7 +226,7 @@
                 <div class="projects-grid featured-grid">
                     
                     <!-- FunCtrl Project -->
-                    <div class="project-card glass-card" data-category="rag">
+                    <div class="project-card glass-card" id="project-functrl" data-category="rag">
                         <div class="project-badge">畢業專案 | InnoServe 第一名</div>
                         <div class="project-card-header">
                             <h3>FunCtrl - AI 智慧學習地圖平台</h3>
@@ -261,7 +257,7 @@
                     </div>
 
                     <!-- Kaggle Project -->
-                    <div class="project-card glass-card" data-category="ml">
+                    <div class="project-card glass-card" id="project-kaggle" data-category="ml">
                         <div class="project-badge">Kaggle | 全球第 2 / 777 隊 🏆</div>
                         <div class="project-card-header">
                             <h3>Real Estate Demand Prediction</h3>
