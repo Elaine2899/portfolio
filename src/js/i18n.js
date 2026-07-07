@@ -190,6 +190,10 @@ const EN = {
     'cta.b2': 'Résumé (PDF)',
     'fl.1': 'About', 'fl.2': 'Projects', 'fl.3': 'Credentials',
     'cm.pdf': 'Open original PDF',
+
+    // Case-study pages
+    'case.back': 'Back to portfolio',
+    'case.github': 'View source on GitHub',
 };
 
 // Strings owned by JS code (both languages needed)
@@ -199,6 +203,7 @@ const STR = {
     'm.loading': { zh: '正在載入技術細節...', en: 'Loading details…' },
     'm.missing': { zh: '抱歉，無法載入該專案的技術細節。', en: 'Sorry, the details for this project could not be loaded.' },
     'm.error':   { zh: '載入時發生錯誤，請稍後再試。', en: 'Something went wrong. Please try again later.' },
+    'm.case':    { zh: '閱讀完整案例', en: 'Read the full case study' },
     'p.more':    { zh: '展開更多專案', en: 'Show More' },
     'p.less':    { zh: '收合小型專案', en: 'Show Less' },
 };

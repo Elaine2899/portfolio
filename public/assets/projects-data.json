@@ -3,6 +3,7 @@
     "title": "FunCtrl - AI 智慧學習地圖平台",
     "tech": "FastAPI · Vue.js · ChromaDB · PostgreSQL · Gemini Pro · Docker · Railway",
     "nature": "畢業專案 | <strong>全國大專校院資訊應用服務創新競賽 (InnoServe)</strong> AI應用工具組第一名 🏆",
+    "caseUrl": "functrl.html",
     "intro": "YouTube 等公開影音平台上存有豐富的教育資源，但往往面臨<strong>「資訊碎片化」</strong>、<strong>「使用者難以精準定位特定知識點」</strong>的痛點。本專案透過語意向量檢索（Semantic Vector Search）與大型語言模型（LLM）技術，開發高精度影片搜尋與動態學習路徑生成的智慧學習平台。",
     "sections": [
       {
@@ -72,6 +73,7 @@
     "title": "PrepAgent - Telegram AI 備考助教與 RAG 知識庫",
     "tech": "n8n Cloud · Supabase pgvector · Python 3.12 · Google Gemini-2.0-flash · Telegram API",
     "nature": "個人獨立開發專案",
+    "caseUrl": "prepagent.html",
     "intro": "將中央大學熱門的唐麗英老師 YouTube 統計學課程影片，透過 Whisper 語音轉文字產生 29 個 .txt 逐字稿，再轉化為全天候運作、支援對話的 Telegram AI 備考助教。專案採用全雲端架構，確保本機電腦關機後服務依然保持運行，並設計為模組化架構以利未來快速擴增新學科。",
     "sections": [
       {

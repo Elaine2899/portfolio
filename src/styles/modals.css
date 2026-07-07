@@ -116,6 +116,27 @@
     padding-bottom: 12px;
 }
 
+/* Link from the condensed modal to the standalone case-study page */
+.case-study-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    padding: 8px 16px;
+    border: 1px solid var(--border-hover);
+    border-radius: var(--radius-full);
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+
+.case-study-link:hover {
+    background: rgba(255, 195, 80, 0.08);
+    border-color: var(--accent-gold);
+}
+
 .modal-body-content h3 {
     font-size: 1.25rem;
     margin-top: 28px;

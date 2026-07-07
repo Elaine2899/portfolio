@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrepAgent - Telegram AI 備考助教與 RAG 知識庫 | 曾芸儀</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta name="description" content="個人獨立開發：Whisper 逐字稿 + Supabase pgvector 向量檢索，n8n 全雲端工作流串接 Telegram 的全天候 AI 備考助教。完整技術案例。">
+    <meta name="author" content="曾芸儀 Yun-Yi Zeng">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://elaine2899.github.io/portfolio/prepagent.html">
+    <meta property="og:title" content="PrepAgent - Telegram AI 備考助教與 RAG 知識庫 | 曾芸儀">
+    <meta property="og:description" content="個人獨立開發：Whisper 逐字稿 + Supabase pgvector 向量檢索，n8n 全雲端工作流串接 Telegram 的全天候 AI 備考助教。">
+    <meta property="og:image" content="https://elaine2899.github.io/portfolio/assets/projects/prepagent_demo_0.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://elaine2899.github.io/portfolio/assets/projects/prepagent_demo_0.webp">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="gradient-text">Yun-Yi.</span>
+            </a>
+
+            <nav class="nav-links">
+                <a href="index.html#about" class="nav-link" data-i18n="nav.about">個人簡介</a>
+                <a href="index.html#projects" class="nav-link" data-i18n="nav.projects">專案作品</a>
+                <a href="index.html#certificates" class="nav-link" data-i18n="nav.certs">專業證明</a>
+                <a href="index.html#grades" class="nav-link" data-i18n="nav.grades">學術成績</a>
+                <button class="lang-toggle" id="lang-toggle" aria-label="切換語言 / Switch language">EN</button>
+                <div class="nav-social">
+                    <a href="https://github.com/Elaine2899" target="_blank" rel="noopener noreferrer" class="nav-social-link" aria-label="GitHub">
+                        <i data-lucide="github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/%E8%8A%B8%E5%84%80-%E6%9B%BE-5a7b20211" target="_blank" rel="noopener noreferrer" class="nav-social-link" aria-label="LinkedIn">
+                        <i data-lucide="linkedin"></i>
+                    </a>
+                </div>
+                <a href="assets/resume_yun_yi_zeng.pdf" target="_blank" rel="noopener noreferrer" class="nav-btn">
+                    <span data-i18n="nav.cv">下載 CV</span>
+                    <i data-lucide="download" class="icon-sm"></i>
+                </a>
+            </nav>
+
+            <button class="mobile-nav-toggle" aria-label="Toggle Menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="case-main">
+        <div class="container case-container">
+            <div class="case-topbar">
+                <a href="index.html#projects" class="case-back">
+                    <i data-lucide="arrow-left" class="icon-sm"></i>
+                    <span data-i18n="case.back">返回作品集</span>
+                </a>
+                <a href="https://github.com/Elaine2899/agentForPre" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="GitHub">
+                    <i data-lucide="github"></i>
+                </a>
+            </div>
+
+            <article id="case-content" data-case="prepagent" class="modal-body-content case-article">
+                <!-- Rendered from projects-data JSON by src/case.js (skeleton phase) -->
+            </article>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-social">
+                <a href="https://github.com/Elaine2899" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <i data-lucide="github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/%E8%8A%B8%E5%84%80-%E6%9B%BE-5a7b20211" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i data-lucide="linkedin"></i>
+                </a>
+            </div>
+            <p>&copy; 2026 曾芸儀 Yun-Yi Zeng. Built with Vite & Vanilla JavaScript. All Rights Reserved.</p>
+            <div class="footer-links">
+                <a href="index.html#about" data-i18n="fl.1">關於我</a>
+                <a href="index.html#projects" data-i18n="fl.2">專案</a>
+                <a href="index.html#certificates" data-i18n="fl.3">專業證明</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top floating button -->
+    <button id="back-to-top" class="back-to-top" aria-label="回到頁面頂端">
+        <i data-lucide="arrow-up"></i>
+    </button>
+
+    <script type="module" src="/src/case.js"></script>
+</body>
+</html>

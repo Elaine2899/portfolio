@@ -3,6 +3,7 @@
     "title": "FunCtrl — AI Learning Map Platform",
     "tech": "FastAPI · Vue.js · ChromaDB · PostgreSQL · Gemini Pro · Docker · Railway",
     "nature": "Capstone project | <strong>1st place, InnoServe national competition</strong>, AI Application Tools track 🏆",
+    "caseUrl": "functrl.html",
     "intro": "Public video platforms like YouTube hold rich educational content, but suffer from <strong>fragmented information</strong> and the difficulty of <strong>locating a specific knowledge point inside long videos</strong>. FunCtrl combines semantic vector search with LLMs into a smart learning platform offering high-precision video search and dynamic learning-path generation.",
     "sections": [
       {
@@ -72,6 +73,7 @@
     "title": "PrepAgent — Telegram AI Study Assistant with RAG Knowledge Base",
     "tech": "n8n Cloud · Supabase pgvector · Python 3.12 · Google Gemini-2.0-flash · Telegram API",
     "nature": "Independent personal project",
+    "caseUrl": "prepagent.html",
     "intro": "Turns a popular NCU statistics lecture series on YouTube into an always-on, conversational Telegram study assistant: Whisper transcribed 29 lecture files, which are chunked, embedded, and served through a fully cloud-native stack — the bot stays online even when my laptop is off, with a modular design ready for new subjects.",
     "sections": [
       {

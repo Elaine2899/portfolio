@@ -22,7 +22,7 @@ async function loadProjectData(lang) {
     return projectDataCache[lang];
 }
 
-async function getProjectDetails(projectId) {
+export async function getProjectDetails(projectId) {
     const data = await loadProjectData(getLang());
     if (data[projectId]) return data[projectId];
     // Not yet translated: fall back to the zh source
@@ -34,13 +34,22 @@ async function getProjectDetails(projectId) {
 }
 
 // Dynamic HTML renderer for structured project details data
-function renderProjectHtml(project) {
+// (also used by the standalone case-study pages, which suppress the case link)
+export function renderProjectHtml(project, { withCaseLink = true } = {}) {
     if (!project) return '';
 
     let html = `
         <h2 class="modal-project-title">${project.title}</h2>
         <div class="modal-project-tech">${t('m.tech')}${project.tech}</div>
     `;
+
+    if (withCaseLink && project.caseUrl) {
+        html += `<a class="case-study-link" href="${project.caseUrl}">
+            <i data-lucide="book-open" class="icon-sm"></i>
+            <span>${t('m.case')}</span>
+            <i data-lucide="arrow-right" class="icon-sm"></i>
+        </a>`;
+    }
 
     if (project.nature) {
         html += `<p><strong>${t('m.nature')}</strong>${project.nature}</p>`;
