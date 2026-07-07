@@ -51,7 +51,7 @@
           {
             "title": "3. 嚴謹的品質評估體系 (System Validation)",
             "bullets": [
-              "<strong>導入 NDCG 指標：</strong>為了解決資訊檢索中「結果相關性排序合理性」的評估難題，主導引入了 <strong>NDCG (Normalized Discounted Cumulative Gain)</strong> 指標，作為團隊優化模型的「指路明燈」。",
+              "<strong>導入 NDCG 指標：</strong>為了解決資訊檢索中「結果相關性排序合理性」的評估難題，主導引入了 <strong>NDCG (Normalized Discounted Cumulative Gain)</strong> 指標，作為團隊優化模型的客觀依據。",
               "<strong>專家驗證與去偏誤：</strong>建立專家評分機制，由 3 位人類專家獨立對 10 部目標影片進行 Query 相關性評分並取平均值以減少個人偏誤。",
               "<strong>模型迭代：</strong>計算系統 IDCG（理想得分）與實際得分的偏離度，以此為依據反覆測試不同的開源 Embedding 模型。最終將系統檢索得分率穩定提升至 <strong>88% 以上</strong>。"
             ]
@@ -80,7 +80,7 @@
           {
             "title": "1. Embedding API 呼叫方式：直接 REST API 呼叫，規避 SDK 函式庫版本相依問題",
             "bullets": [
-              "在使用 Google Generative AI SDK 時，發現在 AI Studio API key 下 SDK 預設綁定走 <code>v1beta</code> 版本，常因套件庫限制產生呼叫衝突。因此果斷拋棄 SDK，使用 <code>requests</code> 庫直接呼叫 <code>gemini-embedding-001</code> 的 REST API 進行嵌入計算，實現了輕量化與高穩定性。",
+              "在使用 Google Generative AI SDK 時，發現在 AI Studio API key 下 SDK 預設綁定走 <code>v1beta</code> 版本，常因套件庫限制產生呼叫衝突。因此捨棄 SDK，改用 <code>requests</code> 庫直接呼叫 <code>gemini-embedding-001</code> 的 REST API 進行嵌入計算，減少依賴並提高穩定性。",
               "API 節點連結：<code>https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent</code>"
             ]
           },
@@ -150,21 +150,21 @@
         "bullets": [
           "<strong>時域 (Time Domain)：</strong>保留原始揮拍訊號的波峰、波谷、標準差及強度節奏等基礎時間序列統計指標。",
           "<strong>頻域 (Frequency Domain)：</strong>應用<strong>快速傅立葉轉換 (FFT)</strong>，將時域訊號分解為頻率成分。這有助於辨識選手的揮拍風格，例如穩健慢速的防守動作與高頻快速的扣殺動作。",
-          "<strong>時頻域 (Time-Frequency Domain)：</strong>導入<strong>小波轉換 (Wavelet Transform)</strong>。由於揮拍是一瞬間的動態變化，FFT 會失去時間資訊；小波轉換則能同時保留「頻率成分」與「該頻率發生的精確時刻」，並在過程中起到了極佳的噪聲濾除效果。"
+          "<strong>時頻域 (Time-Frequency Domain)：</strong>導入<strong>小波轉換 (Wavelet Transform)</strong>。由於揮拍是一瞬間的動態變化，FFT 會失去時間資訊；小波轉換則能同時保留「頻率成分」與「該頻率發生的精確時刻」，同時有效濾除噪聲。"
         ]
       },
       {
         "heading": "實作流程與模型優化",
         "bullets": [
           "<strong>特徵工程 (Feature Engineering)：</strong>結合 FFT 頻率能量分佈與小波係數之統計特性，並利用 LLM 協作快速開發特徵萃取腳本，完成大規模維度特徵的篩選與相關性過濾。",
-          "<strong>模型重構：</strong>果斷放棄易過擬合的深度學習模型，轉向對高維表格數據極具強健性的機器學習演算法：<strong>XGBoost</strong> 與 <strong>隨機森林 (Random Forest)</strong>。",
+          "<strong>模型重構：</strong>放棄易過擬合的深度學習模型，轉向對高維表格資料更強健的 <strong>XGBoost</strong> 與 <strong>隨機森林 (Random Forest)</strong>。",
           "<strong>超參數調校：</strong>細緻調整 XGBoost 樹深度、學習率、正則化參數，並透過 Cross Validation 驗證集切分防止模型過度擬合。",
           "<strong>分類邏輯：</strong>針對多任務目標，在最終輸出層靈活採用 Softmax 處理多元分類（如選手級別），採用 Sigmoid 處理二元分類（如左右手或正反拍）。"
         ]
       },
       {
         "heading": "關鍵收穫",
-        "intro": "此專案讓我深刻體會到，在處理時間序列數據時，<strong>「高質量的特徵工程 (特別是訊號處理 DSP 技術)」</strong>往往比一味堆疊複雜的深度神經網路更有效。同時，這也證明了我面對低準確率瓶頸時，主動尋求學術資源、獨立研究並克服挑戰的研發韌性。"
+        "intro": "此專案讓我深刻體會到，在處理時間序列數據時，<strong>「高質量的特徵工程 (特別是訊號處理 DSP 技術)」</strong>往往比一味堆疊複雜的深度神經網路更有效。面對準確率瓶頸時，我的做法是主動查找學術資源、獨立研究替代方法，再以實驗逐一驗證。"
       }
     ]
   },
@@ -199,7 +199,7 @@
       },
       {
         "heading": "最終成果與風險控管",
-        "intro": "結合 LightGBM、XGBoost、CatBoost 進行集成學習 (Ensemble)，透過 SciPy 優化器求解最佳融合權重；並參與設計推論階段的風險平衡策略（如 Zero-sector Override）成功規避極端誤差，最終於 777 支隊伍中獲得<strong>第二名</strong>。<br/><br/><strong>獲獎證明與參賽團隊身分驗證：</strong>展示於「專業證明 & 獎項 / Credentials」區塊，點擊 Kaggle 證書卡片即可放大預覽官方得獎公告與身分驗證。"
+        "intro": "結合 LightGBM、XGBoost、CatBoost 進行集成學習 (Ensemble)，透過 SciPy 優化器求解最佳融合權重；並參與設計推論階段的風險平衡策略（如 Zero-sector Override）成功規避極端誤差，最終於 777 支隊伍中獲得<strong>第二名</strong>。<br/><br/><strong>獲獎證明與參賽團隊身分驗證：</strong>展示於「專業證明與獎項」區塊，點擊 Kaggle 證書卡片即可放大預覽官方得獎公告與身分驗證。"
       }
     ]
   },
@@ -210,7 +210,7 @@
     "intro": "擔任核心開發者，利用 Java 原生圖形介面工具包（Swing / AWT）從零繪製並實作一個支持拖曳節點、畫布縮放、事件連線傳遞與工作流保存的圖形化軟體。旨在深入實踐複雜物件導向系統下的結構與架構設計。",
     "sections": [
       {
-        "heading": "經典設計模式深度應用",
+        "heading": "核心設計模式應用",
         "bullets": [
           "<strong>Factory Method Pattern (工廠模式)：</strong>動態生成包含開始節點、任務節點、決策節點與結束節點等不同屬性的工作流物件，保證擴展性。",
           "<strong>Observer Pattern (觀察者模式)：</strong>建立節點間的事件連動傳遞機制。當某一個前導任務節點狀態更新時，能實時通知並觸發其所有後繼連接節點。",
@@ -220,7 +220,7 @@
       },
       {
         "heading": "成果與收穫",
-        "intro": "期末專案評比獲得 <strong>96 分</strong>高分。此專案讓我完整實踐了物件導向設計原則（如 SOLID），理解了如何以架構設計解決大型 GUI 系統的狀態混亂問題，奠定了嚴謹的物件導向開發基礎。"
+        "intro": "期末專案評比 <strong>96 分</strong>。此專案讓我完整實踐物件導向設計原則（如 SOLID），理解如何以架構設計解決大型 GUI 系統的狀態管理問題。"
       }
     ]
   },
@@ -299,7 +299,7 @@
       },
       {
         "heading": "里程碑意義",
-        "intro": "該專案評比獲得 <strong>98 分</strong>優異成績。這是我<strong>第一次親手實作 RAG 與 LLM 應用</strong>，讓我對生成式 AI 的架構產生極大興趣，也直接促成了我大三專題 \"FunCtrl\" 三層向量 RAG 架構的研發靈感。"
+        "intro": "該專案評比 <strong>98 分</strong>。這是我<strong>第一次親手實作 RAG 與 LLM 應用</strong>，讓我對生成式 AI 的架構產生極大興趣，也直接促成了我大三專題 \"FunCtrl\" 三層向量 RAG 架構的研發靈感。"
       }
     ]
   },
@@ -319,7 +319,7 @@
       },
       {
         "heading": "成果與教學連結",
-        "intro": "期末專案榮獲 <strong>97 分</strong>高分，這份數據洞察與圖表設計能力，也成為我大四擔任「資料視覺化」課程助教 (TA) 的底氣，能指導學弟妹進行特徵工程與 Tableau 互動式儀表板設計。<br><br>👉 <strong>專案簡報：</strong><a href=\"https://canva.link/y2i1awgo9ukrsz6\" target=\"_blank\" rel=\"noopener noreferrer\">檢視 Canva 簡報投影片 ↗</a>"
+        "intro": "期末專案獲得 <strong>97 分</strong>，這份數據洞察與圖表設計能力，也成為我大四擔任「資料視覺化」課程助教 (TA) 的底氣，能指導學弟妹進行特徵工程與 Tableau 互動式儀表板設計。<br><br>👉 <strong>專案簡報：</strong><a href=\"https://canva.link/y2i1awgo9ukrsz6\" target=\"_blank\" rel=\"noopener noreferrer\">檢視 Canva 簡報投影片 ↗</a>"
       }
     ]
   },
@@ -327,7 +327,7 @@
     "title": "生成式 AI 應用系統與工程課程專案集",
     "tech": "Python · Ollama · Gemini · ChromaDB · BM25 · Whisper · Pandoc",
     "nature": "國立成功大學 ╳ 國立中央大學 跨校聯合課程",
-    "intro": "在此實務導向的生成式 AI 系統課程中，我從零設計並開發了多個涵蓋本地端 Agent 記憶機制、RAG 知識系統、NLP 文本分析及自動化編譯管線的 AI 應用系統，展現了從架構設計、演算法優化到本地端 LLM 部署的完整工程能力。",
+    "intro": "在此實務導向的生成式 AI 系統課程中，我從零設計並開發了多個涵蓋本地端 Agent 記憶機制、RAG 知識系統、NLP 文本分析及自動化編譯管線的 AI 應用系統，涵蓋架構設計、演算法優化與本地端 LLM 部署的完整流程。",
     "sections": [
       {
         "heading": "專案一：Pi Memory — 本地端 Coding Agent 跨 Session 記憶機制",
@@ -346,7 +346,7 @@
           "<strong>技術棧：</strong>Python 3.11、Gemini-2.5-Flash (via LiteLLM)、ChromaDB、paraphrase-multilingual-MiniLM-L12-v2 (Sentence-Transformers)、Whisper large-v2",
           "<strong>系統架構：</strong>逐字稿清理與切分 ➔ 本地 Embedding 向量化 ➔ ChromaDB 儲存 ➔ LiteLLM 多輪對話檢索 ➔ 自動化 Agent 技能生成 (skill.md)。",
           "<strong>Chunking 策略：</strong>採用 500 字元固定長度 + 100 字元重疊（Overlap）策略，並結合自然邊界優化（換行符優先斷句），避免口語逐字稿語意截斷。",
-          "<strong>提示詞工程 (Prompt Engineering)：</strong>將 LLM 塑造成「統計學教授」，在查無直接定義時，能引導融合統計通識與推導；強制要求輸出標準 LaTeX 公式（如 \\bar{x} = \\frac{1}{n}\\sum x_i），完美支援 Markdown 環境渲染；實作固定 3 輪的對話歷史滾動機制以嚴格控制 Token 消耗。",
+          "<strong>提示詞工程 (Prompt Engineering)：</strong>將 LLM 塑造成「統計學教授」，在查無直接定義時，能引導融合統計通識與推導；強制要求輸出標準 LaTeX 公式（如 \\bar{x} = \\frac{1}{n}\\sum x_i）以支援 Markdown 環境渲染；實作固定 3 輪的對話歷史滾動機制以嚴格控制 Token 消耗。",
           "<strong>增量更新與冪等性 (Idempotency)：</strong>引入 MD5 Hash 校驗機制，檔案未變動則跳過，變動則執行 Upsert（先刪舊、再寫新），大幅節省本地計算資源並防止重複索引。"
         ]
       },
@@ -367,15 +367,15 @@
           "<strong>技術棧：</strong>Pandoc 3.x、Markdown、MathJax、LaTeX、HTML/CSS、Shell Script / PowerShell",
           "<strong>自動化編譯管線：</strong>撰寫跨平台腳本，將 Markdown 文本一鍵編譯為現代化的互動式 HTML 網頁文檔。",
           "<strong>資源內嵌優化：</strong>啟用 --embed-resources 與 --standalone 參數，將所有自訂 CSS 樣式、語法高亮（Tango 樣式）與多媒體資產封裝為單一 HTML 檔案，極大化可攜性。",
-          "<strong>科學符號支援：</strong>整合 MathJax 引擎，使複雜的數位邏輯布林代數與數學公式能夠在 Web 端完美渲染。"
+          "<strong>科學符號支援：</strong>整合 MathJax 引擎，使複雜的數位邏輯布林代數與數學公式能在 Web 端正確渲染。"
         ]
       }
     ]
   },
   "webadmin": {
-    "title": "哲學研究所網站維護與合規性重構",
-    "tech": "HTML/CSS · JavaScript · CMS Maintenance · Server Security · Government Compliance",
-    "nature": "中央大學哲學研究所 網路管理人員 (大二~大三在職)",
+    "title": "哲學研究所網站維護、合規重構與全站翻新",
+    "tech": "HTML/CSS · JavaScript · Laravel · CMS Maintenance · Server Security · Government Compliance",
+    "nature": "中央大學哲學研究所 網路管理人員 (大二至今在職)",
     "intro": "負責所上官方網站的日常維護、資料庫備份以及伺服器安全監控。確保學術公告、招生資訊、國際研討會成果能即時且穩定地發佈，保證服務無中斷。",
     "sections": [
       {
@@ -384,6 +384,16 @@
           "<strong>政府無障礙網頁政策合規 (Accessibility Compliance)：</strong>因應教育部與校方推動的「無障礙網頁規範 2.0 (A/AA等級)」，主導重整了網站的 HTML 語意化架構。",
           "<strong>無障礙重構細節：</strong>重新設計了網站的導航選單、添加所有圖片的 <code>alt</code> 標籤說明、設計 Accesskey 快速鍵跳轉導覽，並對表單輸入框進行 <code>label</code> 關聯標註，成功協助哲學所網站通過校方的合規檢測。",
           "<strong>安全與合規調整：</strong>清理了舊系統殘留的 SQL Injection 安全漏洞、修正不安全的 HTTP 傳輸，並調整內容版面結構以符合最新個資保護法與校方政策。"
+        ]
+      },
+      {
+        "heading": "主導全站翻新 (Laravel 5.2 → 11)",
+        "intro": "官網自 2016 年上線已運營十年，我盤點出核心痛點並主導全站翻新，於<strong>「前台視覺重新設計」「日常維護免程式碼化」「底層框架安全性升級」</strong>三個維度完成改造：",
+        "bullets": [
+          "<strong>維護門檻高 → 後台免程式碼化：</strong>舊版更換首頁輪播、上傳課表或表單，都須以 FTP 連線伺服器直接修改程式碼，行政人員無法自行操作；新版後台可直接上傳圖檔與文件，操作如同社群媒體發文，行政人員自行更新、無須聯絡網管。",
+          "<strong>資安與權限不足 → Laravel 11 與權限分流：</strong>舊版後台僅單一管理員帳號、多人共用密碼且無法追蹤修改紀錄，Laravel 5.2 與舊版 PHP 已無官方安全性更新；新版升級至 <strong>Laravel 11</strong>，後台多帳號依職務分配權限，符合政府與校方資安規範。",
+          "<strong>服務斷點與體驗 → 重建與檢索：</strong>所友會網頁曾因伺服器損壞停擺、缺乏有效搜尋須逐頁查找、手機版跑版；新版重建所友會並整合至官網主機、提供關鍵字全文檢索、支援 RWD 響應式排版。",
+          "<strong>上線風險 → Staging 流程：</strong>過往修改直接在正式主機進行，出錯即導致網站中斷；新版建立獨立測試網站 (Staging)，驗證無誤後再一鍵推送上線，招生等重要服務不中斷。"
         ]
       },
       {

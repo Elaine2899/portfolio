@@ -129,15 +129,15 @@
                     </a>
                     <a href="#grades" class="robot-bubble bubble-tr">
                         <span class="bubble-num">Top 13%</span>
-                        <span class="bubble-lbl" data-i18n="hero.b2l">中央資管系總排名 13<br>1132 書卷獎</span>
+                        <span class="bubble-lbl" data-i18n="hero.b2l">中央資管系累積總排名<br>1132 書卷獎</span>
                     </a>
                     <a href="#project-kaggle" class="robot-bubble bubble-bl">
                         <span class="bubble-num" data-i18n="hero.b3n">全球 #2</span>
                         <span class="bubble-lbl" data-i18n="hero.b3l">Kaggle 房地產需求預測<br>777 隊中第 2 名</span>
                     </a>
-                    <a href="#about" class="robot-bubble bubble-br">
+                    <a href="#project-webadmin" class="robot-bubble bubble-br">
                         <span class="bubble-num">哲學研究所網管</span>
-                        <span class="bubble-lbl" data-i18n="hero.b4l">網頁維護、無障礙設計<br>網頁開發</span>
+                        <span class="bubble-lbl" data-i18n="hero.b4l">無障礙合規與資安修補<br>主導全站翻新</span>
                     </a>
                 </div>
             </div>
@@ -311,6 +311,34 @@
                         </div>
                     </div>
 
+                    <!-- Web Management Project -->
+                    <div class="project-card glass-card" id="project-webadmin" data-category="web">
+                        <div class="project-badge" data-i18n="pb.webadmin">工作實績 | 網路管理</div>
+                        <div class="project-card-header">
+                            <h3 data-i18n="ph.webadmin">哲學研究所官方網站維護與安全管理</h3>
+                            <p class="tech-stack-summary">CMS · HTML/CSS · Server Admin · Security Compliance</p>
+                        </div>
+                        <p class="project-brief" data-i18n="pbr.webadmin">
+                            擔任網路管理人員。主導網站符合教育部無障礙網頁規範 2.0 (A/AA等級)，修補遺留系統的 SQL 注入漏洞並優化 HTTPS 傳輸；並主導十年舊站的全站翻新：Laravel 5.2 → 11、後台免程式碼維護、全文檢索與 Staging 上線流程。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val" data-i18n="mv.wa1">A/AA 級</span>
+                                <span class="metric-lbl" data-i18n="ml.wa1">教育部無障礙合規</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val" data-i18n="mv.wa2">SQLi 防禦</span>
+                                <span class="metric-lbl" data-i18n="ml.wa2">遺留系統重構資安</span>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-card-action open-project-modal" data-project="webadmin">
+                                <span data-i18n="btn.details">閱讀技術細節</span>
+                                <i data-lucide="chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+
                     <!-- PrepAgent Project -->
                     <div class="project-card glass-card" data-category="rag">
                         <div class="project-badge" data-i18n="pb.prep">個人專案 | 全雲端架構</div>
@@ -373,33 +401,6 @@
                         </div>
                     </div>
 
-                    <!-- Web Management Project -->
-                    <div class="project-card glass-card" data-category="web">
-                        <div class="project-badge" data-i18n="pb.webadmin">工作實績 | 網路管理</div>
-                        <div class="project-card-header">
-                            <h3 data-i18n="ph.webadmin">哲學研究所官方網站維護與安全管理</h3>
-                            <p class="tech-stack-summary">CMS · HTML/CSS · Server Admin · Security Compliance</p>
-                        </div>
-                        <p class="project-brief" data-i18n="pbr.webadmin">
-                            擔任網路管理人員。主導並重構所上網站以符合教育部無障礙網頁規範 2.0 (A/AA等級)；主動修補遺留系統 (Legacy System) 的 SQL 注入漏洞並優化 HTTPS 傳輸安全，降低伺服器資安風險。
-                        </p>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <span class="metric-val" data-i18n="mv.wa1">A/AA 級</span>
-                                <span class="metric-lbl" data-i18n="ml.wa1">教育部無障礙合規</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-val" data-i18n="mv.wa2">SQLi 防禦</span>
-                                <span class="metric-lbl" data-i18n="ml.wa2">遺留系統重構資安</span>
-                            </div>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn btn-card-action open-project-modal" data-project="webadmin">
-                                <span data-i18n="btn.details">閱讀技術細節</span>
-                                <i data-lucide="chevron-right"></i>
-                            </button>
-                        </div>
-                    </div>
                 </div> <!-- End of featured-grid -->
 
                 <!-- Mini Projects Subsection -->
@@ -614,7 +615,7 @@
                 <!-- Toggle Button Container -->
                 <div class="toggle-projects-container">
                     <button id="toggle-mini-projects" class="btn btn-secondary">
-                        <span>展開更多專案 / Show More</span>
+                        <span>展開更多專案</span>
                         <i data-lucide="chevron-down"></i>
                     </button>
                 </div>
@@ -625,8 +626,8 @@
         <section id="certificates" class="certificates-section scroll-section">
             <div class="container">
                 <div class="section-title-wrap">
-                    <h2 class="section-title"><span class="gradient-text" data-i18n="sec.certs">專業證明 & 獎項 / Credentials</span></h2>
-                    <p class="section-subtitle" data-i18n="sub.certs">所有成就皆有憑有據，點擊卡片可放大預覽官方證明</p>
+                    <h2 class="section-title"><span class="gradient-text" data-i18n="sec.certs">專業證明與獎項</span></h2>
+                    <p class="section-subtitle" data-i18n="sub.certs">所有獎項與證書皆附官方文件，點擊卡片可放大預覽</p>
                 </div>
 
                 <div class="certificates-grid">
@@ -702,7 +703,7 @@
                         </div>
                         <div class="cert-info">
                             <h4 data-i18n="ch.5">中央大學學業成績排名證明</h4>
-                            <p data-i18n="cp.5">累積總系排名 13%，前段班成績優異實力佐證</p>
+                            <p data-i18n="cp.5">累積系排名前 13% 之官方成績排名證明</p>
                         </div>
                     </div>
 
@@ -732,7 +733,7 @@
                         </div>
                         <div class="cert-info">
                             <h4 data-i18n="ch.7">多益 (TOEIC) 藍色證書</h4>
-                            <p data-i18n="cp.7">獲得 760 分，具備流暢的商務與科技英文說寫及溝通能力</p>
+                            <p data-i18n="cp.7">760 分藍色證書，具備商務與技術英文溝通能力</p>
                         </div>
                     </div>
 
@@ -759,7 +760,7 @@
         <section id="grades" class="academics-section scroll-section">
             <div class="container">
                 <div class="section-title-wrap">
-                    <h2 class="section-title"><span class="gradient-text" data-i18n="sec.grades">學術表現 & 成績 / Academic Performance</span></h2>
+                    <h2 class="section-title"><span class="gradient-text" data-i18n="sec.grades">學術表現與成績</span></h2>
                     <p class="section-subtitle" data-i18n="sub.grades">紮實的資管與資工基礎，核心科目皆名列前茅</p>
                 </div>
                 
@@ -835,15 +836,15 @@
                                 </div>
                                 <div class="grade-row">
                                     <div class="grade-subject">
-                                        <span class="subject-name" data-i18n="su.3">Python程式設計</span>
+                                        <span class="subject-name" data-i18n="su.8">AI人工智慧導論</span>
                                     </div>
                                     <div class="grade-progress-wrap">
                                         <div class="grade-progress-bar">
-                                            <div class="grade-progress-fill fill-cyan" style="width: 98%"></div>
+                                            <div class="grade-progress-fill fill-cyan" style="width: 93%"></div>
                                         </div>
-                                        <span class="grade-score">98</span>
+                                        <span class="grade-score">93</span>
                                     </div>
-                                    <span class="grade-letter letter-aplus">A+</span>
+                                    <span class="grade-letter letter-a">A</span>
                                 </div>
                                 <div class="grade-row">
                                     <div class="grade-subject">
@@ -902,15 +903,15 @@
                                 </div>
                                 <div class="grade-row">
                                     <div class="grade-subject">
-                                        <span class="subject-name" data-i18n="su.8">AI人工智慧導論</span>
+                                        <span class="subject-name" data-i18n="su.3">Python程式設計</span>
                                     </div>
                                     <div class="grade-progress-wrap">
                                         <div class="grade-progress-bar">
-                                            <div class="grade-progress-fill fill-purple" style="width: 93%"></div>
+                                            <div class="grade-progress-fill fill-purple" style="width: 98%"></div>
                                         </div>
-                                        <span class="grade-score">93</span>
+                                        <span class="grade-score">98</span>
                                     </div>
-                                    <span class="grade-letter letter-a">A</span>
+                                    <span class="grade-letter letter-aplus">A+</span>
                                 </div>
                             </div>
                         </div>
@@ -976,7 +977,7 @@
                 <div class="experience-showcase glass-card">
                     <div class="showcase-title">
                         <i data-lucide="briefcase"></i>
-                        <span data-i18n="sec.svc">學術與技術服務 / Academic & Tech Service</span>
+                        <span data-i18n="sec.svc">學術與技術服務</span>
                     </div>
                     <div class="experience-timeline">
                         <div class="experience-card">
@@ -989,7 +990,7 @@
                             <div class="exp-badge" data-i18n="eb.2">網管 / Network Admin</div>
                             <h4 data-i18n="eh.2">哲學研究所 網路管理人員</h4>
                             <p class="exp-period" data-i18n="ep.2">Linux 伺服器 · SQL 注入修補 · 無障礙 2.0 合規</p>
-                            <p class="exp-desc" data-i18n="ed.2">主導教育部無障礙 2.0 合規重構，防禦 Legacy 系統 SQL 注入漏洞，管理 Linux 伺服器日常維運與自動備份。</p>
+                            <p class="exp-desc" data-i18n="ed.2">主導教育部無障礙 2.0 合規重構，防禦 Legacy 系統 SQL 注入漏洞，管理 Linux 伺服器日常維運與自動備份；主導官網全站翻新（Laravel 5.2 → 11）。</p>
                         </div>
                         <div class="experience-card">
                             <div class="exp-badge" data-i18n="eb.3">領導 / Leadership</div>
@@ -1006,8 +1007,8 @@
         <!-- Call to Action Footer Section -->
         <section class="cta-section">
             <div class="container glass-card cta-card">
-                <h2 data-i18n="cta.h">對我的實戰技術或經歷有興趣？</h2>
-                <p data-i18n="cta.p">歡迎下載我完整的 PDF 履歷或直接透過電子郵件與我聯繫，期待與您共同探討 AI 應用的開發！</p>
+                <h2 data-i18n="cta.h">對我的專案或經歷有興趣？</h2>
+                <p data-i18n="cta.p">歡迎下載完整履歷（PDF），或直接透過 Email 與我聯繫，聊聊 AI 應用開發的合作機會！</p>
                 <div class="cta-btns">
                     <a href="mailto:elaine.zheng.yyi@gmail.com" class="btn btn-primary">
                         <i data-lucide="mail"></i>
@@ -1042,7 +1043,7 @@
                     <i data-lucide="linkedin"></i>
                 </a>
             </div>
-            <p>&copy; 2026 曾芸儀 Yun-Yi Zeng. Built with HTML, Vanilla CSS & JavaScript. All Rights Reserved.</p>
+            <p>&copy; 2026 曾芸儀 Yun-Yi Zeng. Built with Vite & Vanilla JavaScript. All Rights Reserved.</p>
             <div class="footer-links">
                 <a href="#about" data-i18n="fl.1">關於我</a>
                 <a href="#projects" data-i18n="fl.2">專案</a>

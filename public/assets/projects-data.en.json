@@ -203,7 +203,7 @@
       },
       {
         "heading": "Key Takeaway",
-        "intro": "This project taught me that for time-series data, <strong>high-quality feature engineering — especially DSP techniques — beats stacking deeper networks</strong>. It also proved my resilience: when accuracy plateaued, I dug into academic resources, researched independently, and broke through."
+        "intro": "This project taught me that for time-series data, <strong>high-quality feature engineering — especially DSP techniques — beats stacking deeper networks</strong>. When accuracy plateaued, my approach was to dig into academic resources, research alternatives independently, and validate each one by experiment."
       }
     ]
   },
@@ -239,6 +239,195 @@
       {
         "heading": "Final Results & Risk Control",
         "intro": "Ensembled LightGBM, XGBoost, and CatBoost with blend weights solved by SciPy optimization, plus inference-time risk balancing (Zero-sector Override) to avoid extreme errors — finishing <strong>2nd of 777 teams</strong>.<br/><br/><strong>Proof of award and team identity:</strong> see the Credentials section — click the Kaggle certificate cards to view the official announcement and verification."
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Workflow Design — Graphical Workflow Editor",
+    "tech": "Java · Swing / AWT · Object-Oriented Design Patterns",
+    "nature": "Final project, graduate OOP course at NCU CS (96 pts)",
+    "intro": "As core developer, built a graphical workflow editor from scratch with Java's native GUI toolkits (Swing / AWT): draggable nodes, canvas zooming, event propagation across connections, and workflow persistence — a hands-on exercise in structuring a complex object-oriented system.",
+    "sections": [
+      {
+        "heading": "Core Design Patterns",
+        "bullets": [
+          "<strong>Factory Method:</strong> dynamically instantiates workflow objects — start, task, decision, and end nodes — keeping the node system open to extension.",
+          "<strong>Observer:</strong> event propagation between nodes — when an upstream task node changes state, all downstream connected nodes are notified and triggered in real time.",
+          "<strong>Strategy:</strong> the execution engine supports interchangeable run strategies (sequential vs. asynchronous concurrent), switchable at runtime.",
+          "<strong>JSON serialization & persistence:</strong> packs the entire canvas — node coordinates, connections, and properties — into standard JSON for saving and re-loading at any time."
+        ]
+      },
+      {
+        "heading": "Results & Takeaway",
+        "intro": "Scored <strong>96</strong> in the final evaluation. The project was a full workout in object-oriented design principles (SOLID) and in taming the state complexity of a large GUI system through architecture."
+      }
+    ]
+  },
+  "ncuapp": {
+    "title": "NCU App — Mobile Campus Application",
+    "tech": "React · TailwindCSS · Firebase · Supabase · Git",
+    "nature": "Sophomore campus community project | <strong>frontend member</strong>",
+    "intro": "Joined the NCU App community to build a mobile app for everyday campus needs (live shuttle-bus status, timetables, enrollment reminders), participating from requirements analysis through development.",
+    "sections": [
+      {
+        "heading": "Hands-on Contributions",
+        "bullets": [
+          "<strong>First React experience:</strong> learned component-based development and managing state with State and Props.",
+          "<strong>Styling & responsiveness:</strong> built UI layouts with TailwindCSS for consistent rendering across devices.",
+          "<strong>Cloud integration:</strong> worked on Firebase Auth (user login) and Supabase database API wiring and read/write logic."
+        ]
+      },
+      {
+        "heading": "Reflection",
+        "intro": "The project eventually stalled as community members moved on, but it was my <strong>first contact with a modern frontend framework and cloud databases (BaaS)</strong> — it opened the door to full-stack development and taught me the foundations of agile workflows and Git branch collaboration."
+      }
+    ]
+  },
+  "aiproject": {
+    "title": "Interdisciplinary AI Project",
+    "tech": "Python · LLM API (GPT/Gemini) · Basic RAG · Prompt Engineering",
+    "nature": "Sophomore AI minor-program project | <strong>tech member</strong>",
+    "intro": "As a tech member of the AI minor-program project team at NCU, we prototyped a domain-specific knowledge Q&A system (e.g., MIS course Q&A) on top of LLM APIs.",
+    "sections": [
+      {
+        "heading": "My Contributions",
+        "bullets": [
+          "<strong>First RAG exposure:</strong> integrated LLM APIs and learned how Retrieval-Augmented Generation grounds prompts in external documents to curb hallucination.",
+          "<strong>Prompt engineering:</strong> wrote and tuned system prompts constraining the model to answer only from the given course material.",
+          "<strong>Data preparation:</strong> Python scripts to extract text from PDF materials and chunk it by character count."
+        ]
+      },
+      {
+        "heading": "Why It Mattered",
+        "intro": "The project scored <strong>98</strong>. It was my <strong>first hands-on RAG and LLM build</strong> — it sparked my interest in generative-AI architecture and led directly to the three-tier vector RAG design of my capstone, FunCtrl."
+      }
+    ]
+  },
+  "datavis": {
+    "title": "Debunking 2023 Traffic-Accident Intuitions with Data",
+    "tech": "Python · Pandas · Jupyter Notebook · Matplotlib / Seaborn · Tableau",
+    "nature": "Junior data-visualization course final project (97 pts)",
+    "intro": "Common beliefs about traffic accidents (e.g., \"the elderly crash the most\") often don't survive contact with data. This project cleans and analyzes Taiwan's full 2023 accident records, using multi-dimensional charts to test — and overturn — those intuitions.",
+    "sections": [
+      {
+        "heading": "Analysis & Implementation",
+        "bullets": [
+          "<strong>Cleaning & preprocessing:</strong> used Pandas on hundreds of thousands of Ministry of Transportation records — missing values, encoding conversion, and extraction of time (rush-hour) and geographic features.",
+          "<strong>Multi-dimensional visualization:</strong> line charts, heatmaps, and correlation matrices revealing the age groups, hours, and weather with the highest accident rates.",
+          "<strong>EDA:</strong> cross-tabulating age, vehicle type, and cause showed middle-aged commuters in specific rush hours far outpace the elderly — overturning the stereotype."
+        ]
+      },
+      {
+        "heading": "Results & Teaching Link",
+        "intro": "The final project scored <strong>97</strong>, and this data-storytelling skill set later backed my role as the course's teaching assistant, guiding juniors through feature engineering and Tableau dashboard design.<br><br>👉 <strong>Slides:</strong> <a href=\"https://canva.link/y2i1awgo9ukrsz6\" target=\"_blank\" rel=\"noopener noreferrer\">View the Canva deck ↗</a>"
+      }
+    ]
+  },
+  "genai": {
+    "title": "Generative AI Systems & Engineering — Course Project Collection",
+    "tech": "Python · Ollama · Gemini · ChromaDB · BM25 · Whisper · Pandoc",
+    "nature": "NCKU ╳ NCU cross-university joint course",
+    "intro": "In this hands-on generative-AI systems course I designed and built several AI applications from scratch — a local agent memory layer, a RAG knowledge system, NLP text analysis, and an automated document pipeline — covering the full flow from architecture design and algorithm optimization to local LLM deployment.",
+    "sections": [
+      {
+        "heading": "Project 1: Pi Memory — Cross-Session Memory for a Local Coding Agent",
+        "intro": "A complete cross-session memory lifecycle for a local dev agent — Capture ➔ Store ➔ Retrieve ➔ Inject — breaking the single-conversation context limit of LLMs.",
+        "bullets": [
+          "<strong>Stack:</strong> Python 3.14, TypeScript (bridge), Qwen2.5:7b (8k context), Ollama + Metal (Mac M5, 16GB unified memory), Pytest",
+          "<strong>Algorithms:</strong> hand-implemented BM25 retrieval and the memory store's persistence logic (load/persist/add), verified by automated tests.",
+          "<strong>Hybrid retrieval:</strong> pure lexical retrieval hits a ceiling on cross-language and synonym queries, so I added local embeddings for hybrid retrieval — lifting Recall@5 past the ~0.81 target, tracked with objective metrics (Recall@5, MRR, nDCG@k).",
+          "<strong>Agent integration:</strong> bridged a TypeScript extension to the local runtime — project specs entered in Session A (e.g., \"use pnpm\") are recalled and injected into context in Session B after a full restart."
+        ]
+      },
+      {
+        "heading": "Project 2: Statistics RAG — Personal Knowledge Q&A & Skill Extraction",
+        "intro": "A lightweight RAG system over NYCU OCW statistics lecture audio, combining efficient retrieval, rigorous math output, and idempotent ingestion.",
+        "bullets": [
+          "<strong>Stack:</strong> Python 3.11, Gemini-2.5-Flash (via LiteLLM), ChromaDB, paraphrase-multilingual-MiniLM-L12-v2 (Sentence-Transformers), Whisper large-v2",
+          "<strong>Architecture:</strong> transcript cleaning & chunking ➔ local embedding ➔ ChromaDB storage ➔ LiteLLM multi-turn retrieval chat ➔ automated agent-skill generation (skill.md).",
+          "<strong>Chunking:</strong> 500-character windows with 100-character overlap, snapped to natural boundaries (newline-first splitting) to avoid cutting colloquial transcripts mid-thought.",
+          "<strong>Prompt engineering:</strong> casts the LLM as a \"statistics professor\" that reasons from general statistical knowledge when no direct definition is retrieved; enforces standard LaTeX output (e.g., \\bar{x} = \\frac{1}{n}\\sum x_i) for Markdown rendering; a fixed 3-turn rolling history keeps token usage tightly bounded.",
+          "<strong>Incremental & idempotent ingestion:</strong> MD5 checksums skip unchanged files and upsert changed ones (delete-then-write), saving local compute and preventing duplicate indexing."
+        ]
+      },
+      {
+        "heading": "Project 3: NLP Analyzer of Wu Qing-Feng's Lyrics",
+        "intro": "Turns literary writing into a data model — quantifying and comparing lyrical imagery and vocabulary evolution across an artist's career with NLP.",
+        "bullets": [
+          "<strong>Stack:</strong> Python, argparse CLI framework, JSON/CSV data handling, NLP tokenization",
+          "<strong>v1.0 foundations:</strong> structured corpus index (index.json), global word-frequency statistics, per-song TF-IDF keywords, and a whitelist that filters function words while keeping high-imagery characters (dream, love, light).",
+          "<strong>v2.0 upgrades:</strong> year-range filtering, two-song lyric similarity comparison (compare), and structured data export.",
+          "<strong>Backward compatibility & engineering:</strong> added content_hash and source_mtime to the Song model without breaking existing fields; an Adapter layer separates computation from formatting; SHA-256 enables efficient incremental updates at scale."
+        ]
+      },
+      {
+        "heading": "Project 4: Automated Doc Compilation & Rendering Pipeline for Digital Logic",
+        "intro": "An infrastructure-as-code approach to technical notes: a CI/CD-friendly pipeline that renders digital-logic (combinational & sequential circuits) notes automatically.",
+        "bullets": [
+          "<strong>Stack:</strong> Pandoc 3.x, Markdown, MathJax, LaTeX, HTML/CSS, Shell Script / PowerShell",
+          "<strong>Automated compilation:</strong> cross-platform scripts compile Markdown into a modern, interactive HTML document in one step.",
+          "<strong>Embedded resources:</strong> --embed-resources and --standalone pack custom CSS, syntax highlighting (Tango), and media assets into a single portable HTML file.",
+          "<strong>Math rendering:</strong> MathJax integration renders Boolean algebra and mathematical notation correctly on the web."
+        ]
+      }
+    ]
+  },
+  "lyrics": {
+    "title": "LyricsAnalyzer — Lyric Imagery CLI",
+    "tech": "Python · NLP · TF-IDF · argparse · JSON index",
+    "nature": "Personal project (generative-AI course) | v1.0 → v2.0 backward-compatible evolution",
+    "intro": "A Python CLI that quantifies the lyrical imagery of Wu Qing-Feng's songs with NLP — turning literary writing into a data model to observe vocabulary evolution at a macro level.",
+    "sections": [
+      {
+        "heading": "v1.0 — Architecture Ahead of Need",
+        "bullets": [
+          "<strong>Index middle layer (index.json):</strong> decouples ingestion from analysis — stats, identify, and search never re-read raw text; results stay reproducible and traceable.",
+          "<strong>argparse subcommands:</strong> subparsers let v2 add compare/export without breaking the old interface.",
+          "<strong>Tokenization strategy:</strong> stopwords + length filtering + a single-character whitelist (keeping high-imagery characters like dream, love, light) so function words never dominate the frequencies.",
+          "<strong>Exit-code discipline:</strong> stable exit codes support automated verification and grading."
+        ]
+      },
+      {
+        "heading": "v2.0 — Evolution with Backward Compatibility",
+        "bullets": [
+          "<strong>Two-song similarity:</strong> cosine similarity (0–1 range, robust to text length); shared-word ranking weighted by min(freq1, freq2) to reflect how strongly both songs share an image.",
+          "<strong>Incremental ingest:</strong> SHA-256 content hashes classify files as added/updated/skipped — more stable than mtime.",
+          "<strong>Backward compatible:</strong> stats without year arguments behaves exactly like v1; data structures only gain fields; export reuses existing analysis functions through an Adapter, minimizing forked logic."
+        ]
+      },
+      {
+        "heading": "Takeaway",
+        "intro": "A full pass through the software-evolution loop — anticipate architecture → map requirements → extend compatibly — practicing separation of concerns (compute, format, output decoupled) and spec-driven development."
+      }
+    ]
+  },
+  "webadmin": {
+    "title": "Institute of Philosophy — Website Admin, Compliance & Full Revamp",
+    "tech": "HTML/CSS · JavaScript · Laravel · CMS Maintenance · Server Security · Government Compliance",
+    "nature": "Network administrator, NCU Institute of Philosophy (sophomore year – present)",
+    "intro": "Responsible for the institute's official website: daily maintenance, database backups, and server security monitoring — keeping academic announcements, admissions info, and conference updates online without interruption.",
+    "sections": [
+      {
+        "heading": "Key Work: Security & Government-Compliance Restructuring",
+        "bullets": [
+          "<strong>Accessibility compliance:</strong> led the semantic-HTML restructuring for the MOE \"Web Accessibility Guidelines 2.0 (A/AA)\" initiative pushed by the ministry and the university.",
+          "<strong>Restructuring details:</strong> redesigned navigation menus, added alt text to every image, implemented accesskey shortcuts, and associated form inputs with labels — passing the university's compliance audit.",
+          "<strong>Security & compliance fixes:</strong> cleaned up legacy SQL-injection vulnerabilities, fixed insecure HTTP transport, and adjusted content structure for privacy-law and university-policy compliance."
+        ]
+      },
+      {
+        "heading": "Full Site Revamp (Laravel 5.2 → 11)",
+        "intro": "The site had run for a decade since 2016. I mapped its core pain points and led a full revamp across three axes — <strong>frontend redesign, no-code daily maintenance, and framework security upgrade</strong>:",
+        "bullets": [
+          "<strong>High maintenance barrier → no-code backend:</strong> changing a homepage banner or uploading a timetable used to require FTP access and code edits, out of reach for admin staff; the new backend uploads images and documents like posting on social media — staff publish updates themselves, no webmaster round-trips.",
+          "<strong>Security & permissions → Laravel 11 with role-based access:</strong> the old backend had a single admin account shared by multiple people with no audit trail, on a framework (Laravel 5.2 / old PHP) past end-of-life; the new site runs <strong>Laravel 11</strong> with per-role admin accounts, meeting government and university security standards.",
+          "<strong>Broken services & UX → rebuild and search:</strong> the alumni site had gone down with its server, search was ineffective so visitors paged through menus, and mobile layouts broke; the new site rebuilds the alumni pages on the main host, adds full-text keyword search, and ships RWD responsive layouts.",
+          "<strong>Release risk → staging flow:</strong> changes used to go straight to production, where one mistake meant downtime; a dedicated staging site now validates every change before one-click deployment — admissions and other critical services stay uninterrupted."
+        ]
+      },
+      {
+        "heading": "Takeaway",
+        "intro": "Not algorithm-heavy work — but it taught me how to inherit and maintain a <strong>legacy system</strong>, why <strong>accessibility</strong> and <strong>security compliance</strong> come first in government and academic web work, and how to troubleshoot servers and environment issues independently."
       }
     ]
   }

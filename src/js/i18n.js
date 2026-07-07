@@ -12,16 +12,16 @@ const EN = {
 
     // Hero
     'hero.title': 'I\'m <span class="gradient-text">Yun-Yi Zeng</span>',
-    'hero.tagline': 'Hands-on AI developer with deep curiosity for emerging tech — specializing in RAG system architecture, time-series signal processing, rapid MVP delivery, and cross-functional communication.',
-    'hero.desc': '"Resilient and independent in the face of adversity — I research proactively, build fast, and keep iterating in uncertain environments."',
+    'hero.tagline': 'Hands-on developer focused on shipping AI applications. Strong in requirements analysis and rapid MVP building, with an MIS background spanning tech and business — and a habit of writing structured docs that keep teams aligned.',
+    'hero.desc': 'From a national-champion RAG learning platform to a 2nd-place-worldwide Kaggle forecast — I research proactively, build fast, and keep iterating on uncertain problems.',
     'hero.cta1': 'View My Projects',
     'hero.cta2': 'About Me',
     'hero.b1n': 'National #1',
     'hero.b1l': 'InnoServe AI Tools Track<br>Capstone project FunCtrl',
-    'hero.b2l': 'NCU MIS class rank<br>Book Prize (Spring 2025)',
+    'hero.b2l': 'NCU MIS cumulative rank<br>Book Prize (Spring 2025)',
     'hero.b3n': 'Global #2',
     'hero.b3l': 'Kaggle real-estate forecasting<br>2nd of 777 teams',
-    'hero.b4l': 'Generative AI, machine learning,<br>data science & web development',
+    'hero.b4l': 'Accessibility & security hardening<br>led the full site revamp',
 
     // Section titles & subtitles
     'sec.about': 'About Me',
@@ -38,7 +38,7 @@ const EN = {
 
     // About
     'about.h3': 'My Story & Traits',
-    'about.p1': 'I\'ve lived independently since freshman year, handling my studies, finances, and daily life on my own. That built strong time management, resilience, and independent problem-solving. Under that pressure I still stayed near the top of my department, served as a teaching assistant, and led a team to a national championship.',
+    'about.p1': 'I\'ve shouldered my studies and finances on my own since freshman year. That built my time management, resilience, and independent problem-solving — and under that pressure I still kept a top-13% department rank, served as a teaching assistant, and led a team to a national first place.',
     'about.p2': 'In teams I act as the <strong>bridge between engineering and product</strong>. I champion MVP-first development — validate ideas with small experiments, then scale what works. I habitually write thorough Markdown docs for every project, recording architecture decisions and implementation details for maintainability and smooth handover.',
     'about.t1': 'Independent problem-solving',
     'about.t2': 'Rapid MVP validation',
@@ -98,24 +98,24 @@ const EN = {
     'ph.webadmin': 'Institute Website Admin & Security',
 
     // Project card briefs
-    'pbr.functrl': 'Tackles fragmented YouTube learning with a novel three-tier vector RAG architecture plus Gemini query expansion to pinpoint exact video segments. 1st place nationwide, InnoServe AI Application Tools track.',
+    'pbr.functrl': 'Tackles fragmented YouTube learning with a three-tier (title / tag / subtitle) vector RAG retrieval plus Gemini query expansion to pinpoint exact video segments. 1st place nationwide, InnoServe AI Application Tools track.',
     'pbr.kaggle': 'Forecast 12 months of housing sales across 96 districts from only 67 monthly records each. Distilled 106 key features from 1,000+, validated with expanding-window backtesting, and optimized ensemble weights via SciPy with a Zero-sector Override against extreme errors.',
-    'pbr.prep': 'Ingests Whisper lecture transcripts into chunked embeddings. Calls the Gemini REST API directly to avoid SDK version conflicts, stores vectors as `halfvec(3072)`, and runs on an n8n cloud workflow — an always-on Telegram statistics tutor.',
-    'pbr.aicup': 'Time-series analysis of smart racket swings. Broke through the LSTM accuracy plateau with DSP feature engineering across time, frequency (FFT), and time-frequency (wavelet) domains — rank 41 of 633 teams.',
-    'pbr.wf': 'Final project of the graduate OOP course. Deep practice of Factory, Observer, and Strategy patterns in a workflow editor with draggable nodes, connections, event propagation, and JSON serialization.',
+    'pbr.prep': 'Chunks and embeds 29 lectures of Whisper statistics transcripts into Supabase pgvector (halfvec, 50% storage saved), wired to Telegram via an n8n cloud workflow — always-on Q&A, quizzes, and summaries, with retrieval quality measured on a self-built 16-question eval set.',
+    'pbr.aicup': 'Time-series analysis of smart racket swings. Broke through the LSTM accuracy plateau with DSP feature engineering across time, frequency (FFT), and time-frequency (wavelet) domains — rank 41 of 633 teams (top 6.5%).',
+    'pbr.wf': 'Final project of the graduate OOP course — a workflow editor applying Factory, Observer, and Strategy patterns, with draggable nodes, connections, event propagation, and JSON serialization.',
     'pbr.webd': 'Laravel course-scheduling system built as sophomore team lead. Recently launched a self-initiated security refactor: diagnosed 5 flaws including plaintext passwords, then added Bcrypt hashing, auth middleware, backend validation, and rewrote all raw SQL as Eloquent ORM.',
     'pbr.ncu': 'Joined the NCU App community to build a campus mobile app. First hands-on experience with React, Tailwind styling, and Firebase / Supabase cloud backends.',
     'pbr.aiproj': 'First contact with RAG in the AI minor program — integrated open LLM APIs and built a basic retrieval Q&A prototype, laying groundwork for later RAG architectures.',
     'pbr.datavis': 'Cleaned and explored Taiwan\'s 2023 traffic-accident records, designing multi-dimensional charts that debunk common intuitions about accident causes.',
     'pbr.lyrics': 'NLP-based quantitative analysis of Wu Qing-Feng\'s lyrics. v1 shipped an index layer and subcommand architecture; v2 added cosine similarity, SHA-256 incremental ingest, and CSV/JSON export — fully backward compatible.',
     'pbr.genai': 'NCU & NCKU joint course. Built BM25 hybrid search coding agent memory (Recall@5 > 0.81), statistics RAG with MD5 idempotency, NLP lyrics analyzer, and Pandoc doc pipelines.',
-    'pbr.webadmin': 'Maintained the institute\'s official site: led accessibility 2.0 (A/AA) compliance restructuring, patched legacy SQL-injection vulnerabilities, and hardened HTTPS transport.',
+    'pbr.webadmin': 'Maintained the institute\'s official site: led accessibility 2.0 (A/AA) compliance restructuring, patched legacy SQL-injection vulnerabilities, and hardened HTTPS transport. Led a full revamp of the decade-old site: Laravel 5.2 → 11, no-code admin publishing, full-text search, and a staging release flow.',
 
     // Metrics
     'mv.k1': '2nd', 'ml.k1': 'of 777 Kaggle teams',
     'mv.k2': '106', 'ml.k2': 'features distilled from 1,000+',
     'ml.f1': 'NDCG retrieval accuracy', 'ml.f2': 'REST APIs built',
-    'mv.p2': '5 turns', 'ml.p1': 'storage saved (halfvec)', 'ml.p2': 'chat-memory window',
+    'ml.p1': 'storage saved (halfvec)', 'ml.p2': 'Hit Rate@5 retrieval accuracy',
     'mv.a2': '3 domains', 'ml.a1': 'national ranking', 'ml.a2': 'time / freq / wavelet',
     'mv.w1': '96 pts', 'mv.w2': 'OOP', 'ml.w1': 'OOP course grade',
     'mv.d1': '5 flaws', 'ml.d1': 'diagnosed & all fixed',
@@ -149,9 +149,9 @@ const EN = {
     'cp.2': 'Award ceremony photo — 1st place, AI Application Tools track',
     'cp.3': 'Official announcement — 2nd place worldwide, Real Estate Demand Prediction (team "Monopoly")',
     'cp.4': 'Verifies the author as a core member of winning team "Monopoly"',
-    'cp.5': 'Cumulative department ranking: top 13%',
+    'cp.5': 'Official transcript proving a cumulative top-13% department rank',
     'cp.6': 'Book Prize, Dept. of Information Management, NCU (Spring 2025)',
-    'cp.7': 'Score 760 — fluent business & technical English communication',
+    'cp.7': 'Score 760 (blue certificate) — business & technical English communication',
     'cp.8': 'Official proof of website maintenance and compliance work',
 
     // Academics
@@ -180,7 +180,7 @@ const EN = {
     'ep.2': 'Linux server · SQLi patching · Accessibility 2.0',
     'ep.3': 'Technical & team coordination',
     'ed.1': 'Guided sophomores and juniors through coding labs, feature engineering, and model building; graded course projects.',
-    'ed.2': 'Led MOE accessibility 2.0 compliance restructuring, defended legacy systems against SQL injection, and managed Linux server operations with automated backups.',
+    'ed.2': 'Led MOE accessibility 2.0 compliance restructuring, defended legacy systems against SQL injection, and managed Linux server operations with automated backups; led the full site revamp (Laravel 5.2 → 11).',
     'ed.3': 'Led multiple RAG/ML projects coordinating frontend and backend; former English-club events lead and vice-captain of badminton & volleyball teams.',
 
     // CTA & footer
@@ -199,8 +199,8 @@ const STR = {
     'm.loading': { zh: '正在載入技術細節...', en: 'Loading details…' },
     'm.missing': { zh: '抱歉，無法載入該專案的技術細節。', en: 'Sorry, the details for this project could not be loaded.' },
     'm.error':   { zh: '載入時發生錯誤，請稍後再試。', en: 'Something went wrong. Please try again later.' },
-    'p.more':    { zh: '展開更多專案 / Show More', en: 'Show More' },
-    'p.less':    { zh: '收合小型專案 / Show Less', en: 'Show Less' },
+    'p.more':    { zh: '展開更多專案', en: 'Show More' },
+    'p.less':    { zh: '收合小型專案', en: 'Show Less' },
 };
 
 let lang = 'zh';
