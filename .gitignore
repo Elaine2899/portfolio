@@ -26,6 +26,7 @@ dist-ssr/
 # Personal helper documents (local only)
 recommend.md
 todo.md
+CLAUDE.md
 
 # Private documents (resume, grades, interview prep) — never commit
 docs/
