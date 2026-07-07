@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>曾芸儀 Yun-Yi Tseng | AI Developer Portfolio</title>
+    <title>曾芸儀 Yun-Yi Zeng | AI Developer Portfolio</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <meta name="description" content="曾芸儀 (National Central University) 個人作品集 - 專注於生成式 AI、RAG 檢索增強生成、機器學習與時間序列訊號處理的實戰導向開發者。">
-    <meta name="author" content="曾芸儀 Yun-Yi Tseng">
+    <meta name="author" content="曾芸儀 Yun-Yi Zeng">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://elaine2899.github.io/portfolio/">
-    <meta property="og:title" content="曾芸儀 Yun-Yi Tseng | AI Developer Portfolio">
+    <meta property="og:title" content="曾芸儀 Yun-Yi Zeng | AI Developer Portfolio">
     <meta property="og:description" content="專注於生成式 AI、RAG 檢索增強生成、機器學習與時間序列訊號處理的實戰導向開發者。">
-    <meta property="og:image" content="https://elaine2899.github.io/portfolio/assets/certificates/innoserve_generative_ai_first_place.jpg">
+    <meta property="og:image" content="https://elaine2899.github.io/portfolio/assets/og_banner.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://elaine2899.github.io/portfolio/assets/og_banner.png">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
-    
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -63,13 +65,13 @@
 
     <main class="main-content">
         
-        <!-- Hero Section -->
+        <!-- Hero Section: intro text + 3D robot greeter -->
         <section class="hero-section">
             <div class="container hero-grid">
                 <div class="hero-info">
                     <div class="badge-accent">
-                        <i data-lucide="sparkles" class="icon-sm"></i>
-                        <span>AI / RAG / Machine Learning Developer</span>
+                        <i data-lucide="terminal" class="icon-sm"></i>
+                        <span>~/ai-rag-ml-developer</span>
                     </div>
                     <h1>
                         我是 <span class="gradient-text">曾芸儀</span>
@@ -89,41 +91,53 @@
                             <span>關於我</span>
                         </a>
                     </div>
-                    <div class="hero-highlights">
-                        <span class="domains-label">專業領域</span>
-                        <div class="domain-tags">
-                            <span class="domain-tag"><i data-lucide="brain"></i> AI 應用開發</span>
-                            <span class="domain-tag"><i data-lucide="code-2"></i> 網頁軟體開發</span>
-                            <span class="domain-tag"><i data-lucide="trending-up"></i> 機器學習</span>
-                            <span class="domain-tag"><i data-lucide="database"></i> 數據科學</span>
-                        </div>
-                    </div>
                 </div>
-                
-                <!-- Hero Visual (Interactive Floating Tech Card) -->
-                <div class="hero-visual">
-                    <div class="hero-stats-grid">
-                        <a href="#project-functrl" class="hero-stat-card glass-card">
-                            <span class="stat-badge">InnoServe 競賽</span>
-                            <span class="stat-number">全國 #1</span>
-                            <span class="stat-desc">AI 應用工具組</span>
-                        </a>
-                        <a href="#grades" class="hero-stat-card glass-card">
-                            <span class="stat-badge">學術成績</span>
-                            <span class="stat-number">Top 13%</span>
-                            <span class="stat-desc">系排名</span>
-                        </a>
-                        <a href="#project-kaggle" class="hero-stat-card glass-card">
-                            <span class="stat-badge">Kaggle 競賽</span>
-                            <span class="stat-number">全球 #2</span>
-                            <span class="stat-desc">777 隊中第 2 名</span>
-                        </a>
-                        <a href="#project-functrl" class="hero-stat-card glass-card">
-                            <span class="stat-badge">RAG 檢索</span>
-                            <span class="stat-number">88%+</span>
-                            <span class="stat-desc">FunCtrl 檢索準確率 (NDCG)</span>
-                        </a>
+
+                <!-- Robot stage: mouse-tracking CSS 3D robot with floating achievement bubbles -->
+                <div class="robot-stage" aria-label="重點成就">
+                    <div class="robot-scene" id="robot-scene" aria-hidden="true">
+                        <div class="robot-float">
+                            <div class="robot-head" id="robot-head">
+                                <div class="robot-antenna"><span class="antenna-tip"></span></div>
+                                <div class="robot-face face-front">
+                                    <div class="robot-visor">
+                                        <div class="robot-eyes">
+                                            <span class="robot-eye"><span class="robot-pupil"></span></span>
+                                            <span class="robot-eye"><span class="robot-pupil"></span></span>
+                                        </div>
+                                        <div class="robot-smile"></div>
+                                        <span class="robot-cheek cheek-left"></span>
+                                        <span class="robot-cheek cheek-right"></span>
+                                    </div>
+                                </div>
+                                <div class="robot-face face-back"></div>
+                                <div class="robot-face face-left"></div>
+                                <div class="robot-face face-right"></div>
+                                <div class="robot-face face-top"></div>
+                                <div class="robot-face face-bottom"></div>
+                                <div class="robot-ear ear-left"></div>
+                                <div class="robot-ear ear-right"></div>
+                            </div>
+                        </div>
+                        <div class="robot-shadow"></div>
                     </div>
+
+                    <a href="#project-functrl" class="robot-bubble bubble-tl">
+                        <span class="bubble-num">全國 #1</span>
+                        <span class="bubble-lbl">InnoServe AI 應用工具組<br>畢業專案 FunCtrl</span>
+                    </a>
+                    <a href="#grades" class="robot-bubble bubble-tr">
+                        <span class="bubble-num">Top 13%</span>
+                        <span class="bubble-lbl">中央資管系排名<br>1132 書卷獎</span>
+                    </a>
+                    <a href="#project-kaggle" class="robot-bubble bubble-bl">
+                        <span class="bubble-num">全球 #2</span>
+                        <span class="bubble-lbl">Kaggle 房地產需求預測<br>777 隊中第 2 名</span>
+                    </a>
+                    <a href="#about" class="robot-bubble bubble-br">
+                        <span class="bubble-num">AI · RAG · ML</span>
+                        <span class="bubble-lbl">生成式 AI 應用、機器學習<br>數據科學與網頁軟體開發</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -261,19 +275,19 @@
                         <div class="project-badge">Kaggle | 全球第 2 / 777 隊 🏆</div>
                         <div class="project-card-header">
                             <h3>Real Estate Demand Prediction</h3>
-                            <p class="tech-stack-summary">Python · LightGBM · XGBoost · Pandas</p>
+                            <p class="tech-stack-summary">Python · LightGBM · XGBoost · CatBoost · SHAP</p>
                         </div>
                         <p class="project-brief">
-                            預測未來半年中國房地產之需求趨勢與價格指數。針對多維度宏觀經濟指標，建立時間滯後 (Lag) 與移動平均特徵，使用集成學習策略融合 LightGBM 與 XGBoost 等模型以降低預測均方誤差。
+                            以各區僅 67 筆歷史月資料，預測 96 個區域未來 12 個月新屋交易額。從上千特徵精煉出 106 項關鍵變數，以擴張窗回測驗證穩定性，再用 SciPy 優化集成權重並設計 Zero-sector Override 規避極端誤差。
                         </p>
                         <div class="project-metrics">
                             <div class="metric">
                                 <span class="metric-val">第 2 名</span>
-                                <span class="metric-lbl">Kaggle 競賽名次</span>
+                                <span class="metric-lbl">Kaggle 777 隊競賽</span>
                             </div>
                             <div class="metric">
-                                <span class="metric-val">Top 0.3%</span>
-                                <span class="metric-lbl">777 隊中第 2 名</span>
+                                <span class="metric-val">106 項</span>
+                                <span class="metric-lbl">千餘特徵精煉關鍵變數</span>
                             </div>
                         </div>
                         <div class="card-actions">
@@ -281,6 +295,9 @@
                                 <span>閱讀技術細節</span>
                                 <i data-lucide="chevron-right"></i>
                             </button>
+                            <a href="https://github.com/Nathan8787/china-real-estate-demand-final" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="GitHub">
+                                <i data-lucide="github"></i>
+                            </a>
                             <a href="https://www.kaggle.com/competitions/china-real-estate-demand-prediction" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="Kaggle">
                                 <i data-lucide="arrow-up-right"></i>
                             </a>
@@ -343,8 +360,8 @@
                                 <span>閱讀技術細節</span>
                                 <i data-lucide="chevron-right"></i>
                             </button>
-                            <a href="https://github.com/Elaine2899" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="GitHub">
-                                <i data-lucide="github"></i>
+                            <a href="https://tbrain.trendmicro.com.tw/Competitions/Details/39" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="AI CUP 競賽頁面">
+                                <i data-lucide="arrow-up-right"></i>
                             </a>
                         </div>
                     </div>
@@ -382,7 +399,7 @@
                                 <span>閱讀技術細節</span>
                                 <i data-lucide="chevron-right"></i>
                             </button>
-                            <a href="https://github.com/Elaine2899" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="GitHub">
+                            <a href="https://github.com/Elaine2899/Workflow-Design.git" target="_blank" rel="noopener noreferrer" class="btn btn-card-link" aria-label="GitHub">
                                 <i data-lucide="github"></i>
                             </a>
                         </div>
@@ -492,6 +509,32 @@
                         </button>
                     </div>
 
+                    <!-- LyricsAnalyzer Project -->
+                    <div class="project-card glass-card" data-category="ml">
+                        <div class="project-badge">個人專案 | v1→v2 架構演進</div>
+                        <div class="project-card-header">
+                            <h3>LyricsAnalyzer 歌詞意象分析 CLI</h3>
+                            <p class="tech-stack-summary">Python · NLP · TF-IDF · argparse</p>
+                        </div>
+                        <p class="project-brief">
+                            以 NLP 量化分析吳青峰歷年歌詞意象。v1 即預留索引中介層與子指令架構，v2 在完全向下相容前提下擴充餘弦相似度比對、SHA-256 增量匯入與 CSV/JSON 匯出。
+                        </p>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-val">100%</span>
+                                <span class="metric-lbl">v1 介面向下相容</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-val">SDD</span>
+                                <span class="metric-lbl">規格驅動開發流程</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-card-action open-project-modal" data-project="lyrics">
+                            <span>閱讀技術細節</span>
+                            <i data-lucide="chevron-right"></i>
+                        </button>
+                    </div>
+
                     <!-- GenAI Application Project -->
                     <div class="project-card glass-card" data-category="rag">
                         <div class="project-badge">大四學校課程 | 專案開發</div>
@@ -567,9 +610,9 @@
                 <div class="certificates-grid">
                     
                     <!-- InnoServe Official Certificate -->
-                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="InnoServe 全國第一名官方證書" data-cert-img="assets/certificates/innoserve_generative_ai_first_place.jpg" data-cert-pdf="assets/certificates/innoserve_generative_ai_first_place.jpg">
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="InnoServe 全國第一名官方證書" data-cert-img="assets/certificates/innoserve_generative_ai_first_place.webp" data-cert-pdf="assets/certificates/innoserve_generative_ai_first_place.webp">
                         <div class="cert-img-container">
-                            <img src="assets/certificates/innoserve_generative_ai_first_place.jpg" alt="InnoServe 第一名官方證書" loading="lazy">
+                            <img src="assets/certificates/innoserve_generative_ai_first_place.webp" alt="InnoServe 第一名官方證書" width="1600" height="2265" loading="lazy">
                             <div class="cert-overlay">
                                 <i data-lucide="zoom-in"></i>
                                 <span>預覽官方證書</span>
@@ -582,9 +625,9 @@
                     </div>
 
                     <!-- InnoServe Group Photo -->
-                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="InnoServe 全國資訊大賽第一名 (頒獎現場)" data-cert-img="assets/certificates/innoserve_a.jpg" data-cert-pdf="assets/certificates/innoserve_a.jpg">
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="InnoServe 全國資訊大賽第一名 (頒獎現場)" data-cert-img="assets/certificates/innoserve_a.webp" data-cert-pdf="assets/certificates/innoserve_a.webp">
                         <div class="cert-img-container">
-                            <img src="assets/certificates/innoserve_a.jpg" alt="InnoServe 頒獎現場" loading="lazy">
+                            <img src="assets/certificates/innoserve_a.webp" alt="InnoServe 頒獎現場" width="1600" height="1066" loading="lazy">
                             <div class="cert-overlay">
                                 <i data-lucide="zoom-in"></i>
                                 <span>預覽現場團體照</span>
@@ -597,9 +640,9 @@
                     </div>
 
                     <!-- Kaggle Ranking -->
-                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="Kaggle 全球競賽第二名獲獎公告" data-cert-img="assets/certificates/Kaggle_Ranking.png" data-cert-pdf="assets/certificates/Kaggle_Ranking.png">
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="Kaggle 全球競賽第二名獲獎公告" data-cert-img="assets/certificates/Kaggle_Ranking.webp" data-cert-pdf="assets/certificates/Kaggle_Ranking.webp">
                         <div class="cert-img-container">
-                            <img src="assets/certificates/Kaggle_Ranking.png" alt="Kaggle 競賽獲獎公告" loading="lazy">
+                            <img src="assets/certificates/Kaggle_Ranking.webp" alt="Kaggle 競賽獲獎公告" width="1600" height="1231" loading="lazy">
                             <div class="cert-overlay">
                                 <i data-lucide="zoom-in"></i>
                                 <span>預覽競賽獲獎公告</span>
@@ -612,9 +655,9 @@
                     </div>
 
                     <!-- Kaggle Team -->
-                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="Kaggle 參賽團隊身份驗證" data-cert-img="assets/certificates/Kaggle_Team.png" data-cert-pdf="assets/certificates/Kaggle_Team.png">
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="Kaggle 參賽團隊身份驗證" data-cert-img="assets/certificates/Kaggle_Team.webp" data-cert-pdf="assets/certificates/Kaggle_Team.webp">
                         <div class="cert-img-container">
-                            <img src="assets/certificates/Kaggle_Team.png" alt="Kaggle 團隊參賽驗證" loading="lazy">
+                            <img src="assets/certificates/Kaggle_Team.webp" alt="Kaggle 團隊參賽驗證" width="1600" height="1091" loading="lazy">
                             <div class="cert-overlay">
                                 <i data-lucide="zoom-in"></i>
                                 <span>預覽參賽身分驗證</span>
@@ -627,9 +670,9 @@
                     </div>
 
                     <!-- Academic Transcript / Ranking -->
-                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="中央大學系排名證明 (前13%)" data-cert-img="assets/certificates/rank_certificate.jpg" data-cert-pdf="assets/certificates/rank_certificate.pdf">
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="中央大學系排名證明 (前13%)" data-cert-img="assets/certificates/rank_certificate.webp" data-cert-pdf="assets/certificates/rank_certificate.pdf">
                         <div class="cert-img-container">
-                            <img src="assets/certificates/rank_certificate.jpg" alt="中央大學系排名證明" loading="lazy">
+                            <img src="assets/certificates/rank_certificate.webp" alt="中央大學系排名證明" width="1600" height="2265" loading="lazy">
                             <div class="cert-overlay">
                                 <i data-lucide="zoom-in"></i>
                                 <span>預覽排名與成績單</span>
@@ -642,9 +685,9 @@
                     </div>
 
                     <!-- Book Prize Certificate -->
-                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="113學年度第二學期書卷獎" data-cert-img="assets/certificates/book_prize_1132.jpg" data-cert-pdf="assets/certificates/book_prize_1132.pdf">
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="113學年度第二學期書卷獎" data-cert-img="assets/certificates/book_prize_1132.webp" data-cert-pdf="assets/certificates/book_prize_1132.pdf">
                         <div class="cert-img-container">
-                            <img src="assets/certificates/book_prize_1132.jpg" alt="1132書卷獎" loading="lazy">
+                            <img src="assets/certificates/book_prize_1132.webp" alt="1132書卷獎" width="1600" height="2264" loading="lazy">
                             <div class="cert-overlay">
                                 <i data-lucide="zoom-in"></i>
                                 <span>預覽書卷獎證書</span>
@@ -657,9 +700,9 @@
                     </div>
 
                     <!-- TOEIC Certificate -->
-                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="多益藍色證書 (760分)" data-cert-img="assets/certificates/toeic_760.jpg" data-cert-pdf="assets/certificates/toeic_760.jpg">
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="多益藍色證書 (760分)" data-cert-img="assets/certificates/toeic_760.webp" data-cert-pdf="assets/certificates/toeic_760.webp">
                         <div class="cert-img-container">
-                            <img src="assets/certificates/toeic_760.jpg" alt="多益藍色證書" loading="lazy">
+                            <img src="assets/certificates/toeic_760.webp" alt="多益藍色證書" width="1600" height="1131" loading="lazy">
                             <div class="cert-overlay">
                                 <i data-lucide="zoom-in"></i>
                                 <span>預覽多益證書</span>
@@ -672,9 +715,9 @@
                     </div>
 
                     <!-- Philosophy Network Admin Certificate -->
-                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="哲學研究所網路管理人員證明" data-cert-img="assets/certificates/network_admin_cert.jpg" data-cert-pdf="assets/certificates/network_admin_cert.pdf">
+                    <div class="certificate-item glass-card open-cert-viewer" data-cert-title="哲學研究所網路管理人員證明" data-cert-img="assets/certificates/network_admin_cert.webp" data-cert-pdf="assets/certificates/network_admin_cert.pdf">
                         <div class="cert-img-container">
-                            <img src="assets/certificates/network_admin_cert.jpg" alt="網管證明" loading="lazy">
+                            <img src="assets/certificates/network_admin_cert.webp" alt="網管證明" width="1600" height="2265" loading="lazy">
                             <div class="cert-overlay">
                                 <i data-lucide="zoom-in"></i>
                                 <span>預覽網管證明書</span>
@@ -923,7 +966,7 @@
                         <div class="experience-card">
                             <div class="exp-badge">網管 / Network Admin</div>
                             <h4>哲學研究所 網路管理人員</h4>
-                            <p class="exp-period">負責網頁維護與後端管理</p>
+                            <p class="exp-period">Linux 伺服器 · SQL 注入修補 · 無障礙 2.0 合規</p>
                             <p class="exp-desc">主導教育部無障礙 2.0 合規重構，防禦 Legacy 系統 SQL 注入漏洞，管理 Linux 伺服器日常維運與自動備份。</p>
                         </div>
                         <div class="experience-card">
@@ -944,7 +987,7 @@
                 <h2>對我的實戰技術或經歷有興趣？</h2>
                 <p>歡迎下載我完整的 PDF 履歷或直接透過電子郵件與我聯繫，期待與您共同探討 AI 應用的開發！</p>
                 <div class="cta-btns">
-                    <a href="mailto:yytseng.im@gmail.com" class="btn btn-primary">
+                    <a href="mailto:elaine.zheng.yyi@gmail.com" class="btn btn-primary">
                         <i data-lucide="mail"></i>
                         <span>與我聯絡 (Email)</span>
                     </a>
@@ -977,7 +1020,7 @@
                     <i data-lucide="linkedin"></i>
                 </a>
             </div>
-            <p>&copy; 2026 曾芸儀 Yun-Yi Tseng. Built with HTML, Vanilla CSS & JavaScript. All Rights Reserved.</p>
+            <p>&copy; 2026 曾芸儀 Yun-Yi Zeng. Built with HTML, Vanilla CSS & JavaScript. All Rights Reserved.</p>
             <div class="footer-links">
                 <a href="#about">關於我</a>
                 <a href="#projects">專案</a>
@@ -985,6 +1028,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to top floating button -->
+    <button id="back-to-top" class="back-to-top" aria-label="回到頁面頂端">
+        <i data-lucide="arrow-up"></i>
+    </button>
 
     <!-- PROJECT DETAILS MODAL -->
     <div id="project-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-label="專案技術細節">
@@ -1017,6 +1065,6 @@
         </div>
     </div>
 
-    <script type="module" src="app.js"></script>
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

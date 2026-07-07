@@ -1,0 +1,98 @@
+/* ==========================================
+   4. Hero Section (text left / robot right)
+   ========================================== */
+.hero-section {
+    padding: 150px 0 90px 0;
+    min-height: 88vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+}
+
+.hero-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.badge-accent {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    background: rgba(201, 168, 106, 0.08);
+    border: 1px solid rgba(201, 168, 106, 0.2);
+    border-radius: var(--radius-full);
+    font-size: 0.85rem;
+    color: var(--accent-cyan);
+    font-weight: 600;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+}
+
+.hero-info h1 {
+    font-size: 3.4rem;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 20px;
+}
+
+.hero-tagline {
+    font-size: 1.22rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.hero-desc {
+    font-size: 1.02rem;
+    color: var(--text-secondary);
+    margin-bottom: 36px;
+    border-left: 2px solid var(--accent-cyan);
+    padding-left: 16px;
+}
+
+.hero-cta-group {
+    display: flex;
+    gap: 16px;
+}
+
+/* ≤1024px: single column — robot first, centered text below */
+@media (max-width: 1024px) {
+    .hero-section {
+        padding: 120px 0 60px 0;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .robot-stage {
+        order: -1;
+    }
+
+    .hero-info {
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-desc {
+        border-left: none;
+        border-top: 2px solid var(--accent-cyan);
+        padding-left: 0;
+        padding-top: 16px;
+        max-width: 520px;
+    }
+
+    .hero-cta-group {
+        justify-content: center;
+    }
+}

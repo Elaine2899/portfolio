@@ -1,0 +1,224 @@
+/* ==========================================
+   11. Responsive Breakpoints
+   ========================================== */
+@media (max-width: 1024px) {
+    html {
+        font-size: 15px;
+    }
+    
+    .hero-info h1 {
+        font-size: 3rem;
+    }
+    
+    .academic-console {
+        grid-template-columns: 1fr;
+    }
+    .console-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 24px;
+    }
+    .console-tabs {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .console-tab-btn {
+        flex: 1;
+        min-width: 130px;
+        justify-content: center;
+        padding: 10px 14px;
+    }
+    .experience-timeline {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 0;
+    }
+    
+    .mobile-nav-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: var(--bg-dark);
+        border-bottom: 1px solid var(--border-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 0;
+        gap: 24px;
+        overflow: hidden;
+        visibility: hidden;
+        transition: height var(--transition-normal), padding var(--transition-normal), visibility var(--transition-normal);
+        pointer-events: none;
+    }
+    
+    .nav-links.mobile-active {
+        height: calc(100vh - 72px);
+        padding-top: 40px;
+        visibility: visible;
+        pointer-events: auto;
+    }
+    
+    .nav-link {
+        font-size: 1.1rem;
+    }
+    
+    .nav-btn {
+        margin-top: 16px;
+    }
+    
+    .nav-social {
+        margin-top: 12px;
+        margin-bottom: 8px;
+        gap: 24px;
+    }
+    
+    .nav-social-link i {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .hero-section {
+        padding-top: 120px;
+        padding-bottom: 60px;
+    }
+    
+    .hero-info h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero-tagline {
+        font-size: 1.15rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .about-bio-card, .skills-card {
+        padding: 24px;
+    }
+    
+    .academic-console {
+        grid-template-columns: 1fr;
+    }
+    .console-sidebar {
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+        padding: 20px 16px;
+    }
+    .console-tabs {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+    }
+    .console-tab-btn {
+        flex: 1;
+        min-width: 120px;
+        justify-content: center;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+    .console-display {
+        padding: 20px 16px;
+    }
+    .grade-row {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        padding: 16px;
+    }
+    .grade-progress-wrap {
+        width: 100%;
+        max-width: 240px;
+        margin: 0 auto;
+    }
+    .grade-letter {
+        width: auto;
+        margin-left: 0;
+    }
+    .experience-timeline {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+        gap: 20px;
+    }
+    
+    .projects-section.is-filtered .projects-wrapper-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+        gap: 20px;
+    }
+    
+    .project-card {
+        padding: 24px;
+    }
+    
+    .project-filters {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+    
+    .certificates-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+        gap: 16px;
+    }
+    
+    .certificate-item {
+        max-width: 100%;
+    }
+    
+    .modal-container {
+        max-height: 90vh;
+    }
+    
+    .modal-body-content {
+        padding: 24px;
+    }
+    
+    .modal-project-title {
+        font-size: 1.5rem;
+    }
+    
+    .cta-card {
+        padding: 40px 20px;
+    }
+    
+    .cta-btns {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+    
+    .cta-btns .btn {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .console-tab-btn {
+        width: 100%;
+        min-width: 100%;
+    }
+    .hero-info h1 {
+        font-size: 2.2rem;
+    }
+}
+

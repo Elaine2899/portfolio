@@ -1,0 +1,53 @@
+/* ==========================================
+   Scroll Reveal & Typewriter Animations
+   ========================================== */
+
+/* Scroll Reveal */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Typewriter cursor */
+.tw-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 0.8em;
+    background: var(--accent-primary);
+    margin-left: 2px;
+    vertical-align: middle;
+    animation: twBlink 0.75s step-end infinite;
+}
+@keyframes twBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Accessibility: prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero-stat-card, .visual-card {
+        animation: none !important;
+        transform: none !important;
+    }
+    .grade-progress-fill {
+        transition: none !important;
+    }
+    .scroll-reveal {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .tw-cursor {
+        display: none !important;
+    }
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

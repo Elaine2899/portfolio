@@ -26,3 +26,12 @@ dist-ssr/
 # Personal helper documents (local only)
 recommend.md
 todo.md
+
+# Private documents (resume, grades, interview prep) — never commit
+docs/
+
+# Independent project repos (each has its own .git)
+projects/
+
+# Local scratch scripts
+scratch/

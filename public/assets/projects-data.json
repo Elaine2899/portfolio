@@ -1,274 +1,353 @@
 {
-    "functrl": {
-        "title": "FunCtrl - AI 智慧學習地圖平台",
-        "tech": "FastAPI · Vue.js · ChromaDB · PostgreSQL · Gemini Pro · Docker · Railway",
-        "nature": "畢業專案 | <strong>全國大專校院資訊應用服務創新競賽 (InnoServe)</strong> AI應用工具組第一名 🏆",
-        "intro": "YouTube 等公開影音平台上存有豐富的教育資源，但往往面臨<strong>「資訊碎片化」</strong>、<strong>「使用者難以精準定位特定知識點」</strong>的痛點。本專案透過語意向量檢索（Semantic Vector Search）與大型語言模型（LLM）技術，開發高精度影片搜尋與動態學習路徑生成的智慧學習平台。",
-        "sections": [
-            {
-                "heading": "我的核心貢獻與技術決策",
-                "subsections": [
-                    {
-                        "title": "1. 系統架構設計與選型 (Architecture & Tech Selection)",
-                        "bullets": [
-                            "<strong>架構主導：</strong>負責後端與 AI 服務架構規劃，選擇 <strong>FastAPI</strong> 搭配 <strong>ChromaDB</strong> 向量資料庫以支援大規模語意檢索。後端實作 30+ 支 RESTful APIs，涵蓋 JWT 認證、個人化推薦與測驗生成。",
-                            "<strong>部署與資源管理：</strong>負責前後端 Docker 容器化與雲端部署（起初於 Railway）。後期為節省 API 及伺服器維護成本，主導將服務無縫遷移至地端實驗室主機，展現了成本控制與基礎設施維運能力。"
-                        ]
-                    },
-                    {
-                        "title": "2. 檢索演算法優化與正規化 (Algorithm Optimization)",
-                        "bullets": [
-                            "<strong>L2 距離與正規化：</strong>在比對向量相似度時，發現傳統餘弦相似度 (Cosine Similarity) 運算速度較慢。因此提出<strong>「將向量進行長度正規化 (Normalization) 後，使用歐幾里得距離 (L2 Distance) 進行檢索」</strong>。此策略在數學上等價於餘弦相似度，但計算效能顯著提高，大幅改善了高併發下的查詢延遲。",
-                            "<strong>查詢擴張技術 (Query Expansion)：</strong>利用 Gemini 對使用者的原始 Query 進行語意擴張，預先補足查詢詞的不足與同義詞，有效提升了 RAG 系統的檢索覆蓋率 (Recall)。"
-                        ]
-                    },
-                    {
-                        "title": "3. 嚴謹的品質評估體系 (System Validation)",
-                        "bullets": [
-                            "<strong>導入 NDCG 指標：</strong>為了解決資訊檢索中「結果相關性排序合理性」的評估難題，主導引入了 <strong>NDCG (Normalized Discounted Cumulative Gain)</strong> 指標，作為團隊優化模型的「指路明燈」。",
-                            "<strong>專家驗證與去偏誤：</strong>建立專家評分機制，由 3 位人類專家獨立對 10 部目標影片進行 Query 相關性評分並取平均值以減少個人偏誤。",
-                            "<strong>模型迭代：</strong>計算系統 IDCG（理想得分）與實際得分的偏離度，以此為依據反覆測試不同的開源 Embedding 模型。最終將系統檢索得分率穩定提升至 <strong>88% 以上</strong>。"
-                        ]
-                    }
-                ]
-            },
-            {
-                "heading": "核心技術架構亮點",
-                "bullets": [
-                    "<strong>三層向量 RAG 架構：</strong>針對影片資訊碎片化，開發「標題 / 標籤 / 字幕」分層嵌入系統。先搜尋影片標題/標籤，再進入微觀字幕匹配，最後透過 Gemini 進行 Re-rank 與精準時間點 (Timestamp) 定位。",
-                    "<strong>非同步 Self-Expanding 機制：</strong>為了解決冷啟動問題，利用 Python <code>asyncio</code> 實作非同步背景任務。當使用者查詢之信心值低於閾值時，系統會在背景自動觸發影片下載、字幕語音辨識與語意摘要，實現 ChromaDB 資料庫自動增量擴充。",
-                    "<strong>動態學習路徑與閉環：</strong>利用 LLM 生成階層式學習地圖並持久化至資料庫；整合 AI 自動化測驗與學習進度儀表板，完成「檢索-學習-評量」的完整工作流。"
-                ]
-            }
+  "functrl": {
+    "title": "FunCtrl - AI 智慧學習地圖平台",
+    "tech": "FastAPI · Vue.js · ChromaDB · PostgreSQL · Gemini Pro · Docker · Railway",
+    "nature": "畢業專案 | <strong>全國大專校院資訊應用服務創新競賽 (InnoServe)</strong> AI應用工具組第一名 🏆",
+    "intro": "YouTube 等公開影音平台上存有豐富的教育資源，但往往面臨<strong>「資訊碎片化」</strong>、<strong>「使用者難以精準定位特定知識點」</strong>的痛點。本專案透過語意向量檢索（Semantic Vector Search）與大型語言模型（LLM）技術，開發高精度影片搜尋與動態學習路徑生成的智慧學習平台。",
+    "sections": [
+      {
+        "heading": "系統架構總覽",
+        "images": [
+          {
+            "src": "assets/projects/functrl_architecture.webp",
+            "width": 1400,
+            "height": 788,
+            "alt": "FunCtrl 技術架構圖：Vue.js 前端部署於 Vercel，FastAPI 後端與 RAG pipeline 部署於 Railway，串接 PostgreSQL 結構化資料庫與 ChromaDB 向量資料庫，由 Gemini 2.5 Flash 生成回答",
+            "caption": "FunCtrl 技術架構：Vercel (Vue.js) → Railway (FastAPI RAG pipeline) → PostgreSQL / ChromaDB → Gemini 2.5 Flash"
+          }
+        ],
+        "intro": "前端 Vue.js 部署於 Vercel；後端 FastAPI 與 RAG pipeline（Embed 查詢 → 向量檢索 → 組合 Prompt）部署於 Railway；雙資料庫設計：PostgreSQL 儲存結構化資料、ChromaDB 儲存向量（短文本 MiniLM-L6-v2 / 長文本 bge-m3），最終由 Gemini 2.5 Flash 生成回答。"
+      },
+      {
+        "heading": "我的核心貢獻與技術決策",
+        "subsections": [
+          {
+            "title": "1. 系統架構設計與選型 (Architecture & Tech Selection)",
+            "bullets": [
+              "<strong>架構主導：</strong>負責後端與 AI 服務架構規劃，選擇 <strong>FastAPI</strong> 搭配 <strong>ChromaDB</strong> 向量資料庫以支援大規模語意檢索。後端實作 30+ 支 RESTful APIs，涵蓋 JWT 認證、個人化推薦與測驗生成。",
+              "<strong>部署與資源管理：</strong>負責前後端 Docker 容器化與雲端部署（起初於 Railway）。後期為節省 API 及伺服器維護成本，主導將服務無縫遷移至地端實驗室主機，展現了成本控制與基礎設施維運能力。"
+            ]
+          },
+          {
+            "title": "2. 檢索演算法優化與正規化 (Algorithm Optimization)",
+            "bullets": [
+              "<strong>L2 距離與正規化：</strong>在比對向量相似度時，發現傳統餘弦相似度 (Cosine Similarity) 運算速度較慢。因此提出<strong>「將向量進行長度正規化 (Normalization) 後，使用歐幾里得距離 (L2 Distance) 進行檢索」</strong>。此策略在數學上等價於餘弦相似度，但計算效能顯著提高，大幅改善了高併發下的查詢延遲。",
+              "<strong>查詢擴張技術 (Query Expansion)：</strong>利用 Gemini 對使用者的原始 Query 進行語意擴張，預先補足查詢詞的不足與同義詞，有效提升了 RAG 系統的檢索覆蓋率 (Recall)。"
+            ]
+          },
+          {
+            "title": "3. 嚴謹的品質評估體系 (System Validation)",
+            "bullets": [
+              "<strong>導入 NDCG 指標：</strong>為了解決資訊檢索中「結果相關性排序合理性」的評估難題，主導引入了 <strong>NDCG (Normalized Discounted Cumulative Gain)</strong> 指標，作為團隊優化模型的「指路明燈」。",
+              "<strong>專家驗證與去偏誤：</strong>建立專家評分機制，由 3 位人類專家獨立對 10 部目標影片進行 Query 相關性評分並取平均值以減少個人偏誤。",
+              "<strong>模型迭代：</strong>計算系統 IDCG（理想得分）與實際得分的偏離度，以此為依據反覆測試不同的開源 Embedding 模型。最終將系統檢索得分率穩定提升至 <strong>88% 以上</strong>。"
+            ]
+          }
         ]
-    },
-    "prepagent": {
-        "title": "PrepAgent - Telegram AI 備考助教與 RAG 知識庫",
-        "tech": "n8n Cloud · Supabase pgvector · Python 3.12 · Google Gemini-2.0-flash · Telegram API",
-        "nature": "個人獨立開發專案",
-        "intro": "將中央大學熱門的唐麗英老師 YouTube 統計學課程影片，透過 Whisper 語音轉文字產生 29 個 .txt 逐字稿，再轉化為全天候運作、支援對話的 Telegram AI 備考助教。專案採用全雲端架構，確保本機電腦關機後服務依然保持運行，並設計為模組化架構以利未來快速擴增新學科。",
-        "sections": [
-            {
-                "heading": "關鍵架構與技術決策",
-                "subsections": [
-                    {
-                        "title": "1. Embedding API 呼叫方式：直接 REST API 呼叫，規避 SDK 函式庫版本相依問題",
-                        "bullets": [
-                            "在使用 Google Generative AI SDK 時，發現在 AI Studio API key 下 SDK 預設綁定走 <code>v1beta</code> 版本，常因套件庫限制產生呼叫衝突。因此果斷拋棄 SDK，使用 <code>requests</code> 庫直接呼叫 <code>gemini-embedding-001</code> 的 REST API 進行嵌入計算，實現了輕量化與高穩定性。",
-                            "API 節點連結：<code>https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent</code>"
-                        ]
-                    },
-                    {
-                        "title": "2. 向量資料型別選型：<code>halfvec</code> 解決維度上限瓶頸",
-                        "bullets": [
-                            "<code>gemini-embedding-001</code> 輸出維度為 3072 維，而 Supabase (pgvector) 的 <code>ivfflat</code> 索引對於標準 <code>vector</code> 型別僅支援最大 2000 維。",
-                            "為解決此瓶頸，我選用 pgvector 的 <strong><code>halfvec</code>（16-bit 浮點數）</strong>型別，其 <code>ivfflat</code> 索引支援上限提升至 4000 維（3072 < 4000 成功建立索引）。",
-                            "<strong>額外效益：</strong>不僅解決了維度限制，還節省了 50% 的儲存空間與記憶體消耗，且語意搜尋精準度的損失在統計學備考場景中可忽略不計。"
-                        ]
-                    },
-                    {
-                        "title": "3. 資料清洗與滑動視窗分塊策略",
-                        "bullets": [
-                            "Whisper 轉出的逐字稿帶有 <code>行號\\t文字</code> 的前綴格式。系統開發 <code>chunker.py</code> 負責清洗剝離行號。",
-                            "分塊策略採用<strong>「20 行為一塊，並保持 5 行重疊 (Overlap)」</strong>的滑動視窗機制，保留段落前後的語境聯繫，防止檢索時知識點斷裂。"
-                        ]
-                    }
-                ]
-            },
-            {
-                "heading": "系統工作流程 (n8n Workflow)",
-                "code": "Telegram Trigger (對話輸入)\n  └──> Switch 路由判斷 (/ask 提問, /quiz 測驗, /summary 摘要)\n        └──> AI Agent 協調節點\n              ├── Model: gemini-2.0-flash\n              ├── Memory: Window Buffer (保留最新 5 輪對話快取)\n              └── Tool: Supabase Vector Store\n                    └── 呼叫 Postgres match_documents 函數 (top_k=5)\n  └──> Telegram Send (回傳對話)"
-            }
+      },
+      {
+        "heading": "核心技術架構亮點",
+        "bullets": [
+          "<strong>三層向量 RAG 架構：</strong>針對影片資訊碎片化，開發「標題 / 標籤 / 字幕」分層嵌入系統。先搜尋影片標題/標籤，再進入微觀字幕匹配，最後透過 Gemini 進行 Re-rank 與精準時間點 (Timestamp) 定位。",
+          "<strong>非同步 Self-Expanding 機制：</strong>為了解決冷啟動問題，利用 Python <code>asyncio</code> 實作非同步背景任務。當使用者查詢之信心值低於閾值時，系統會在背景自動觸發影片下載、字幕語音辨識與語意摘要，實現 ChromaDB 資料庫自動增量擴充。",
+          "<strong>動態學習路徑與閉環：</strong>利用 LLM 生成階層式學習地圖並持久化至資料庫；整合 AI 自動化測驗與學習進度儀表板，完成「檢索-學習-評量」的完整工作流。"
         ]
-    },
-    "aicup": {
-        "title": "桌球智慧球拍選手分級與屬性辨識",
-        "tech": "Python · 數位訊號處理 (FFT / 小波轉換) · XGBoost · 隨機森林 · 特徵工程",
-        "nature": "2025 AI CUP 全國春季競賽 | <strong>獲得第 41 名 / 共 633 支參賽隊伍 (前 6.5%)</strong>",
-        "intro": "本競賽旨在透過智慧桌球球拍所蒐集之三軸加速度計與陀螺儀等感測器所產生的時間序列揮拍訊號，建立一個多任務 (Multi-task) 分類模型，藉此辨識選手的分級水準及揮拍屬性。專案初期直接套用常規的 RNN、LSTM 或 GRU 模型，但由於時域特徵在噪聲干擾下極不明顯，準確率始終受困於 <strong>0.3 ~ 0.5</strong> 之間，遭遇嚴重的效能瓶頸。",
-        "sections": [
-            {
-                "heading": "特徵提取突破：數位訊號處理 (DSP) 導入",
-                "bullets": [
-                    "<strong>時域 (Time Domain)：</strong>保留原始揮拍訊號的波峰、波谷、標準差及強度節奏等基礎時間序列統計指標。",
-                    "<strong>頻域 (Frequency Domain)：</strong>應用<strong>快速傅立葉轉換 (FFT)</strong>，將時域訊號分解為頻率成分。這有助於辨識選手的揮拍風格，例如穩健慢速的防守動作與高頻快速的扣殺動作。",
-                    "<strong>時頻域 (Time-Frequency Domain)：</strong>導入<strong>小波轉換 (Wavelet Transform)</strong>。由於揮拍是一瞬間的動態變化，FFT 會失去時間資訊；小波轉換則能同時保留「頻率成分」與「該頻率發生的精確時刻」，並在過程中起到了極佳的噪聲濾除效果。"
-                ]
-            },
-            {
-                "heading": "實作流程與模型優化",
-                "bullets": [
-                    "<strong>特徵工程 (Feature Engineering)：</strong>結合 FFT 頻率能量分佈與小波係數之統計特性，並利用 LLM 協作快速開發特徵萃取腳本，完成大規模維度特徵的篩選與相關性過濾。",
-                    "<strong>模型重構：</strong>果斷放棄易過擬合的深度學習模型，轉向對高維表格數據極具強健性的機器學習演算法：<strong>XGBoost</strong> 與 <strong>隨機森林 (Random Forest)</strong>。",
-                    "<strong>超參數調校：</strong>細緻調整 XGBoost 樹深度、學習率、正則化參數，並透過 Cross Validation 驗證集切分防止模型過度擬合。",
-                    "<strong>分類邏輯：</strong>針對多任務目標，在最終輸出層靈活採用 Softmax 處理多元分類（如選手級別），採用 Sigmoid 處理二元分類（如左右手或正反拍）。"
-                ]
-            },
-            {
-                "heading": "關鍵收穫",
-                "intro": "此專案讓我深刻體會到，在處理時間序列數據時，<strong>「高質量的特徵工程 (特別是訊號處理 DSP 技術)」</strong>往往比一味堆疊複雜的深度神經網路更有效。同時，這也證明了我面對低準確率瓶頸時，主動尋求學術資源、獨立研究並克服挑戰的研發韧性。"
-            }
+      }
+    ]
+  },
+  "prepagent": {
+    "title": "PrepAgent - Telegram AI 備考助教與 RAG 知識庫",
+    "tech": "n8n Cloud · Supabase pgvector · Python 3.12 · Google Gemini-2.0-flash · Telegram API",
+    "nature": "個人獨立開發專案",
+    "intro": "將中央大學熱門的唐麗英老師 YouTube 統計學課程影片，透過 Whisper 語音轉文字產生 29 個 .txt 逐字稿，再轉化為全天候運作、支援對話的 Telegram AI 備考助教。專案採用全雲端架構，確保本機電腦關機後服務依然保持運行，並設計為模組化架構以利未來快速擴增新學科。",
+    "sections": [
+      {
+        "heading": "關鍵架構與技術決策",
+        "subsections": [
+          {
+            "title": "1. Embedding API 呼叫方式：直接 REST API 呼叫，規避 SDK 函式庫版本相依問題",
+            "bullets": [
+              "在使用 Google Generative AI SDK 時，發現在 AI Studio API key 下 SDK 預設綁定走 <code>v1beta</code> 版本，常因套件庫限制產生呼叫衝突。因此果斷拋棄 SDK，使用 <code>requests</code> 庫直接呼叫 <code>gemini-embedding-001</code> 的 REST API 進行嵌入計算，實現了輕量化與高穩定性。",
+              "API 節點連結：<code>https://generativelanguage.googleapis.com/v1beta/models/gemini-embedding-001:embedContent</code>"
+            ]
+          },
+          {
+            "title": "2. 向量資料型別選型：<code>halfvec</code> 解決維度上限瓶頸",
+            "bullets": [
+              "<code>gemini-embedding-001</code> 輸出維度為 3072 維，而 Supabase (pgvector) 的 <code>ivfflat</code> 索引對於標準 <code>vector</code> 型別僅支援最大 2000 維。",
+              "為解決此瓶頸，我選用 pgvector 的 <strong><code>halfvec</code>（16-bit 浮點數）</strong>型別，其 <code>ivfflat</code> 索引支援上限提升至 4000 維（3072 < 4000 成功建立索引）。",
+              "<strong>額外效益：</strong>不僅解決了維度限制，還節省了 50% 的儲存空間與記憶體消耗，且語意搜尋精準度的損失在統計學備考場景中可忽略不計。"
+            ]
+          },
+          {
+            "title": "3. 資料清洗與滑動視窗分塊策略",
+            "bullets": [
+              "Whisper 轉出的逐字稿帶有 <code>行號\\t文字</code> 的前綴格式。系統開發 <code>chunker.py</code> 負責清洗剝離行號。",
+              "分塊策略採用<strong>「20 行為一塊，並保持 5 行重疊 (Overlap)」</strong>的滑動視窗機制，保留段落前後的語境聯繫，防止檢索時知識點斷裂。"
+            ]
+          }
         ]
-    },
-    "kaggle": {
-        "title": "Kaggle 中國房地產需求預測",
-        "tech": "Python · Scikit-Learn · Pandas · LightGBM · XGBoost",
-        "nature": "Kaggle 數據預測競賽 | <strong>榮獲全國第二名 🏆</strong>",
-        "intro": "本競賽目標在於基於歷史多維經濟指標、房產實際交易量、土地交易資料與人口普查等宏觀數據，精準預測未來六個月中國主要城市房地產市場的需求趨勢與價格指數。",
-        "sections": [
-            {
-                "heading": "技術實作細節",
-                "bullets": [
-                    "<strong>數據清洗與特徵建構：</strong>分析了高度稀疏且存在缺失值的宏觀經濟變量，利用時間滯後特徵 (Lag Features) 捕捉歷史趨勢的慣性，並建立移動平均值 (Moving Averages) 來平滑局部波動。",
-                    "<strong>特徵工程優化：</strong>針對高維度宏觀特徵執行了特徵重要性過濾，有效降低特徵間的多重共線性問題。",
-                    "<strong>模型選型與集成：</strong>採用集成學習 (Ensemble Learning) 策略，融合了 LightGBM、XGBoost 以及 Ridge Regression 模型，透過權重融合優化以降低在未來未知週期下的預測均方誤差 (MSE)。"
-                ]
-            },
-            {
-                "heading": "成果與學習點",
-                "intro": "在多支競爭隊伍中取得第二名的佳績（參賽隊名：地產大亨）。此專案深入鍛鍊了我對於複雜時間序列與宏觀表格型數據 (Tabular Data) 的清洗、特徵提煉與機器學習模型調優能力。<br/><br/><strong>獲獎證明與參賽團隊身分驗證：</strong>已上傳並展示於本網頁最下方的「專業證明 & 獎項 / Credentials」區塊，點擊該區塊的 Kaggle 證書卡片即可放大預覽官方公佈的得獎名單公告與參賽後台管理頁面身分驗證。"
-            }
+      },
+      {
+        "heading": "系統工作流程 (n8n Workflow)",
+        "code": "Telegram Trigger (對話輸入)\n  └──> Switch 路由判斷 (/ask 提問, /quiz 測驗, /summary 摘要)\n        └──> AI Agent 協調節點\n              ├── Model: gemini-2.0-flash\n              ├── Memory: Window Buffer (保留最新 5 輪對話快取)\n              └── Tool: Supabase Vector Store\n                    └── 呼叫 Postgres match_documents 函數 (top_k=5)\n  └──> Telegram Send (回傳對話)"
+      },
+      {
+        "heading": "實機 Demo 與對話記憶",
+        "intro": "Bot 具備<strong>對話記憶</strong>：能根據上下文自動判斷出題範圍——使用者先詢問「第二講教什麼」，之後只需輸入 <code>/quiz</code>，bot 即自動針對第二講出題，不需重新指定講次。",
+        "images": [
+          {
+            "src": "assets/projects/prepagent_demo_0.webp",
+            "width": 502,
+            "height": 1800,
+            "alt": "PrepAgent Telegram bot 回答「第二講教什麼」，自動整理敘述統計章節的四大核心內容",
+            "caption": "/ask — 依講次自動整理課程重點",
+            "narrow": true
+          },
+          {
+            "src": "assets/projects/prepagent_demo_1.webp",
+            "width": 565,
+            "height": 1800,
+            "alt": "PrepAgent Telegram bot 收到 /quiz 指令後，根據前文脈絡自動針對第二講出三道練習題並附解析",
+            "caption": "/quiz — 依對話記憶自動接續第二講出題",
+            "narrow": true
+          }
         ]
-    },
-    "workflow": {
-        "title": "Workflow Design 圖形化工作流編輯器",
-        "tech": "Java · Swing / AWT · Object-Oriented Design Patterns",
-        "nature": "中央大學資工所「物件導向設計與程式」課程期末專題 (96分)",
-        "intro": "擔任核心開發者，利用 Java 原生圖形介面工具包（Swing / AWT）從零繪製並實作一個支持拖曳節點、畫布縮放、事件連線傳遞與工作流保存的圖形化軟體。旨在深入實踐複雜物件導向系統下的結構與架構設計。",
-        "sections": [
-            {
-                "heading": "經典設計模式深度應用",
-                "bullets": [
-                    "<strong>Factory Method Pattern (工廠模式)：</strong>動態生成包含開始節點、任務節點、決策節點與結束節點等不同屬性的工作流物件，保證擴展性。",
-                    "<strong>Observer Pattern (觀察者模式)：</strong>建立節點間的事件連動傳遞機制。當某一個前導任務節點狀態更新時，能實時通知並觸發其所有後繼連接節點。",
-                    "<strong>Strategy Pattern (策略模式)：</strong>設計工作流的執行引擎。支持不同的流轉執行策略（例如：順序執行策略、非同步併發執行策略），使用者可隨時切換底層運行邏輯。",
-                    "<strong>JSON 序列化與資料持久化：</strong>實作將整張畫布節點坐標、連接關係及屬性設定一鍵打包為標準 JSON 字串並寫入檔案，支援隨時反序列化載入編輯。"
-                ]
-            },
-            {
-                "heading": "成果與收穫",
-                "intro": "期末專案評比獲得 <strong>96 分</strong>高分。此專案讓我完整實踐了物件導向設計原則（如 SOLID），理解了如何以架構設計解決大型 GUI 系統的狀態混亂問題，奠定了嚴謹的物件導向開發基礎。"
-            }
+      }
+    ]
+  },
+  "aicup": {
+    "title": "桌球智慧球拍選手分級與屬性辨識",
+    "tech": "Python · 數位訊號處理 (FFT / 小波轉換) · XGBoost · 隨機森林 · 特徵工程",
+    "nature": "2025 AI CUP 全國春季競賽 | <strong>獲得第 41 名 / 共 633 支參賽隊伍 (前 6.5%)</strong>",
+    "intro": "本競賽旨在透過智慧桌球球拍所蒐集之三軸加速度計與陀螺儀等感測器所產生的時間序列揮拍訊號，建立一個多任務 (Multi-task) 分類模型，藉此辨識選手的分級水準及揮拍屬性。專案初期直接套用常規的 RNN、LSTM 或 GRU 模型，但由於時域特徵在噪聲干擾下極不明顯，準確率始終受困於 <strong>0.3 ~ 0.5</strong> 之間，遭遇嚴重的效能瓶頸。",
+    "sections": [
+      {
+        "heading": "特徵提取突破：數位訊號處理 (DSP) 導入",
+        "bullets": [
+          "<strong>時域 (Time Domain)：</strong>保留原始揮拍訊號的波峰、波谷、標準差及強度節奏等基礎時間序列統計指標。",
+          "<strong>頻域 (Frequency Domain)：</strong>應用<strong>快速傅立葉轉換 (FFT)</strong>，將時域訊號分解為頻率成分。這有助於辨識選手的揮拍風格，例如穩健慢速的防守動作與高頻快速的扣殺動作。",
+          "<strong>時頻域 (Time-Frequency Domain)：</strong>導入<strong>小波轉換 (Wavelet Transform)</strong>。由於揮拍是一瞬間的動態變化，FFT 會失去時間資訊；小波轉換則能同時保留「頻率成分」與「該頻率發生的精確時刻」，並在過程中起到了極佳的噪聲濾除效果。"
         ]
-    },
-    "webdesign": {
-        "title": "校內網頁設計與行政流程改良",
-        "tech": "HTML / CSS · JavaScript · UI/UX Design",
-        "nature": "大二學校課程專案 | <strong>擔任專案組長</strong>",
-        "intro": "修習大二「網頁程式設計」課程期間，擔任專案小組組長。我們針對中央大學校內陳舊的行政系統與網頁介面（例如社團申請、圖書查詢等流程繁瑣、行動裝置極不友善的網頁）進行重構與 UI 優化，致力於讓校內功能對師生更加便利。",
-        "sections": [
-            {
-                "heading": "我的主要貢獻",
-                "bullets": [
-                    "<strong>團隊領導與任務分配：</strong>作為組長，主導前端介面切版與 JavaScript 邏輯開發的任務分配，制定統一的 CSS 命名與排版風格規範。",
-                    "<strong>使用者介面優化 (UI/UX)：</strong>以使用者體驗為中心重設計版面，簡化了原本需要多次跳轉的表單填寫流程，改為單頁式漸進表單，提升填寫效率。",
-                    "<strong>前端功能實作：</strong>使用原生 HTML/CSS 與 JavaScript 撰寫響應式側邊選單、動態欄位驗證與防呆機制。"
-                ]
-            },
-            {
-                "heading": "學習與收穫",
-                "intro": "這是我的第一個網頁開發專案。除了學到前端網頁開發的基礎語法，更啟發了我對於<strong>使用者經驗 (User Experience)</strong> 的重視，並體會到如何引導團隊將抽象的需求轉化為具體的網頁原型。"
-            }
+      },
+      {
+        "heading": "實作流程與模型優化",
+        "bullets": [
+          "<strong>特徵工程 (Feature Engineering)：</strong>結合 FFT 頻率能量分佈與小波係數之統計特性，並利用 LLM 協作快速開發特徵萃取腳本，完成大規模維度特徵的篩選與相關性過濾。",
+          "<strong>模型重構：</strong>果斷放棄易過擬合的深度學習模型，轉向對高維表格數據極具強健性的機器學習演算法：<strong>XGBoost</strong> 與 <strong>隨機森林 (Random Forest)</strong>。",
+          "<strong>超參數調校：</strong>細緻調整 XGBoost 樹深度、學習率、正則化參數，並透過 Cross Validation 驗證集切分防止模型過度擬合。",
+          "<strong>分類邏輯：</strong>針對多任務目標，在最終輸出層靈活採用 Softmax 處理多元分類（如選手級別），採用 Sigmoid 處理二元分類（如左右手或正反拍）。"
         ]
-    },
-    "ncuapp": {
-        "title": "NCU App 行動校園應用開發",
-        "tech": "React · TailwindCSS · Firebase · Supabase · Git",
-        "nature": "大二校內社群專案 | <strong>前端開發組員</strong>",
-        "intro": "為了解決全校師生日常行動應用的便利性（如校園公車即時動態、學期課表、選課提醒等），我加入了校內社群 NCU APP 開發團隊，參與從需求分析到程式開發的完整流程。",
-        "sections": [
-            {
-                "heading": "技術實踐與貢獻",
-                "bullets": [
-                    "<strong>初識 React 框架：</strong>在此專案中首次學習 React 的 Component-based 開發思維，學習使用 State 與 Props 管理元件狀態。",
-                    "<strong>樣式設計與響應式：</strong>使用 TailwindCSS 進行 UI 樣式切版，確保多端排版的一致性與流暢度。",
-                    "<strong>雲端服務整合：</strong>學習並參與 Firebase Auth (使用者登入驗證) 與 Supabase 資料庫的 API 串接與數據庫讀寫邏輯。"
-                ]
-            },
-            {
-                "heading": "專案反思",
-                "intro": "雖然專案最終因社群成員變動而未果，但這是我<strong>第一次接觸現代前端開發框架與雲端資料庫 (BaaS)</strong>。這段經歷為我打開了全端軟體開發的大門，讓我理解了現代敏捷開發、Git 分支協作的軟體工程基礎。"
-            }
+      },
+      {
+        "heading": "關鍵收穫",
+        "intro": "此專案讓我深刻體會到，在處理時間序列數據時，<strong>「高質量的特徵工程 (特別是訊號處理 DSP 技術)」</strong>往往比一味堆疊複雜的深度神經網路更有效。同時，這也證明了我面對低準確率瓶頸時，主動尋求學術資源、獨立研究並克服挑戰的研發韌性。"
+      }
+    ]
+  },
+  "kaggle": {
+    "title": "Kaggle 中國房地產需求預測 (Real Estate Demand Prediction)",
+    "tech": "Python · Pandas · LightGBM · XGBoost · CatBoost · SciPy · SHAP",
+    "nature": "Kaggle 數據預測競賽 | <strong>777 隊中榮獲第二名（隊名：地產大亨）🏆</strong>",
+    "intro": "以各區僅 67 筆歷史月資料，預測 96 個區域未來 12 個月的新屋交易額。核心挑戰在於資料量極度稀疏、變數高維，且目標預測時段缺乏外生變數支援——解法是以深度 EDA 與特徵工程建立具強健性 (Robustness) 的時間序列預測模型。",
+    "sections": [
+      {
+        "heading": "深度探索性資料分析 (EDA)",
+        "bullets": [
+          "<strong>數據觀察：</strong>運用時間折線圖、熱力圖、直方圖觀察數據分佈與趨勢變化。",
+          "<strong>雙重相關性檢定：</strong>針對資料稀疏性，同時採用 Pearson（對直線敏感）與 Spearman（對趨勢一致性敏感）相關係數進行雙重檢定，有效識別並排除極端值干擾，確保特徵選擇的穩定性。"
         ]
-    },
-    "aiproject": {
-        "title": "人工智慧跨域應用專題",
-        "tech": "Python · LLM API (GPT/Gemini) · Basic RAG · Prompt Engineering",
-        "nature": "大二人工智慧跨域微學程專題 | <strong>擔任技術組員</strong>",
-        "intro": "修習中央大學 AI 學程專題期間，擔任技術組組員。我們嘗試利用 LLM 技術來建立針對特定學門（如資管課程問答）的基礎知識檢索問答系統。",
-        "sections": [
-            {
-                "heading": "我的主要貢獻",
-                "bullets": [
-                    "<strong>初識 RAG 技術：</strong>負責串接大語言模型 API，初步理解如何透過檢索增強生成 (Retrieval-Augmented Generation) 將外部文本文件與 Prompt 結合，解決 LLM 的知識幻覺問題。",
-                    "<strong>提示詞工程：</strong>撰寫並調優 System Prompts，限制模型的回答範圍，使其僅能依據給定的教材資料進行回答。",
-                    "<strong>基礎數據處理：</strong>利用 Python 撰寫基礎的文字抽取腳本，將 PDF 教材文件轉為純文字並進行字元切割 (Chunking)。"
-                ]
-            },
-            {
-                "heading": "里程碑意義",
-                "intro": "該專案評比獲得 <strong>98 分</strong>優異成績。這是我<strong>第一次親手實作 RAG 與 LLM 應用</strong>，讓我對生成式 AI 的架構產生極大興趣，也直接促成了我大三專題 \"FunCtrl\" 三層向量 RAG 架構的研發靈感。"
-            }
+      },
+      {
+        "heading": "特徵工程與區域分群",
+        "bullets": [
+          "<strong>可重用特徵邏輯：</strong>主導構思特徵清單，包含滯後特徵 (Lag)、EWMA 動態特徵、季節性因子，以及具空間關聯性的鄰近區差比與結構比值。",
+          "<strong>降維與補值：</strong>以 K-Means 進行補值、PCA 壓縮特徵，從上千個候選特徵中精煉出 <strong>106 項關鍵變數</strong>。",
+          "<strong>區域分群策略：</strong>根據總量與趨勢對 96 個區域進行 Clustering，為團隊建立差異化建模基礎，解決不同市場環境下的預測偏差。"
         ]
-    },
-    "datavis": {
-        "title": "以數據檢視 2023 交通事故常見偏誤",
-        "tech": "Python · Pandas · Jupyter Notebook · Matplotlib / Seaborn · Tableau",
-        "nature": "大三「資料視覺化」課程期末專案 (97分)",
-        "intro": "大眾對於交通事故的成因與高風險路段常存有刻板印象（如「老年人車禍率最高」等）。本專案旨在下載並分析台灣 2023 年真實交通意外明細數據，透過數據 analysis 與多維度圖表，檢視並推翻大眾的直覺偏誤。",
-        "sections": [
-            {
-                "heading": "技術與分析實作",
-                "bullets": [
-                    "<strong>數據清理與預處理：</strong>使用 Pandas 清洗包含數十萬筆記錄的交通部公開資料集，處理缺失值、編碼轉換，並提取時間（如尖峰時段）與地理特徵。",
-                    "<strong>多維度視覺化設計：</strong>設計折線圖、熱力圖與相關性矩陣圖表，揭示事故發生率最高的年齡層、時段與氣候分布。",
-                    "<strong>探索性數據分析 (EDA)：</strong>透過交叉比對年齡、車種類型與肇因，證明中壯年通勤族在特定尖峰時段的意外比例遠高於老年人，推翻刻板印象。"
-                ]
-            },
-            {
-                "heading": "成果與教學連結",
-                "intro": "期末專案榮獲 <strong>97 分</strong>高分，這份數據洞察與圖表設計能力，也成為我大四擔任「資料視覺化」課程助教 (TA) 的底氣，能指導學弟妹進行特徵工程與 Tableau 互動式儀表板設計。"
-            }
+      },
+      {
+        "heading": "模型比較、回測與解釋性",
+        "bullets": [
+          "<strong>多模型對照平台：</strong>建立基準模型比較機制，包含傳統統計模型 ARIMA（平穩性檢定與 p, d, q 參數調優）與機器學習模型。",
+          "<strong>擴張窗回測 (Expanding Window Backtesting)：</strong>每月進行一次驗證，檢核模型在時間序列上的穩定度，並以時序交叉驗證避免以未來資訊預測歷史。",
+          "<strong>模型解釋性 (SHAP)：</strong>應用 SHAP 值檢視特徵對預測的邊際貢獻，驗證 106 項特徵符合房地產經濟邏輯。"
         ]
-    },
-    "genai": {
-        "title": "生成式 AI 應用系統與工程課程專案",
-        "tech": "Python · Streamlit · Google Gemini API · LangChain · Prompt Engineering",
-        "nature": "大四跨校選修課程專案 | <strong>榮獲專案評比第一名 🏆</strong>",
-        "intro": "在此生成式 AI 核心課程中，我主動學習並快速實作了多個 AI 應用系統。其中代表作品為 <strong>LyricsAnalyzer (歌詞情感與隱喻分析器)</strong> 與統計備考助教 <strong>PrepAgent</strong>。",
-        "sections": [
-            {
-                "heading": "核心功能與技術細節 (LyricsAnalyzer)",
-                "bullets": [
-                    "<strong>LyricsAnalyzer 開發：</strong>使用者輸入歌詞，系統調用 Gemini Pro API，結合進階的 Prompt Engineering 自動提取歌詞的深層情感基調（喜怒哀樂百分比）、隱喻主題，並分析其押韻與音韻美感。",
-                    "<strong>情感地圖與互動：</strong>利用開源模型抽取語意特徵，並使用 Streamlit 快速搭建前端操作介面，供使用者與 AI 進行歌詞意境的互動問答。",
-                    "<strong>架構設計：</strong>學習並實作了 AI Agent 代理的概念，讓 AI 能夠自適應地根據不同的歌曲語言調用不同的解析提示詞模組。"
-                ]
-            },
-            {
-                "heading": "成果與評價",
-                "intro": "本課程期間開發的多項專案展現了極佳的 MVP 快速開發與實作驗證能力，最終在課程的專案評比中榮獲<strong>第一名</strong>，證實具備獨立且出色的 AI 應用系統建構能力。"
-            }
+      },
+      {
+        "heading": "最終成果與風險控管",
+        "intro": "結合 LightGBM、XGBoost、CatBoost 進行集成學習 (Ensemble)，透過 SciPy 優化器求解最佳融合權重；並參與設計推論階段的風險平衡策略（如 Zero-sector Override）成功規避極端誤差，最終於 777 支隊伍中獲得<strong>第二名</strong>。<br/><br/><strong>獲獎證明與參賽團隊身分驗證：</strong>展示於「專業證明 & 獎項 / Credentials」區塊，點擊 Kaggle 證書卡片即可放大預覽官方得獎公告與身分驗證。"
+      }
+    ]
+  },
+  "workflow": {
+    "title": "Workflow Design 圖形化工作流編輯器",
+    "tech": "Java · Swing / AWT · Object-Oriented Design Patterns",
+    "nature": "中央大學資工所「物件導向設計與程式」課程期末專題 (96分)",
+    "intro": "擔任核心開發者，利用 Java 原生圖形介面工具包（Swing / AWT）從零繪製並實作一個支持拖曳節點、畫布縮放、事件連線傳遞與工作流保存的圖形化軟體。旨在深入實踐複雜物件導向系統下的結構與架構設計。",
+    "sections": [
+      {
+        "heading": "經典設計模式深度應用",
+        "bullets": [
+          "<strong>Factory Method Pattern (工廠模式)：</strong>動態生成包含開始節點、任務節點、決策節點與結束節點等不同屬性的工作流物件，保證擴展性。",
+          "<strong>Observer Pattern (觀察者模式)：</strong>建立節點間的事件連動傳遞機制。當某一個前導任務節點狀態更新時，能實時通知並觸發其所有後繼連接節點。",
+          "<strong>Strategy Pattern (策略模式)：</strong>設計工作流的執行引擎。支持不同的流轉執行策略（例如：順序執行策略、非同步併發執行策略），使用者可隨時切換底層運行邏輯。",
+          "<strong>JSON 序列化與資料持久化：</strong>實作將整張畫布節點坐標、連接關係及屬性設定一鍵打包為標準 JSON 字串並寫入檔案，支援隨時反序列化載入編輯。"
         ]
-    },
-    "webadmin": {
-        "title": "哲學研究所網站維護與合規性重構",
-        "tech": "HTML/CSS · JavaScript · CMS Maintenance · Server Security · Government Compliance",
-        "nature": "中央大學哲學研究所 網路管理人員 (大二~大三在職)",
-        "intro": "負責所上官方網站的日常維護、資料庫備份以及伺服器安全監控。確保學術公告、招生資訊、國際研討會成果能即時且穩定地發佈，保證服務無中斷。",
-        "sections": [
-            {
-                "heading": "關鍵任務：資安與政府政策合規重構",
-                "bullets": [
-                    "<strong>政府無障礙網頁政策合規 (Accessibility Compliance)：</strong>因應教育部與校方推動的「無障礙網頁規範 2.0 (A/AA等級)」，主導重整了網站的 HTML 語意化架構。",
-                    "<strong>無障礙重構細節：</strong>重新設計了網站的導航選單、添加所有圖片的 <code>alt</code> 標籤說明、設計 Accesskey 快速鍵跳轉導覽，並對表單輸入框進行 <code>label</code> 關聯標註，成功協助哲學所網站通過校方的合規檢測。",
-                    "<strong>安全與合規調整：</strong>清理了舊系統殘留的 SQL Injection 安全漏洞、修正不安全的 HTTP 傳輸，並調整內容版面結構以符合最新個資保護法與校方政策政策。"
-                ]
-            },
-            {
-                "heading": "收穫與反思",
-                "intro": "這份工作雖然不是高深演算法的開發，但讓我學到了如何接手並維護前人留下的「遺留系統 (Legacy System)」，並深刻理解了<strong>「無障礙設計 (Accessibility)」</strong>與<strong>「資安合規」</strong>在政府及學術機構網頁開發中的首要地位。同時，也提升了我獨立排除伺服器故障與環境配置的能力。"
-            }
+      },
+      {
+        "heading": "成果與收穫",
+        "intro": "期末專案評比獲得 <strong>96 分</strong>高分。此專案讓我完整實踐了物件導向設計原則（如 SOLID），理解了如何以架構設計解決大型 GUI 系統的狀態混亂問題，奠定了嚴謹的物件導向開發基礎。"
+      }
+    ]
+  },
+  "webdesign": {
+    "title": "校內網頁設計與行政流程改良",
+    "tech": "HTML / CSS · JavaScript · UI/UX Design",
+    "nature": "大二學校課程專案 | <strong>擔任專案組長</strong>",
+    "intro": "修習大二「網頁程式設計」課程期間，擔任專案小組組長。我們針對中央大學校內陳舊的行政系統與網頁介面（例如社團申請、圖書查詢等流程繁瑣、行動裝置極不友善的網頁）進行重構與 UI 優化，致力於讓校內功能對師生更加便利。",
+    "sections": [
+      {
+        "heading": "我的主要貢獻",
+        "bullets": [
+          "<strong>團隊領導與任務分配：</strong>作為組長，主導前端介面切版與 JavaScript 邏輯開發的任務分配，制定統一的 CSS 命名與排版風格規範。",
+          "<strong>使用者介面優化 (UI/UX)：</strong>以使用者體驗為中心重設計版面，簡化了原本需要多次跳轉的表單填寫流程，改為單頁式漸進表單，提升填寫效率。",
+          "<strong>前端功能實作：</strong>使用原生 HTML/CSS 與 JavaScript 撰寫響應式側邊選單、動態欄位驗證與防呆機制。"
         ]
-    }
+      },
+      {
+        "heading": "學習與收穫",
+        "intro": "這是我的第一個網頁開發專案。除了學到前端網頁開發的基礎語法，更啟發了我對於<strong>使用者經驗 (User Experience)</strong> 的重視，並體會到如何引導團隊將抽象的需求轉化為具體的網頁原型。"
+      }
+    ]
+  },
+  "ncuapp": {
+    "title": "NCU App 行動校園應用開發",
+    "tech": "React · TailwindCSS · Firebase · Supabase · Git",
+    "nature": "大二校內社群專案 | <strong>前端開發組員</strong>",
+    "intro": "為了解決全校師生日常行動應用的便利性（如校園公車即時動態、學期課表、選課提醒等），我加入了校內社群 NCU APP 開發團隊，參與從需求分析到程式開發的完整流程。",
+    "sections": [
+      {
+        "heading": "技術實踐與貢獻",
+        "bullets": [
+          "<strong>初識 React 框架：</strong>在此專案中首次學習 React 的 Component-based 開發思維，學習使用 State 與 Props 管理元件狀態。",
+          "<strong>樣式設計與響應式：</strong>使用 TailwindCSS 進行 UI 樣式切版，確保多端排版的一致性與流暢度。",
+          "<strong>雲端服務整合：</strong>學習並參與 Firebase Auth (使用者登入驗證) 與 Supabase 資料庫的 API 串接與數據庫讀寫邏輯。"
+        ]
+      },
+      {
+        "heading": "專案反思",
+        "intro": "雖然專案最終因社群成員變動而未果，但這是我<strong>第一次接觸現代前端開發框架與雲端資料庫 (BaaS)</strong>。這段經歷為我打開了全端軟體開發的大門，讓我理解了現代敏捷開發、Git 分支協作的軟體工程基礎。"
+      }
+    ]
+  },
+  "aiproject": {
+    "title": "人工智慧跨域應用專題",
+    "tech": "Python · LLM API (GPT/Gemini) · Basic RAG · Prompt Engineering",
+    "nature": "大二人工智慧跨域微學程專題 | <strong>擔任技術組員</strong>",
+    "intro": "修習中央大學 AI 學程專題期間，擔任技術組組員。我們嘗試利用 LLM 技術來建立針對特定學門（如資管課程問答）的基礎知識檢索問答系統。",
+    "sections": [
+      {
+        "heading": "我的主要貢獻",
+        "bullets": [
+          "<strong>初識 RAG 技術：</strong>負責串接大語言模型 API，初步理解如何透過檢索增強生成 (Retrieval-Augmented Generation) 將外部文本文件與 Prompt 結合，解決 LLM 的知識幻覺問題。",
+          "<strong>提示詞工程：</strong>撰寫並調優 System Prompts，限制模型的回答範圍，使其僅能依據給定的教材資料進行回答。",
+          "<strong>基礎數據處理：</strong>利用 Python 撰寫基礎的文字抽取腳本，將 PDF 教材文件轉為純文字並進行字元切割 (Chunking)。"
+        ]
+      },
+      {
+        "heading": "里程碑意義",
+        "intro": "該專案評比獲得 <strong>98 分</strong>優異成績。這是我<strong>第一次親手實作 RAG 與 LLM 應用</strong>，讓我對生成式 AI 的架構產生極大興趣，也直接促成了我大三專題 \"FunCtrl\" 三層向量 RAG 架構的研發靈感。"
+      }
+    ]
+  },
+  "datavis": {
+    "title": "以數據檢視 2023 交通事故常見偏誤",
+    "tech": "Python · Pandas · Jupyter Notebook · Matplotlib / Seaborn · Tableau",
+    "nature": "大三「資料視覺化」課程期末專案 (97分)",
+    "intro": "大眾對於交通事故的成因與高風險路段常存有刻板印象（如「老年人車禍率最高」等）。本專案旨在下載並分析台灣 2023 年真實交通意外明細數據，透過數據分析與多維度圖表，檢視並推翻大眾的直覺偏誤。",
+    "sections": [
+      {
+        "heading": "技術與分析實作",
+        "bullets": [
+          "<strong>數據清理與預處理：</strong>使用 Pandas 清洗包含數十萬筆記錄的交通部公開資料集，處理缺失值、編碼轉換，並提取時間（如尖峰時段）與地理特徵。",
+          "<strong>多維度視覺化設計：</strong>設計折線圖、熱力圖與相關性矩陣圖表，揭示事故發生率最高的年齡層、時段與氣候分布。",
+          "<strong>探索性數據分析 (EDA)：</strong>透過交叉比對年齡、車種類型與肇因，證明中壯年通勤族在特定尖峰時段的意外比例遠高於老年人，推翻刻板印象。"
+        ]
+      },
+      {
+        "heading": "成果與教學連結",
+        "intro": "期末專案榮獲 <strong>97 分</strong>高分，這份數據洞察與圖表設計能力，也成為我大四擔任「資料視覺化」課程助教 (TA) 的底氣，能指導學弟妹進行特徵工程與 Tableau 互動式儀表板設計。"
+      }
+    ]
+  },
+  "genai": {
+    "title": "生成式 AI 應用系統與工程課程專案",
+    "tech": "Python · Streamlit · Google Gemini API · LangChain · Prompt Engineering",
+    "nature": "大四跨校選修課程專案 | <strong>榮獲專案評比第一名 🏆</strong>",
+    "intro": "在此生成式 AI 核心課程中，我主動學習並快速實作了多個 AI 應用系統。其中代表作品為 <strong>LyricsAnalyzer (歌詞情感與隱喻分析器)</strong> 與統計備考助教 <strong>PrepAgent</strong>。",
+    "sections": [
+      {
+        "heading": "核心功能與技術細節 (LyricsAnalyzer)",
+        "bullets": [
+          "<strong>LyricsAnalyzer 開發：</strong>使用者輸入歌詞，系統調用 Gemini Pro API，結合進階的 Prompt Engineering 自動提取歌詞的深層情感基調（喜怒哀樂百分比）、隱喻主題，並分析其押韻與音韻美感。",
+          "<strong>情感地圖與互動：</strong>利用開源模型抽取語意特徵，並使用 Streamlit 快速搭建前端操作介面，供使用者與 AI 進行歌詞意境的互動問答。",
+          "<strong>架構設計：</strong>學習並實作了 AI Agent 代理的概念，讓 AI 能夠自適應地根據不同的歌曲語言調用不同的解析提示詞模組。"
+        ]
+      },
+      {
+        "heading": "成果與評價",
+        "intro": "本課程期間開發的多項專案展現了極佳的 MVP 快速開發與實作驗證能力，最終在課程的專案評比中榮獲<strong>第一名</strong>，證實具備獨立且出色的 AI 應用系統建構能力。"
+      }
+    ]
+  },
+  "webadmin": {
+    "title": "哲學研究所網站維護與合規性重構",
+    "tech": "HTML/CSS · JavaScript · CMS Maintenance · Server Security · Government Compliance",
+    "nature": "中央大學哲學研究所 網路管理人員 (大二~大三在職)",
+    "intro": "負責所上官方網站的日常維護、資料庫備份以及伺服器安全監控。確保學術公告、招生資訊、國際研討會成果能即時且穩定地發佈，保證服務無中斷。",
+    "sections": [
+      {
+        "heading": "關鍵任務：資安與政府政策合規重構",
+        "bullets": [
+          "<strong>政府無障礙網頁政策合規 (Accessibility Compliance)：</strong>因應教育部與校方推動的「無障礙網頁規範 2.0 (A/AA等級)」，主導重整了網站的 HTML 語意化架構。",
+          "<strong>無障礙重構細節：</strong>重新設計了網站的導航選單、添加所有圖片的 <code>alt</code> 標籤說明、設計 Accesskey 快速鍵跳轉導覽，並對表單輸入框進行 <code>label</code> 關聯標註，成功協助哲學所網站通過校方的合規檢測。",
+          "<strong>安全與合規調整：</strong>清理了舊系統殘留的 SQL Injection 安全漏洞、修正不安全的 HTTP 傳輸，並調整內容版面結構以符合最新個資保護法與校方政策。"
+        ]
+      },
+      {
+        "heading": "收穫與反思",
+        "intro": "這份工作雖然不是高深演算法的開發，但讓我學到了如何接手並維護前人留下的「遺留系統 (Legacy System)」，並深刻理解了<strong>「無障礙設計 (Accessibility)」</strong>與<strong>「資安合規」</strong>在政府及學術機構網頁開發中的首要地位。同時，也提升了我獨立排除伺服器故障與環境配置的能力。"
+      }
+    ]
+  },
+  "lyrics": {
+    "title": "LyricsAnalyzer — 吳青峰歌詞意象分析 CLI",
+    "tech": "Python · NLP · TF-IDF · argparse · JSON 索引",
+    "nature": "個人專案（生成式 AI 應用課程）| v1.0 → v2.0 向下相容演進",
+    "intro": "基於 Python 的 CLI 工具，以 NLP 技術量化分析吳青峰歷年歌詞意象——將感性的文學創作轉化為理性的數據模型，從宏觀角度觀察詞彙使用的演變。",
+    "sections": [
+      {
+        "heading": "v1.0 架構預判設計",
+        "bullets": [
+          "<strong>索引中介層 (index.json)：</strong>ingest 與分析解耦，統計、識別、搜尋不需每次重讀原始文本，可重現、可追溯。",
+          "<strong>argparse 子指令架構：</strong>subparsers 讓 v2 新增 compare/export 指令時不破壞舊介面。",
+          "<strong>分詞策略：</strong>停用詞 + 長度過濾 + 單字白名單（保留「夢」「愛」「光」等高語義單字），避免功能詞噪音主導詞頻。",
+          "<strong>錯誤碼文化：</strong>穩定的退出碼設計，支援自動化驗證與批改。"
+        ]
+      },
+      {
+        "heading": "v2.0 演進與向下相容",
+        "bullets": [
+          "<strong>雙曲相似度比對：</strong>餘弦相似度（值域 0–1、受文本長度影響小），共同詞排序採 min(freq1, freq2) 權重，更能反映兩首歌對同一意象的共識程度。",
+          "<strong>增量匯入：</strong>以 SHA-256 content hash 判斷 added/updated/skipped，比 mtime 更穩定。",
+          "<strong>向下相容：</strong>stats 不帶年份參數時行為與 v1 完全一致；資料結構僅增量新增欄位；export 採 Adapter 思路重用既有分析函式再格式化，降低分岔邏輯。"
+        ]
+      },
+      {
+        "heading": "學習點",
+        "intro": "此專案完整走過「架構預判 → 需求映射 → 向下相容擴充」的軟體演進流程，實踐關注點分離（計算、格式化、輸出解耦）與 SDD 規格驅動開發。"
+      }
+    ]
+  }
 }
