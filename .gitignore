@@ -31,7 +31,7 @@ todo.md
 docs/
 
 # Independent project repos (each has its own .git)
-projects/
+/projects/
 
 # Local scratch scripts
 scratch/

@@ -6,6 +6,19 @@
     "intro": "YouTube 等公開影音平台上存有豐富的教育資源，但往往面臨<strong>「資訊碎片化」</strong>、<strong>「使用者難以精準定位特定知識點」</strong>的痛點。本專案透過語意向量檢索（Semantic Vector Search）與大型語言模型（LLM）技術，開發高精度影片搜尋與動態學習路徑生成的智慧學習平台。",
     "sections": [
       {
+        "heading": "實機 Demo — 影片學習頁面",
+        "images": [
+          {
+            "src": "assets/projects/functrl_demo_learn.webp",
+            "width": 1600,
+            "height": 900,
+            "alt": "FunCtrl 影片學習頁面：左側為內嵌 YouTube 播放器與 AI 生成的影片重點摘要，右側為「全場最佳」關鍵時間點卡片，點擊即可跳轉至對應片段",
+            "caption": "影片學習頁：AI 自動生成「全場最佳」關鍵時間點與重點摘要，點擊卡片即可精準跳轉"
+          }
+        ],
+        "intro": "系統對每部影片自動生成<strong>「全場最佳」關鍵時間點</strong>與<strong>重點摘要</strong>：右側時間點卡片由 RAG pipeline 從字幕向量中檢索並經 LLM 精煉，點擊即跳轉至該片段，解決「在長影片中定位特定知識點」的核心痛點。"
+      },
+      {
         "heading": "系統架構總覽",
         "images": [
           {

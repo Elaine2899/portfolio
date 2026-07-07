@@ -87,6 +87,7 @@ export function initProjectModal() {
             </div>
         `;
         projectModal.classList.add('active');
+        modalBodyContent.scrollTop = 0; // Reset scroll left over from a previously opened project
         document.body.style.overflow = 'hidden'; // Disable background scrolling
 
         // Set focus inside the modal close button for accessibility
@@ -98,6 +99,7 @@ export function initProjectModal() {
             const projectData = await getProjectDetails(projectId);
             if (projectData) {
                 modalBodyContent.innerHTML = renderProjectHtml(projectData);
+                modalBodyContent.scrollTop = 0;
                 safeCreateIcons();
             } else {
                 modalBodyContent.innerHTML = `<p style="text-align:center;padding:40px;color:var(--accent-gold);">抱歉，無法載入該專案的技術細節。</p>`;
