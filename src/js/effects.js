@@ -22,7 +22,7 @@ export function initScrollReveal() {
         // Capped so large grids never leave late items blank while scrolling.
         const siblings = [...el.parentElement.children].filter(c => c.classList.contains('scroll-reveal'));
         const idx = siblings.indexOf(el);
-        if (idx > 0) el.style.setProperty('--reveal-delay', `${Math.min(idx, 4) * 0.08}s`);
+        if (idx > 0) el.style.setProperty('--reveal-delay', `${Math.min(idx, 4) * 0.06}s`);
         scrollRevealObserver.observe(el);
     });
 }
