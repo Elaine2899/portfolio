@@ -7,9 +7,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(14, 15, 19, 0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    /* No backdrop-filter here: blurring the full viewport while opacity
+       transitions re-renders the blur every frame — visible open/close jank
+       on both desktop and mobile. A more opaque flat scrim reads the same. */
+    background: rgba(14, 15, 19, 0.94);
     z-index: 1000;
     display: flex;
     align-items: center;
