@@ -19,11 +19,10 @@ export function initProjectFilters() {
         miniProjectsGrid.classList.toggle('expanded', isExpanded);
 
         if (toggleBtn) {
+            // Chevron direction is handled by CSS (.active rotates the svg)
             toggleBtn.classList.toggle('active', isExpanded);
             const btnText = toggleBtn.querySelector('span');
-            const btnIcon = toggleBtn.querySelector('i');
             if (btnText) btnText.textContent = isExpanded ? t('p.less') : t('p.more');
-            if (btnIcon) btnIcon.setAttribute('data-lucide', isExpanded ? 'chevron-up' : 'chevron-down');
         }
 
         if (inlineToggle) {
@@ -99,9 +98,7 @@ export function initProjectFilters() {
                     if (toggleBtn) {
                         toggleBtn.classList.remove('active');
                         const btnText = toggleBtn.querySelector('span');
-                        const btnIcon = toggleBtn.querySelector('i');
                         if (btnText) btnText.textContent = t('p.more');
-                        if (btnIcon) btnIcon.setAttribute('data-lucide', 'chevron-down');
                     }
                     if (inlineToggle) {
                         inlineToggle.setAttribute('aria-expanded', 'false');

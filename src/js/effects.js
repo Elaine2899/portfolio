@@ -1,24 +1,27 @@
 // Scroll reveal + typewriter badge
 
 export function initScrollReveal() {
+    // Two thresholds create hysteresis: reveal at 25% visible, reset only
+    // when fully out of view — so re-scrolling replays without flicker.
     const scrollRevealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting) {
+            if (entry.intersectionRatio >= 0.25) {
                 entry.target.classList.add('revealed');
-                scrollRevealObserver.unobserve(entry.target);
+            } else if (!entry.isIntersecting) {
+                entry.target.classList.remove('revealed');
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: [0, 0.25] });
 
     const revealTargets = document.querySelectorAll(
-        '.about-section .glass-card, .projects-section .project-card, .section-title-wrap, .cert-item, .experience-card'
+        '.about-section .glass-card, .projects-section .project-card, .section-title-wrap, .certificate-item, .experience-card'
     );
     revealTargets.forEach(el => {
         el.classList.add('scroll-reveal');
-        // Stagger siblings within the same parent
+        // Stagger siblings within the same parent (applied on reveal only, see CSS)
         const siblings = [...el.parentElement.children].filter(c => c.classList.contains('scroll-reveal'));
         const idx = siblings.indexOf(el);
-        if (idx > 0) el.style.transitionDelay = `${idx * 0.12}s`;
+        if (idx > 0) el.style.setProperty('--reveal-delay', `${idx * 0.12}s`);
         scrollRevealObserver.observe(el);
     });
 }
