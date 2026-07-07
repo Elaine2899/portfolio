@@ -18,10 +18,11 @@ export function initScrollReveal() {
     );
     revealTargets.forEach(el => {
         el.classList.add('scroll-reveal');
-        // Stagger siblings within the same parent (applied on reveal only, see CSS)
+        // Stagger siblings within the same parent (applied on reveal only, see CSS).
+        // Capped so large grids never leave late items blank while scrolling.
         const siblings = [...el.parentElement.children].filter(c => c.classList.contains('scroll-reveal'));
         const idx = siblings.indexOf(el);
-        if (idx > 0) el.style.setProperty('--reveal-delay', `${idx * 0.12}s`);
+        if (idx > 0) el.style.setProperty('--reveal-delay', `${Math.min(idx, 4) * 0.08}s`);
         scrollRevealObserver.observe(el);
     });
 }

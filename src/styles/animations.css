@@ -2,17 +2,19 @@
    Scroll Reveal & Typewriter Animations
    ========================================== */
 
-/* Scroll Reveal — replays on every viewport entry (reset by effects.js) */
+/* Scroll Reveal — replays on every viewport entry (reset by effects.js).
+   Only the reveal animates; the off-screen reset snaps instantly so
+   scrolling never pays for exit transitions. */
 .scroll-reveal {
     opacity: 0;
     transform: translateY(40px) scale(0.97);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: 0s; /* hide immediately, no stagger on the way out */
+    transition: none;
 }
 .scroll-reveal.revealed {
     opacity: 1;
     transform: translateY(0) scale(1);
+    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: var(--reveal-delay, 0s); /* stagger only when revealing */
 }
 
