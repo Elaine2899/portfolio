@@ -1,5 +1,6 @@
 // Project filtering + collapsible mini-projects grid
 import { safeCreateIcons } from './icons.js';
+import { t } from './i18n.js';
 
 export function initProjectFilters() {
     const filterButtons = document.querySelectorAll('.filter-btn');
@@ -10,30 +11,48 @@ export function initProjectFilters() {
     const toggleContainer = document.querySelector('.toggle-projects-container');
     const projectsSection = document.getElementById('projects');
 
-    // Toggle button click handler for mini projects
-    if (toggleBtn && miniProjectsGrid) {
-        toggleBtn.addEventListener('click', () => {
-            const isExpanded = miniProjectsGrid.classList.toggle('expanded');
-            toggleBtn.classList.toggle('active');
+    const inlineToggle = document.getElementById('mini-toggle-inline');
 
+    // Shared expand/collapse for the bottom button and the inline title button
+    function setMiniExpanded(isExpanded, scrollBack) {
+        if (!miniProjectsGrid) return;
+        miniProjectsGrid.classList.toggle('expanded', isExpanded);
+
+        if (toggleBtn) {
+            toggleBtn.classList.toggle('active', isExpanded);
             const btnText = toggleBtn.querySelector('span');
             const btnIcon = toggleBtn.querySelector('i');
+            if (btnText) btnText.textContent = isExpanded ? t('p.less') : t('p.more');
+            if (btnIcon) btnIcon.setAttribute('data-lucide', isExpanded ? 'chevron-up' : 'chevron-down');
+        }
 
-            if (isExpanded) {
-                // Dynamically calculate scrollHeight for transition height
-                miniProjectsGrid.style.maxHeight = miniProjectsGrid.scrollHeight + 'px';
-                if (btnText) btnText.textContent = '收合小型專案 / Show Less';
-                if (btnIcon) btnIcon.setAttribute('data-lucide', 'chevron-up');
-            } else {
-                miniProjectsGrid.style.maxHeight = '0';
-                if (btnText) btnText.textContent = '展開更多專案 / Show More';
-                if (btnIcon) btnIcon.setAttribute('data-lucide', 'chevron-down');
-                // Scroll back to projects section top so user doesn't get lost
-                if (projectsSection) {
-                    projectsSection.scrollIntoView({ behavior: 'smooth' });
-                }
+        if (inlineToggle) {
+            inlineToggle.setAttribute('aria-expanded', String(isExpanded));
+            inlineToggle.classList.toggle('open', isExpanded);
+        }
+
+        if (isExpanded) {
+            // Dynamically calculate scrollHeight for transition height
+            miniProjectsGrid.style.maxHeight = miniProjectsGrid.scrollHeight + 'px';
+        } else {
+            miniProjectsGrid.style.maxHeight = '0';
+            // Scroll back to projects section top so user doesn't get lost
+            if (scrollBack && projectsSection) {
+                projectsSection.scrollIntoView({ behavior: 'smooth' });
             }
-            safeCreateIcons();
+        }
+        safeCreateIcons();
+    }
+
+    if (toggleBtn && miniProjectsGrid) {
+        toggleBtn.addEventListener('click', () => {
+            setMiniExpanded(!miniProjectsGrid.classList.contains('expanded'), true);
+        });
+    }
+    if (inlineToggle && miniProjectsGrid) {
+        inlineToggle.addEventListener('click', () => {
+            // No scroll jump when collapsing from the title row — user is already there
+            setMiniExpanded(!miniProjectsGrid.classList.contains('expanded'), false);
         });
     }
 
@@ -81,8 +100,12 @@ export function initProjectFilters() {
                         toggleBtn.classList.remove('active');
                         const btnText = toggleBtn.querySelector('span');
                         const btnIcon = toggleBtn.querySelector('i');
-                        if (btnText) btnText.textContent = '展開更多專案 / Show More';
+                        if (btnText) btnText.textContent = t('p.more');
                         if (btnIcon) btnIcon.setAttribute('data-lucide', 'chevron-down');
+                    }
+                    if (inlineToggle) {
+                        inlineToggle.setAttribute('aria-expanded', 'false');
+                        inlineToggle.classList.remove('open');
                     }
                 }
             }
@@ -105,4 +128,16 @@ export function initProjectFilters() {
             safeCreateIcons();
         });
     });
+
+    // Refresh the (JS-owned) toggle button label on language change,
+    // and once at init (initI18n may have applied EN before this ran)
+    function refreshToggleLabel() {
+        if (!toggleBtn) return;
+        const btnText = toggleBtn.querySelector('span');
+        if (!btnText) return;
+        const isExpanded = miniProjectsGrid && miniProjectsGrid.classList.contains('expanded');
+        btnText.textContent = isExpanded ? t('p.less') : t('p.more');
+    }
+    window.addEventListener('langchange', refreshToggleLabel);
+    refreshToggleLabel();
 }

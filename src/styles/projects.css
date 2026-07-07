@@ -291,3 +291,37 @@
     transform: rotate(180deg);
 }
 
+
+/* Inline expand/collapse button on the mini-projects subsection title */
+.mini-toggle-btn {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.mini-toggle-btn:hover {
+    color: var(--accent-gold);
+    border-color: var(--border-hover);
+}
+
+.projects-subsection-title .mini-toggle-btn i,
+.projects-subsection-title .mini-toggle-btn svg {
+    width: 16px;
+    height: 16px;
+    color: inherit;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mini-toggle-btn.open svg {
+    transform: rotate(180deg);
+}

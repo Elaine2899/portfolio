@@ -142,12 +142,15 @@
 .face-front { transform: translateZ(68px); }
 .face-back  { transform: rotateY(180deg) translateZ(68px); }
 
+/* Side/top/bottom faces: borderless and darker, so their edge-on
+   slivers melt into the background instead of reading as detached shells */
 .face-left, .face-right {
     width: 136px;
     height: 136px;
     margin-left: -68px;
     margin-top: -68px;
-    background: linear-gradient(160deg, #1a1c23 0%, #131419 75%);
+    border: none;
+    background: linear-gradient(160deg, #16181f 0%, #101116 75%);
 }
 .face-right { transform: rotateY(90deg) translateZ(78px); }
 .face-left  { transform: rotateY(-90deg) translateZ(78px); }
@@ -157,7 +160,8 @@
     height: 136px;
     margin-left: -78px;
     margin-top: -68px;
-    background: linear-gradient(160deg, #262834 0%, #1a1c23 75%);
+    border: none;
+    background: linear-gradient(160deg, #1f212b 0%, #15161c 75%);
 }
 .face-top    { transform: rotateX(90deg) translateZ(68px); }
 .face-bottom { transform: rotateX(-90deg) translateZ(68px); background: #101116; }
@@ -184,58 +188,42 @@
     box-shadow: inset 0 3px 12px rgba(0, 0, 0, 0.7);
 }
 
+/* Eyes and mouth drift subtly in the look direction (set by robot.js) */
 .robot-eyes {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     gap: 22px;
+    transform: translate(var(--px, 0px), var(--py, 0px));
+    transition: transform 0.12s ease-out;
 }
 
+/* Happy half-dome eyes (rounded top, flat bottom) */
 .robot-eye {
-    position: relative;
     width: 30px;
-    height: 30px;
-    background: radial-gradient(circle at 50% 45%, #e2cd9a 0%, var(--accent-gold) 65%, #ab8c50 100%);
-    border-radius: 50%;
-    box-shadow: 0 0 9px rgba(201, 168, 106, 0.4), 0 0 20px rgba(201, 168, 106, 0.15);
+    height: 16px;
+    background: linear-gradient(180deg, #f2e3bf 0%, var(--accent-gold) 55%, #b08e52 100%);
+    border-radius: 15px 15px 4px 4px;
+    box-shadow: 0 0 10px rgba(201, 168, 106, 0.5), 0 0 22px rgba(201, 168, 106, 0.2);
+    transform-origin: bottom;
     animation: robotBlink 5.2s infinite;
 }
 
 @keyframes robotBlink {
     0%, 5.5%, 100% { transform: scaleY(1); }
-    2.5%           { transform: scaleY(0.08); }
+    2.5%           { transform: scaleY(0.12); }
 }
 
-.robot-pupil {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 11px;
-    height: 11px;
-    margin: -5.5px 0 0 -5.5px;
-    background: #14151b;
-    border-radius: 50%;
-    transform: translate(var(--px, 0px), var(--py, 0px));
-    transition: transform 0.12s ease-out;
-}
-
-/* Small specular dot keeps the eyes friendly without looking bulgy */
-.robot-eye::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: 7px;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 252, 240, 0.6);
-    border-radius: 50%;
-}
-
+/* Curved-line smile — glow via drop-shadow so it follows the stroke,
+   not the (transparent) box: an outer box-shadow gets clipped under the
+   border-box and reads as a black open mouth */
 .robot-smile {
     width: 26px;
     height: 11px;
     border-bottom: 3px solid var(--accent-gold);
     border-radius: 0 0 15px 15px;
-    box-shadow: 0 3px 10px -2px rgba(201, 168, 106, 0.45);
+    filter: drop-shadow(0 2px 5px rgba(201, 168, 106, 0.5));
+    transform: translate(var(--px, 0px), var(--py, 0px));
+    transition: transform 0.12s ease-out;
 }
 
 /* Blush cheeks, right under each eye */
@@ -244,7 +232,7 @@
     top: 52px;
     width: 15px;
     height: 7px;
-    background: rgba(226, 154, 122, 0.45);
+    background: rgba(240, 148, 140, 0.55);
     border-radius: 50%;
     filter: blur(1.5px);
 }
@@ -295,8 +283,8 @@
     border-radius: 50%;
 }
 
-.ear-right { transform: rotateY(90deg) translateZ(84px); }
-.ear-left  { transform: rotateY(-90deg) translateZ(84px); }
+.ear-right { transform: rotateY(90deg) translateZ(79px); }
+.ear-left  { transform: rotateY(-90deg) translateZ(79px); }
 
 .robot-shadow {
     position: absolute;

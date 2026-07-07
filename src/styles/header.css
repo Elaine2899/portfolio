@@ -145,3 +145,23 @@
         height: 42px;
     }
 }
+
+/* Language toggle */
+.lang-toggle {
+    padding: 5px 13px;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.lang-toggle:hover {
+    color: var(--accent-gold);
+    border-color: var(--border-hover);
+}

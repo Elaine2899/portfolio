@@ -1,23 +1,36 @@
 // Project details modal + certificate lightbox + global keyboard handlers
 import { safeCreateIcons } from './icons.js';
+import { getLang, t } from './i18n.js';
 
 let lastActiveElement = null;
 
 /* ---------- Project details (loaded from JSON for maintainability) ---------- */
 
-let projectDetailsData = null;
+const projectDataCache = { zh: null, en: null };
 
-async function getProjectDetails(projectId) {
-    if (!projectDetailsData) {
+async function loadProjectData(lang) {
+    if (!projectDataCache[lang]) {
+        const file = lang === 'en' ? 'assets/projects-data.en.json' : 'assets/projects-data.json';
         try {
-            const response = await fetch('assets/projects-data.json');
-            projectDetailsData = await response.json();
+            const response = await fetch(file);
+            projectDataCache[lang] = await response.json();
         } catch (error) {
             console.error('Error loading project details from JSON:', error);
-            projectDetailsData = {};
+            projectDataCache[lang] = {};
         }
     }
-    return projectDetailsData[projectId] || null;
+    return projectDataCache[lang];
+}
+
+async function getProjectDetails(projectId) {
+    const data = await loadProjectData(getLang());
+    if (data[projectId]) return data[projectId];
+    // Not yet translated: fall back to the zh source
+    if (getLang() !== 'zh') {
+        const zh = await loadProjectData('zh');
+        return zh[projectId] || null;
+    }
+    return null;
 }
 
 // Dynamic HTML renderer for structured project details data
@@ -26,11 +39,11 @@ function renderProjectHtml(project) {
 
     let html = `
         <h2 class="modal-project-title">${project.title}</h2>
-        <div class="modal-project-tech">技術棧：${project.tech}</div>
+        <div class="modal-project-tech">${t('m.tech')}${project.tech}</div>
     `;
 
     if (project.nature) {
-        html += `<p><strong>專案性質：</strong>${project.nature}</p>`;
+        html += `<p><strong>${t('m.nature')}</strong>${project.nature}</p>`;
     }
     if (project.intro) {
         html += `<p>${project.intro}</p>`;
@@ -83,7 +96,7 @@ export function initProjectModal() {
         modalBodyContent.innerHTML = `
             <div class="modal-loading">
                 <div class="loader-spinner"></div>
-                <p>正在載入技術細節...</p>
+                <p>${t('m.loading')}</p>
             </div>
         `;
         projectModal.classList.add('active');
@@ -102,11 +115,11 @@ export function initProjectModal() {
                 modalBodyContent.scrollTop = 0;
                 safeCreateIcons();
             } else {
-                modalBodyContent.innerHTML = `<p style="text-align:center;padding:40px;color:var(--accent-gold);">抱歉，無法載入該專案的技術細節。</p>`;
+                modalBodyContent.innerHTML = `<p style="text-align:center;padding:40px;color:var(--accent-gold);">${t('m.missing')}</p>`;
             }
         } catch (error) {
             console.error('Error loading project details:', error);
-            modalBodyContent.innerHTML = `<p style="text-align:center;padding:40px;color:var(--accent-gold);">載入時發生錯誤，請稍後再試。</p>`;
+            modalBodyContent.innerHTML = `<p style="text-align:center;padding:40px;color:var(--accent-gold);">${t('m.error')}</p>`;
         }
     }
 
@@ -178,7 +191,9 @@ export function initCertModal() {
 
     certItems.forEach(item => {
         item.addEventListener('click', () => {
-            const title = item.getAttribute('data-cert-title');
+            // Prefer the card's h4 text — it reflects the current language
+            const title = item.querySelector('.cert-info h4')?.textContent
+                || item.getAttribute('data-cert-title');
             const imgSrc = item.getAttribute('data-cert-img');
             const pdfSrc = item.getAttribute('data-cert-pdf');
 

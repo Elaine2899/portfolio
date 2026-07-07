@@ -1,7 +1,7 @@
 // Hero robot: CSS 3D head turns toward the cursor, pupils follow
 
-const MAX_YAW = 30;   // deg, left/right
-const MAX_PITCH = 16; // deg, up/down
+const MAX_YAW = 24;   // deg, left/right — keep perspective distortion subtle
+const MAX_PITCH = 13; // deg, up/down
 
 export function initRobot() {
     const scene = document.getElementById('robot-scene');

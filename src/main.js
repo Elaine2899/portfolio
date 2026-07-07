@@ -21,9 +21,11 @@ import { initProjectFilters } from './js/projects.js';
 import { initProjectModal, initCertModal, initModalKeyboard } from './js/modals.js';
 import { initScrollReveal, initTypewriter } from './js/effects.js';
 import { initRobot } from './js/robot.js';
+import { initI18n } from './js/i18n.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     safeCreateIcons();
+    initI18n();
     initMobileNav();
     initScrollSpy();
     initBackToTop();
