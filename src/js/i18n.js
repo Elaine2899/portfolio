@@ -99,7 +99,7 @@ const EN = {
 
     // Project card briefs
     'pbr.functrl': 'Tackles fragmented YouTube learning with a three-tier (title / tag / subtitle) vector RAG retrieval plus Gemini query expansion to pinpoint exact video segments. 1st place nationwide, InnoServe AI Application Tools track.',
-    'pbr.kaggle': 'Forecast 12 months of housing sales across 96 districts from only 67 monthly records each. Distilled 106 key features from 1,000+, validated with expanding-window backtesting, and optimized ensemble weights via SciPy with a Zero-sector Override against extreme errors.',
+    'pbr.kaggle': 'Forecast 12 months of housing sales across 96 districts from only 67 monthly records each. Distilled 106 key features from 1,000+, validated with time-based 5-fold cross-validation to prevent leakage, and blended four models with a Zero-sector Override against extreme errors.',
     'pbr.prep': 'Chunks and embeds 29 lectures of Whisper statistics transcripts into Supabase pgvector (halfvec, 50% storage saved), wired to Telegram via an n8n cloud workflow — always-on Q&A, quizzes, and summaries, with retrieval quality measured on a self-built 16-question eval set.',
     'pbr.aicup': 'Time-series analysis of smart racket swings. Broke through the LSTM accuracy plateau with DSP feature engineering across time, frequency (FFT), and time-frequency (wavelet) domains — rank 41 of 633 teams (top 6.5%).',
     'pbr.wf': 'Final project of the graduate OOP course — a workflow editor applying Factory, Observer, and Strategy patterns, with draggable nodes, connections, event propagation, and JSON serialization.',

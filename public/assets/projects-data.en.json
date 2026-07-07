@@ -223,8 +223,9 @@
       {
         "heading": "Feature Engineering & District Clustering",
         "bullets": [
-          "<strong>Reusable feature logic:</strong> led the feature-list design — lags, EWMA dynamics, seasonality factors, and spatial features like neighboring-district differentials and structural ratios.",
-          "<strong>Dimensionality control:</strong> K-Means-based imputation and PCA compression distilled 1,000+ candidates into <strong>106 key features</strong>.",
+          "<strong>Dynamic features:</strong> for time-varying series (new-home transaction value, search indices, macro indicators) — lags of 1/2/3/6/12 months, month/quarter/year differences, and EWMA rolling weighted averages, plus seasonality factors and neighboring-district differentials.",
+          "<strong>Static features — imputation & PCA:</strong> facility features (education, healthcare, etc.) imputed by K-Means clustering of districts with within-cluster medians, then compressed from dozens of facility variables into 5 principal components.",
+          "<strong>Feature selection:</strong> correlation filtering and LightGBM importance pruned 1,000+ candidates down to <strong>106 key features</strong>.",
           "<strong>District clustering:</strong> clustered the 96 districts by volume and trend, giving the team differentiated modeling bases for different market regimes."
         ]
       },
@@ -232,13 +233,13 @@
         "heading": "Model Comparison, Backtesting & Explainability",
         "bullets": [
           "<strong>Benchmark platform:</strong> compared classical ARIMA (stationarity tests, p/d/q tuning) against ML models on equal footing.",
-          "<strong>Expanding-window backtesting:</strong> monthly validation with time-series cross-validation, ensuring no future information leaks into the past.",
+          "<strong>Time-based 5-fold cross-validation:</strong> folds split chronologically (training cut-off 2024-08), target encoding fitted within each fold to prevent leakage, and samples weighted by exponential time decay (12-month half-life) — no future information ever predicts the past.",
           "<strong>SHAP explainability:</strong> verified that all 106 features contribute in ways consistent with real-estate economics."
         ]
       },
       {
         "heading": "Final Results & Risk Control",
-        "intro": "Ensembled LightGBM, XGBoost, and CatBoost with blend weights solved by SciPy optimization, plus inference-time risk balancing (Zero-sector Override) to avoid extreme errors — finishing <strong>2nd of 777 teams</strong>.<br/><br/><strong>Proof of award and team identity:</strong> see the Credentials section — click the Kaggle certificate cards to view the official announcement and verification."
+        "intro": "Ensembled LightGBM, XGBoost, and CatBoost — blend weights solved by constrained SciPy optimization as a baseline, then tuned experimentally (CatBoost weighted highest). At inference, a Zero-sector Override conservatively zeroes any district with a zero-transaction month in the prior six months, avoiding extreme errors in stagnant markets — finishing <strong>2nd of 777 teams</strong>.<br/><br/><strong>Proof of award and team identity:</strong> see the Credentials section — click the Kaggle certificate cards to view the official announcement and verification."
       }
     ]
   },

@@ -184,8 +184,9 @@
       {
         "heading": "特徵工程與區域分群",
         "bullets": [
-          "<strong>可重用特徵邏輯：</strong>主導構思特徵清單，包含滯後特徵 (Lag)、EWMA 動態特徵、季節性因子，以及具空間關聯性的鄰近區差比與結構比值。",
-          "<strong>降維與補值：</strong>以 K-Means 進行補值、PCA 壓縮特徵，從上千個候選特徵中精煉出 <strong>106 項關鍵變數</strong>。",
+          "<strong>動態特徵：</strong>對新房交易額、搜尋指數、總體經濟等時變數列，建立前 1／2／3／6／12 個月滯後 (Lag)、月／季／年差值 (Difference) 與 EWMA 滑動窗口加權平均，並加入季節性因子與鄰近區差比等空間關聯特徵。",
+          "<strong>靜態特徵補值與降維：</strong>教育設施、醫療衛生等設施特徵，以 K-Means 將區域分群、缺值用同群中位數填補；再以主成分分析 (PCA) 將數十種設施特徵壓縮為 5 個主成分變量。",
+          "<strong>特徵篩選：</strong>經相關性過濾與 LightGBM 重要度篩選，從上千候選特徵精煉出 <strong>106 項關鍵變數</strong>。",
           "<strong>區域分群策略：</strong>根據總量與趨勢對 96 個區域進行 Clustering，為團隊建立差異化建模基礎，解決不同市場環境下的預測偏差。"
         ]
       },
@@ -193,13 +194,13 @@
         "heading": "模型比較、回測與解釋性",
         "bullets": [
           "<strong>多模型對照平台：</strong>建立基準模型比較機制，包含傳統統計模型 ARIMA（平穩性檢定與 p, d, q 參數調優）與機器學習模型。",
-          "<strong>擴張窗回測 (Expanding Window Backtesting)：</strong>每月進行一次驗證，檢核模型在時間序列上的穩定度，並以時序交叉驗證避免以未來資訊預測歷史。",
+          "<strong>時序 5 折交叉驗證 (Time-based 5-Fold CV)：</strong>依時間先後切分 5 折（訓練截止 2024-08），target encoding 於每折內獨立擬合防止資料洩漏，並以指數時間衰減（半衰期 12 個月）加權樣本——確保不以未來資訊預測歷史。",
           "<strong>模型解釋性 (SHAP)：</strong>應用 SHAP 值檢視特徵對預測的邊際貢獻，驗證 106 項特徵符合房地產經濟邏輯。"
         ]
       },
       {
         "heading": "最終成果與風險控管",
-        "intro": "結合 LightGBM、XGBoost、CatBoost 進行集成學習 (Ensemble)，透過 SciPy 優化器求解最佳融合權重；並參與設計推論階段的風險平衡策略（如 Zero-sector Override）成功規避極端誤差，最終於 777 支隊伍中獲得<strong>第二名</strong>。<br/><br/><strong>獲獎證明與參賽團隊身分驗證：</strong>展示於「專業證明與獎項」區塊，點擊 Kaggle 證書卡片即可放大預覽官方得獎公告與身分驗證。"
+        "intro": "結合 LightGBM、XGBoost、CatBoost 進行集成學習 (Ensemble)，以 SciPy 約束最佳化求解的權重為基準、再經實驗調校出最終權重（CatBoost 佔比最高）；推論階段設計 Zero-sector Override——前六個月出現過零交易的區域直接保守壓 0——規避停滯市場的極端誤差，最終於 777 支隊伍中獲得<strong>第二名</strong>。<br/><br/><strong>獲獎證明與參賽團隊身分驗證：</strong>展示於「專業證明與獎項」區塊，點擊 Kaggle 證書卡片即可放大預覽官方得獎公告與身分驗證。"
       }
     ]
   },
