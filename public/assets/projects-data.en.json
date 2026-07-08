@@ -63,7 +63,7 @@
         "heading": "Architecture Highlights",
         "bullets": [
           "<strong>Three-tier vector RAG:</strong> layered embeddings for titles / tags / subtitles — search titles and tags first, then drill into subtitle-level matching, finally re-ranked by Gemini with precise timestamp localization.",
-          "<strong>Async self-expanding corpus:</strong> to solve the cold-start problem, Python <code>asyncio</code> background tasks trigger automatic video download, speech-to-text, and semantic summarization whenever query confidence falls below a threshold — the ChromaDB corpus grows itself.",
+          "<strong>Async self-expanding corpus:</strong> to solve the cold-start problem, Python <code>asyncio</code> background tasks automatically download related videos and their subtitles, then embed and summarize them, whenever query confidence falls below a threshold — the ChromaDB corpus grows itself.",
           "<strong>Dynamic learning paths:</strong> LLM-generated hierarchical learning maps persisted to the database, integrated with auto-generated quizzes and a progress dashboard to close the \"search → learn → assess\" loop."
         ]
       }
@@ -71,10 +71,10 @@
   },
   "prepagent": {
     "title": "PrepAgent — Telegram AI Study Assistant with RAG Knowledge Base",
-    "tech": "n8n Cloud · Supabase pgvector · Python 3.12 · Google Gemini-2.0-flash · Telegram API",
+    "tech": "Supabase Edge Functions (Deno/TS) · Supabase pgvector · Python · Google Gemini · Telegram API · n8n (v1)",
     "nature": "Independent personal project",
     "caseUrl": "prepagent.html",
-    "intro": "Turns a popular NCU statistics lecture series on YouTube into an always-on, conversational Telegram study assistant: Whisper transcribed 29 lecture files, which are chunked, embedded, and served through a fully cloud-native stack — the bot stays online even when my laptop is off, with a modular design ready for new subjects.",
+    "intro": "Turns NCTU professor Li-Ying Tang's YouTube statistics lectures — a go-to exam-prep resource among NCU students — into an always-on, conversational Telegram study assistant: Whisper transcribed 29 lecture files, which are chunked, embedded, and served through a fully cloud-native stack — the bot stays online even when my laptop is off, with a modular design for new subjects — expansion already underway. V1 ran on an n8n Cloud workflow to validate the flow fast; when the free trial ended I rewrote it as a hand-written Supabase Edge Function (Deno/TypeScript) — still always-on, at zero monthly cost.",
     "sections": [
       {
         "heading": "Key Architecture Decisions",
@@ -102,10 +102,6 @@
             ]
           }
         ]
-      },
-      {
-        "heading": "System Workflow (n8n)",
-        "code": "Telegram Trigger (incoming message)\n  └──> Switch router (/ask questions, /quiz practice, /summary recap)\n        └──> AI Agent orchestrator\n              ├── Model: gemini-2.0-flash\n              ├── Memory: Window Buffer (last 5 turns)\n              └── Tool: Supabase Vector Store\n                    └── Postgres match_documents function (top_k=5)\n  └──> Telegram Send (reply)"
       },
       {
         "heading": "Retrieval Quality Evaluation (Hit Rate@5)",

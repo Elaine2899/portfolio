@@ -63,7 +63,7 @@
         "heading": "核心技術架構亮點",
         "bullets": [
           "<strong>三層向量 RAG 架構：</strong>針對影片資訊碎片化，開發「標題 / 標籤 / 字幕」分層嵌入系統。先搜尋影片標題/標籤，再進入微觀字幕匹配，最後透過 Gemini 進行 Re-rank 與精準時間點 (Timestamp) 定位。",
-          "<strong>非同步 Self-Expanding 機制：</strong>為了解決冷啟動問題，利用 Python <code>asyncio</code> 實作非同步背景任務。當使用者查詢之信心值低於閾值時，系統會在背景自動觸發影片下載、字幕語音辨識與語意摘要，實現 ChromaDB 資料庫自動增量擴充。",
+          "<strong>非同步 Self-Expanding 機制：</strong>為了解決冷啟動問題，利用 Python <code>asyncio</code> 實作非同步背景任務。當使用者查詢之信心值低於閾值時，系統會在背景自動下載相關影片與字幕、完成嵌入與語意摘要，實現 ChromaDB 資料庫自動增量擴充。",
           "<strong>動態學習路徑與閉環：</strong>利用 LLM 生成階層式學習地圖並持久化至資料庫；整合 AI 自動化測驗與學習進度儀表板，完成「檢索-學習-評量」的完整工作流。"
         ]
       }
@@ -71,10 +71,10 @@
   },
   "prepagent": {
     "title": "PrepAgent - Telegram AI 備考助教與 RAG 知識庫",
-    "tech": "n8n Cloud · Supabase pgvector · Python 3.12 · Google Gemini-2.0-flash · Telegram API",
+    "tech": "Supabase Edge Functions (Deno/TS) · Supabase pgvector · Python · Google Gemini · Telegram API · n8n (v1)",
     "nature": "個人獨立開發專案",
     "caseUrl": "prepagent.html",
-    "intro": "將中央大學熱門的唐麗英老師 YouTube 統計學課程影片，透過 Whisper 語音轉文字產生 29 個 .txt 逐字稿，再轉化為全天候運作、支援對話的 Telegram AI 備考助教。專案採用全雲端架構，確保本機電腦關機後服務依然保持運行，並設計為模組化架構以利未來快速擴增新學科。",
+    "intro": "將交通大學唐麗英老師的 YouTube 統計學課程影片（中央同學間熱門的備考教材），透過 Whisper 語音轉文字產生 29 個 .txt 逐字稿，再轉化為全天候運作、支援對話的 Telegram AI 備考助教。專案採用全雲端架構，確保本機電腦關機後服務依然保持運行，並設計為模組化架構以利快速擴增新學科——擴增已在進行中。第一版以 n8n Cloud 工作流快速驗證流程，免費試用期滿後翻寫為 Supabase Edge Function（Deno/TypeScript）自寫後端——維持零月費、全天候運行。",
     "sections": [
       {
         "heading": "關鍵架構與技術決策",
@@ -102,10 +102,6 @@
             ]
           }
         ]
-      },
-      {
-        "heading": "系統工作流程 (n8n Workflow)",
-        "code": "Telegram Trigger (對話輸入)\n  └──> Switch 路由判斷 (/ask 提問, /quiz 測驗, /summary 摘要)\n        └──> AI Agent 協調節點\n              ├── Model: gemini-2.0-flash\n              ├── Memory: Window Buffer (保留最新 5 輪對話快取)\n              └── Tool: Supabase Vector Store\n                    └── 呼叫 Postgres match_documents 函數 (top_k=5)\n  └──> Telegram Send (回傳對話)"
       },
       {
         "heading": "檢索品質評估 (Hit Rate@5)",
