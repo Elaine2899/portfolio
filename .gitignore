@@ -27,6 +27,7 @@ dist-ssr/
 recommend.md
 todo.md
 CLAUDE.md
+AGENTS.md
 
 # Private documents (resume, grades, interview prep) — never commit
 docs/
