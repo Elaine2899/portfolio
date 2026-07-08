@@ -38,8 +38,8 @@
           {
             "title": "1. Architecture & Tech Selection",
             "bullets": [
-              "<strong>Architecture lead:</strong> designed the backend and AI service architecture, choosing <strong>FastAPI</strong> with <strong>ChromaDB</strong> for large-scale semantic retrieval. Built 30+ RESTful APIs covering JWT auth, personalized recommendation, and quiz generation.",
-              "<strong>Deployment & cost control:</strong> containerized frontend and backend with Docker and deployed to Railway; later led a seamless migration to an on-prem lab server to cut API and hosting costs, demonstrating cost awareness and infrastructure operations skills."
+              "<strong>Architecture lead:</strong> designed the overall system architecture, choosing <strong>FastAPI</strong> with <strong>ChromaDB</strong> for large-scale semantic retrieval; the backend team built 30+ RESTful APIs on this design, covering JWT auth, personalized recommendation, and quiz generation.",
+              "<strong>Deployment & cost control:</strong> deployed frontend and backend to Railway (with its automated container builds); the service was later moved to an on-prem lab server, per our advisor's decision, to cut API and hosting costs."
             ]
           },
           {
@@ -53,7 +53,7 @@
             "title": "3. Rigorous Quality Evaluation",
             "bullets": [
               "<strong>NDCG adoption:</strong> introduced <strong>NDCG (Normalized Discounted Cumulative Gain)</strong> as the team's north-star metric for ranking relevance.",
-              "<strong>Expert validation:</strong> built an expert-scoring process — three human experts independently rated query relevance on 10 target videos, averaging scores to reduce individual bias.",
+              "<strong>Human annotation:</strong> built an annotation process — three annotators (team members) independently rated query relevance on 10 target videos, averaging scores to reduce individual bias.",
               "<strong>Model iteration:</strong> measured the gap between system scores and ideal (IDCG) scores to benchmark open-source embedding models, stabilizing retrieval accuracy above <strong>88%</strong>."
             ]
           }

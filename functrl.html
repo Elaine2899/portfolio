@@ -72,8 +72,75 @@
                 </a>
             </div>
 
-            <article id="case-content" data-case="functrl" class="modal-body-content case-article">
-                <!-- Rendered from projects-data JSON by src/case.js (skeleton phase) -->
+            <!-- Static case-study content: zh is the source of truth, EN overlays via data-i18n (fc.* keys in i18n.js) -->
+            <article class="modal-body-content case-article">
+                <h1 class="modal-project-title" data-i18n="ph.functrl">FunCtrl - AI 智慧學習地圖平台</h1>
+                <div class="modal-project-tech" data-i18n="fc.tech">技術棧：FastAPI · Vue.js · ChromaDB · PostgreSQL · Gemini Pro · Docker · Railway</div>
+                <p data-i18n="fc.nature"><strong>專案性質：</strong>畢業專案｜<strong>全國大專校院資訊應用服務創新競賽 (InnoServe)</strong> AI應用工具組第一名 🏆</p>
+
+                <h3 data-i18n="fc.h1">動機與問題定義</h3>
+                <p data-i18n="fc.s1p1">題目源於指導教授對線上影片學習現況的觀察；團隊接手後先對既有工具做了一輪盤點，確認缺口真實存在：</p>
+                <ul data-i18n="fc.s1l1">
+                    <li><strong>YouTube</strong>：內建搜尋只比對標題與描述，檢索最小單位是「一部影片」，無法回答「這個概念出現在影片的哪一分鐘」；章節與時間戳需要創作者手動標注，覆蓋率與品質參差不齊。</li>
+                    <li><strong>Udemy、Hahow 等課程平台</strong>：提供結構化的課程編排，但內容封閉且需付費，無法涵蓋 YouTube 上大量的開放資源；站內搜尋同樣停留在課程與影片層級，做不到知識點定位。</li>
+                </ul>
+                <p data-i18n="fc.s1p2">我們設定的核心使用者是<strong>想自學新技能的任何人</strong>：面對海量影片資訊缺乏結構化引導、學習時間零碎、需要一條明確的學習路徑。同樣的缺口也存在於<strong>企業內訓場景</strong>——培訓影片缺乏系統化管理與搜尋、員工難以回顧重溫——這讓系統具備延伸為企業培訓方案的潛力。</p>
+                <p data-i18n="fc.s1p3">因此我們把問題定義為：<strong>長影片語料上的細粒度語意檢索</strong>——輸入一句自然語言提問，系統要能定位到「哪部影片的哪個時間點」，並在這個檢索基礎上自動生成學習路徑。</p>
+
+                <h3 data-i18n="fc.h2">方法選型與替代方案</h3>
+                <p data-i18n="fc.s2p1">技術路線的核心判斷是：在五人學生團隊的資源約束下，哪條路能把「知識點定位」的成效做到最好。我們比較過三條路：</p>
+                <ul data-i18n="fc.s2l1">
+                    <li><strong>純關鍵字搜尋（倒排索引）</strong>：實作成本最低，但只能比對字面，處理不了「使用者用自己的話問、講者用另一種說法講」的語意落差——效果不會比 YouTube 內建搜尋好，做了等於沒做。</li>
+                    <li><strong>Fine-tune 專用模型</strong>：理論上限最高，但標注資料、訓練算力與反覆實驗的時間成本，超出畢業專案的資源規模。</li>
+                    <li><strong>全套商用 API</strong>：整合最快，但按量計費對需要長期運行的服務不可負擔，檢索品質的調整空間也受限於供應商。</li>
+                </ul>
+                <p data-i18n="fc.s2p2">最終選擇<strong>開源 Embedding 模型的向量檢索，LLM 只在關鍵環節介入</strong>（查詢擴張、re-rank、摘要精煉）：向量檢索解決語意落差，開源模型把常態成本壓到可控，LLM 的花費集中在少數高價值步驟。這條路線也保留了迭代空間——後續評估階段能以 NDCG 為依據反覆更換 embedding 模型（詳見評估一節），而不需要動整體架構。</p>
+
+                <h3 data-i18n="fc.h3">系統設計</h3>
+                <h4 data-i18n="fc.h3a">整體架構</h4>
+                <p data-i18n="fc.s3p1">前端 Vue.js 部署於 Vercel；後端 FastAPI 承載 RAG pipeline（查詢嵌入 → 向量檢索 → 組合 Prompt → Gemini 2.5 Flash 生成回答），實作 30+ 支 RESTful APIs，涵蓋 JWT 認證、個人化推薦與測驗生成。資料層採雙資料庫設計：<strong>PostgreSQL 管結構化資料，ChromaDB 管向量</strong>——各用各的強項，避免單一資料庫兩頭將就。</p>
+                <p data-i18n="fc.s3p2">部署起初在 Railway（平台自動容器化建置）；後期為節省 API 與伺服器維運成本，依指導教授的決策將服務遷移至地端實驗室主機。</p>
+                <figure class="modal-figure">
+                    <img src="assets/projects/functrl_architecture.webp" alt="FunCtrl 技術架構圖：Vue.js 前端部署於 Vercel，FastAPI 後端與 RAG pipeline 部署於 Railway，串接 PostgreSQL 結構化資料庫與 ChromaDB 向量資料庫，由 Gemini 2.5 Flash 生成回答" width="1400" height="788" loading="lazy">
+                    <figcaption data-i18n="fc.f1c">FunCtrl 技術架構：Vercel (Vue.js) → Railway (FastAPI RAG pipeline) → PostgreSQL / ChromaDB → Gemini 2.5 Flash</figcaption>
+                </figure>
+
+                <h4 data-i18n="fc.h3b">三層檢索：標題 → 標籤 → 字幕</h4>
+                <p data-i18n="fc.s3p3">團隊討論後定下的分層設計：與其把整個字幕庫攤平成一池向量硬搜，不如<strong>由粗到細收斂</strong>——先以標題、標籤層鎖定候選影片，再進入字幕層做細粒度匹配，最後由 Gemini re-rank 並輸出精準時間點。分層有兩個實際考量：標題與標籤是短文本，第一層過濾<strong>處理快</strong>；且當不同影片涵蓋相似主題時，先鎖定影片再比對字幕，<strong>細粒度匹配不會被跨影片的相似內容干擾</strong>。</p>
+                <p data-i18n="fc.s3p4">嵌入模型也按文本長度分工：短文本（標題、標籤）用 MiniLM-L6-v2，長文本（字幕）用 bge-m3。</p>
+
+                <h4 data-i18n="fc.h3c">三個關鍵設計決策</h4>
+                <ul data-i18n="fc.s3l1">
+                    <li><strong>正規化 + L2 距離取代餘弦相似度</strong>：比對向量時發現餘弦相似度運算較慢，我提出「先做長度正規化、再用 L2 距離檢索」——數學上與餘弦等價，但計算效能顯著提升，改善高併發下的查詢延遲。</li>
+                    <li><strong>Query Expansion</strong>：使用者的提問往往比講者的用語短而模糊，先用 Gemini 對原始 query 做語意擴張補足同義詞，再進檢索，提升 Recall。</li>
+                    <li><strong>非同步 Self-Expanding 語料擴充</strong>：語料起步只覆蓋機器學習領域，為了應對領域外的查詢，以 Python asyncio 實作背景任務——當查詢信心值低於閾值，系統自動下載相關影片與字幕、完成嵌入與語意摘要，讓 ChromaDB 隨真實使用自動增量擴充。</li>
+                </ul>
+                <p data-i18n="fc.s3p5">檢索之上，系統再以 LLM 生成階層式學習地圖並持久化至資料庫，整合 AI 自動化測驗與學習進度儀表板，完成「檢索－學習－評量」的閉環。</p>
+                <figure class="modal-figure">
+                    <img src="assets/projects/functrl_demo_learn.webp" alt="FunCtrl 影片學習頁面：左側為內嵌 YouTube 播放器與 AI 生成的影片重點摘要，右側為「全場最佳」關鍵時間點卡片，點擊即可跳轉至對應片段" width="1600" height="900" loading="lazy">
+                    <figcaption data-i18n="fc.f2c">影片學習頁：AI 自動生成「全場最佳」關鍵時間點與重點摘要，點擊卡片即可精準跳轉</figcaption>
+                </figure>
+
+                <h3 data-i18n="fc.h4">評估方法與結果</h3>
+                <p data-i18n="fc.s4p1">檢索系統最難的不是做出來，是<strong>證明它排得好</strong>——「相關性排序是否合理」沒有現成的標準答案。我主導建立了一套評估體系：</p>
+                <ul data-i18n="fc.s4l1">
+                    <li><strong>指標</strong>：引入 NDCG（Normalized Discounted Cumulative Gain），它同時懲罰「排錯順序」與「漏掉高相關結果」，比單純的準確率更貼合檢索場景。</li>
+                    <li><strong>標準答案</strong>：由 3 位團隊成員獨立對 10 部目標影片進行 query 相關性標注，取平均以稀釋個人偏誤，作為理想排序（IDCG）的依據。</li>
+                    <li><strong>迭代方法</strong>：計算系統實際得分與 IDCG 的偏離度，團隊據此反覆測試不同的開源 embedding 模型——選型靠數據，不靠感覺。</li>
+                </ul>
+                <p data-i18n="fc.s4p2">最終系統檢索得分率穩定在 <strong>88% 以上</strong>。</p>
+
+                <h3 data-i18n="fc.h5">限制與未來工作</h3>
+                <ul data-i18n="fc.s5l1">
+                    <li><strong>語料覆蓋</strong>：測試語料集中在機器學習領域，跨出領域就沒有現成影片可檢索。Self-Expanding 背景下載（見系統設計）正是為此而生，但新語料的建立需要時間，做不到「即搜即得」。</li>
+                    <li><strong>語言</strong>：時程內只完成英文檢索。雙語（中英）與多模態搜尋（畫面內容理解）是我們最想做而沒來得及做的方向。</li>
+                    <li><strong>字幕依賴</strong>：僅支援本身提供 CC 字幕的影片。曾規劃以語音轉文字（ASR）為無字幕影片建立逐字稿，未及嘗試——這會直接決定系統能覆蓋多大比例的真實影片。</li>
+                    <li><strong>評估規模</strong>：標注集僅 10 部影片，標注者為 3 位團隊成員而非獨立第三方，NDCG 分數的外部效度有限。</li>
+                </ul>
+
+                <h3 data-i18n="fc.h6">我的角色與反思</h3>
+                <p data-i18n="fc.s6p1">五人團隊的分工：兩位組員負責後端實作、一位負責前端，我負責<strong>全系統框架設計、頁面設計與前端製作</strong>，同時主持會議推動進度、製作對外簡報。後端雖非我實作，但兩個關鍵技術決策由我提出並推動落地：<strong>以正規化 + L2 距離取代餘弦相似度</strong>（見系統設計）、<strong>建立 NDCG 評估體系</strong>（見評估方法）。</p>
+                <p data-i18n="fc.s6p2"><strong>反思</strong>：最值得的決定是<strong>先建評估體系、再談優化</strong>——沒有 NDCG 之前，檢索的好壞全憑感覺；有了客觀分數，每一次迭代才有方向。重來一次，我仍會照同樣的步驟走——這個順序被驗證是對的——差別是把每一步推得更快，讓時程尾端那些「來不及」的方向（ASR、雙語）有機會被納進來。</p>
             </article>
         </div>
     </main>

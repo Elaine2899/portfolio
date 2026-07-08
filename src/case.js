@@ -21,6 +21,7 @@ async function renderCase() {
     if (!container) return;
 
     const projectId = container.dataset.case;
+    if (!projectId) return; // static page: content is inline, i18n handles language
     try {
         const project = await getProjectDetails(projectId);
         container.innerHTML = project

@@ -38,8 +38,8 @@
           {
             "title": "1. 系統架構設計與選型 (Architecture & Tech Selection)",
             "bullets": [
-              "<strong>架構主導：</strong>負責後端與 AI 服務架構規劃，選擇 <strong>FastAPI</strong> 搭配 <strong>ChromaDB</strong> 向量資料庫以支援大規模語意檢索。後端實作 30+ 支 RESTful APIs，涵蓋 JWT 認證、個人化推薦與測驗生成。",
-              "<strong>部署與資源管理：</strong>負責前後端 Docker 容器化與雲端部署（起初於 Railway）。後期為節省 API 及伺服器維護成本，主導將服務無縫遷移至地端實驗室主機，展現了成本控制與基礎設施維運能力。"
+              "<strong>架構主導：</strong>負責全系統架構規劃，選擇 <strong>FastAPI</strong> 搭配 <strong>ChromaDB</strong> 向量資料庫以支援大規模語意檢索；後端團隊據此實作 30+ 支 RESTful APIs，涵蓋 JWT 認證、個人化推薦與測驗生成。",
+              "<strong>部署與資源管理：</strong>負責前後端雲端部署（Railway，平台自動容器化建置）。後期為節省 API 及伺服器維護成本，依指導教授決策將服務遷移至地端實驗室主機。"
             ]
           },
           {
@@ -53,7 +53,7 @@
             "title": "3. 嚴謹的品質評估體系 (System Validation)",
             "bullets": [
               "<strong>導入 NDCG 指標：</strong>為了解決資訊檢索中「結果相關性排序合理性」的評估難題，主導引入了 <strong>NDCG (Normalized Discounted Cumulative Gain)</strong> 指標，作為團隊優化模型的客觀依據。",
-              "<strong>專家驗證與去偏誤：</strong>建立專家評分機制，由 3 位人類專家獨立對 10 部目標影片進行 Query 相關性評分並取平均值以減少個人偏誤。",
+              "<strong>人工標注與去偏誤：</strong>建立標注評分機制，由 3 位標注者（團隊成員）獨立對 10 部目標影片進行 Query 相關性評分並取平均值以減少個人偏誤。",
               "<strong>模型迭代：</strong>計算系統 IDCG（理想得分）與實際得分的偏離度，以此為依據反覆測試不同的開源 Embedding 模型。最終將系統檢索得分率穩定提升至 <strong>88% 以上</strong>。"
             ]
           }
