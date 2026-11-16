@@ -17,11 +17,12 @@ const EN = {
     'hero.cta1': 'View My Projects',
     'hero.cta2': 'About Me',
     'hero.b1n': 'National #1',
-    'hero.b1l': 'InnoServe AI Tools Track<br>Capstone project FunCtrl',
-    'hero.b2l': 'NCU MIS cumulative rank<br>Book Prize (Spring 2025)',
+    'hero.b1l': 'InnoServe AI Tools Track <br>Capstone project FunCtrl',
+    'hero.b2l': 'NCU MIS cumulative rank <br>Book Prize (Spring 2025)',
     'hero.b3n': 'Global #2',
-    'hero.b3l': 'Kaggle real-estate forecasting<br>2nd of 777 teams',
-    'hero.b4l': 'Accessibility & security hardening<br>led the full site revamp',
+    'hero.b3l': 'Kaggle real-estate forecasting <br>2nd of 777 teams',
+    'hero.b4n': 'Solo Rebuild',
+    'hero.b4l': 'Institute of Philosophy website <br>launched Oct 2026',
 
     // Section titles & subtitles
     'sec.about': 'About Me',
@@ -80,7 +81,7 @@ const EN = {
     'pb.datavis': 'Junior Course | 97 pts',
     'pb.lyrics': 'Personal | v1→v2 Evolution',
     'pb.genai': 'Joint Course | Project Dev',
-    'pb.webadmin': 'Work Experience | Web Admin',
+    'pb.webadmin': 'Work Experience | Solo Rebuild · Live Oct 2026',
 
     'pt.aicup': 'Python · FFT / Wavelet · XGBoost · Random Forest',
 
@@ -95,7 +96,7 @@ const EN = {
     'ph.datavis': '2023 Traffic Accident Bias Analysis',
     'ph.lyrics': 'LyricsAnalyzer — Lyric Imagery CLI',
     'ph.genai': 'Generative AI Systems & Engineering',
-    'ph.webadmin': 'Institute Website Admin & Security',
+    'ph.webadmin': 'Institute Website Full Rebuild',
 
     // Project card briefs
     'pbr.functrl': 'Tackles fragmented YouTube learning with a three-tier (title / tag / subtitle) vector RAG retrieval plus Gemini query expansion to pinpoint exact video segments. 1st place nationwide, InnoServe AI Application Tools track.',
@@ -109,7 +110,7 @@ const EN = {
     'pbr.datavis': 'Cleaned and explored Taiwan\'s 2023 traffic-accident records, designing multi-dimensional charts that debunk common intuitions about accident causes.',
     'pbr.lyrics': 'NLP-based quantitative analysis of Wu Qing-Feng\'s lyrics. v1 shipped an index layer and subcommand architecture; v2 added cosine similarity, SHA-256 incremental ingest, and CSV/JSON export — fully backward compatible.',
     'pbr.genai': 'NCU & NCKU joint course. Built BM25 hybrid search coding agent memory (Recall@5 > 0.81), statistics RAG with MD5 idempotency, NLP lyrics analyzer, and Pandoc doc pipelines.',
-    'pbr.webadmin': 'Maintained the institute\'s official site: led accessibility 2.0 (A/AA) compliance restructuring, patched legacy SQL-injection vulnerabilities, and hardened HTTPS transport. Led a full revamp of the decade-old site: Laravel 5.2 → 11, no-code admin publishing, full-text search, and a staging release flow.',
+    'pbr.webadmin': 'Took over a department website launched in 2016 with no handover documentation, proposed a full rebuild, and delivered it independently; it went live in October 2026. 507 automated tests are enforced by a git hook, all 1,032 legacy announcements were migrated and verified record by record with zero loss, the 236 findings from the university\'s vulnerability scan were triaged by category before launch, and daily off-site backups are backed by a tested restore drill. Designed to Taiwan\'s web accessibility guidelines at level AA.',
 
     // Metrics
     'mv.k1': '2nd', 'ml.k1': 'of 777 Kaggle teams',
@@ -129,8 +130,8 @@ const EN = {
     'ml.l1': 'v1 backward compatible', 'ml.l2': 'spec-driven development',
     'mv.g1': '0.81+', 'ml.g1': 'Recall@5 Hybrid Search',
     'mv.g2': 'Project Dev', 'ml.g2': 'Joint Course Evaluation',
-    'mv.wa1': 'A/AA', 'ml.wa1': 'MOE accessibility compliance',
-    'mv.wa2': 'SQLi Defense', 'ml.wa2': 'legacy security hardening',
+    'mv.wa1': '507', 'ml.wa1': 'automated tests',
+    'mv.wa2': '10 min', 'ml.wa2': 'measured restore drill',
     'btn.details': 'Read Details',
 
     // Certificates
