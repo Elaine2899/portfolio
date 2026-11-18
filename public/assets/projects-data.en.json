@@ -416,7 +416,7 @@
       },
       {
         "heading": "Full Site Revamp (Laravel 5.2 → 11)",
-        "intro": "The site had run for a decade since 2016. I mapped its core pain points and led a full revamp across three axes — <strong>frontend redesign, no-code daily maintenance, and framework security upgrade</strong>:",
+        "intro": "The site had been running for a decade. I mapped its core pain points and led a full revamp across three axes — <strong>frontend redesign, no-code daily maintenance, and framework security upgrade</strong>:",
         "bullets": [
           "<strong>High maintenance barrier → no-code backend:</strong> changing a homepage banner or uploading a timetable used to require FTP access and code edits, out of reach for admin staff; the new backend uploads images and documents like posting on social media — staff publish updates themselves, no webmaster round-trips.",
           "<strong>Security & permissions → Laravel 11 with role-based access:</strong> the old backend had a single admin account shared by multiple people with no audit trail, on a framework (Laravel 5.2 / old PHP) past end-of-life; the new site runs <strong>Laravel 11</strong> with per-role admin accounts, meeting government and university security standards.",

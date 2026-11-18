@@ -110,7 +110,7 @@ const EN = {
     'pbr.datavis': 'Cleaned and explored Taiwan\'s 2023 traffic-accident records, designing multi-dimensional charts that debunk common intuitions about accident causes.',
     'pbr.lyrics': 'NLP-based quantitative analysis of Wu Qing-Feng\'s lyrics. v1 shipped an index layer and subcommand architecture; v2 added cosine similarity, SHA-256 incremental ingest, and CSV/JSON export — fully backward compatible.',
     'pbr.genai': 'NCU & NCKU joint course. Built BM25 hybrid search coding agent memory (Recall@5 > 0.81), statistics RAG with MD5 idempotency, NLP lyrics analyzer, and Pandoc doc pipelines.',
-    'pbr.webadmin': 'Took over a department website launched in 2016 with no handover documentation, proposed a full rebuild, and delivered it independently; it went live in October 2026. 507 automated tests are enforced by a git hook, all 1,032 legacy announcements were migrated and verified record by record with zero loss, the 236 findings from the university\'s vulnerability scan were triaged by category before launch, and daily off-site backups are backed by a tested restore drill. Designed to Taiwan\'s web accessibility guidelines at level AA.',
+    'pbr.webadmin': 'Took over a department website built on Laravel 5.2 with no handover documentation, proposed a full rebuild, and delivered it independently; it went live in October 2026. 571 automated tests are enforced by a git hook, all 1,032 legacy announcements were migrated and verified record by record with zero loss, findings from the university\'s vulnerability scan were triaged by category before launch, and daily off-site backups are backed by a tested restore drill. Designed to Taiwan\'s web accessibility guidelines at level AA.',
 
     // Metrics
     'mv.k1': '2nd', 'ml.k1': 'of 777 Kaggle teams',
@@ -130,7 +130,7 @@ const EN = {
     'ml.l1': 'v1 backward compatible', 'ml.l2': 'spec-driven development',
     'mv.g1': '0.81+', 'ml.g1': 'Recall@5 Hybrid Search',
     'mv.g2': 'Project Dev', 'ml.g2': 'Joint Course Evaluation',
-    'mv.wa1': '507', 'ml.wa1': 'automated tests',
+    'mv.wa1': '571', 'ml.wa1': 'automated tests',
     'mv.wa2': '10 min', 'ml.wa2': 'measured restore drill',
     'btn.details': 'Read Details',
 
